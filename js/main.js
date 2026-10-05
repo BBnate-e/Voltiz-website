@@ -25,6 +25,7 @@ const QTY_MAX = 20;      // strips maximum par commande
     group.querySelectorAll("[data-reveal]").forEach((el, i) => el.style.setProperty("--d", `${i * 80}ms`));
   });
   if ("IntersectionObserver" in window && !reduceMotion) {
+    // threshold 0 : même un bloc très haut (formulaire, zoom à 400 %) apparaît dès qu'il entre à l'écran
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -32,8 +33,13 @@ const QTY_MAX = 20;      // strips maximum par commande
           io.unobserve(entry.target);
         }
       });
-    }, { rootMargin: "0px 0px -12% 0px", threshold: 0.15 });
+    }, { rootMargin: "0px 0px -10% 0px", threshold: 0 });
     revealEls.forEach((el) => io.observe(el));
+    // Sécurité : un élément atteint au clavier s'affiche tout de suite
+    document.addEventListener("focusin", (e) => {
+      const el = e.target.closest && e.target.closest("[data-reveal]");
+      if (el) el.classList.add("is-in");
+    });
   } else {
     revealEls.forEach((el) => el.classList.add("is-in"));
   }
@@ -51,7 +57,8 @@ const QTY_MAX = 20;      // strips maximum par commande
   const word = document.querySelector(".boost__row--2 .boost__w");
   const measureO = () => {
     const o = word && word.querySelector(".o");
-    if (o) word.style.setProperty("--ow", `${o.getBoundingClientRect().width}px`);
+    // offsetWidth ignore le zoom de départ (scale) : on mesure la vraie largeur d'un O
+    if (o) word.style.setProperty("--ow", `${o.offsetWidth}px`);
   };
   if (word) {
     measureO();
@@ -67,15 +74,18 @@ const QTY_MAX = 20;      // strips maximum par commande
   const minus = form.querySelector('[data-step="-1"]');
   const plus = form.querySelector('[data-step="1"]');
   const totals = [form.querySelector("#total"), form.querySelector("#total-2")];
-  const closedNote = form.querySelector("#order-closed");
   const statusBox = form.querySelector("#order-status");
   const submitBtn = form.querySelector("#order-submit");
 
   // Le message « commandes pas encore ouvertes » disparaît dès qu'un lien Formspree est collé
+  const closedNote = document.getElementById("order-closed");
   if (ORDER_ENDPOINT && closedNote) closedNote.hidden = true;
+  // Le bouton est désactivé dans le HTML (sans JavaScript, rien ne doit partir)
+  submitBtn.disabled = false;
 
   const clampQty = (n) => Math.min(QTY_MAX, Math.max(1, Number.isFinite(n) ? Math.round(n) : 1));
-  const formatCHF = (n) => `${n} CHF`;
+  const formatCHF = (n) => `${n}\u00A0CHF`;
+  const strips = (n) => `${n}\u00A0strip${n > 1 ? "s" : ""}`;
 
   const updateTotal = () => {
     const n = clampQty(parseInt(qty.value, 10));
@@ -104,12 +114,19 @@ const QTY_MAX = 20;      // strips maximum par commande
     if (input.id === "npa") return /^[1-9][0-9]{3}$/.test(v);
     return true;
   };
+  // Le message d'erreur n'est relié au champ (aria-describedby) que lorsqu'il est affiché
+  const helpIds = new Map(required.map((input) => [input, (input.getAttribute("aria-describedby") || "").split(" ").filter((id) => id && !id.endsWith("-err"))]));
   const showError = (input, show) => {
     const err = form.querySelector(`#${input.id}-err`);
     input.setAttribute("aria-invalid", show ? "true" : "false");
     if (err) err.hidden = !show;
+    const ids = [...helpIds.get(input), ...(show && err ? [err.id] : [])];
+    if (ids.length) input.setAttribute("aria-describedby", ids.join(" "));
+    else input.removeAttribute("aria-describedby");
   };
   required.forEach((input) => {
+    showError(input, false);
+    input.removeAttribute("aria-invalid");
     input.addEventListener("blur", () => { if (input.value.trim()) showError(input, !isValid(input)); });
     input.addEventListener("input", () => { if (input.getAttribute("aria-invalid") === "true" && isValid(input)) showError(input, false); });
   });
@@ -143,13 +160,13 @@ const QTY_MAX = 20;      // strips maximum par commande
     const data = Object.fromEntries(new FormData(form).entries());
     data.quantite = n;
     data.total = formatCHF(n * PRICE_CHF);
-    data._subject = `Commande Voltiz : ${n} strip(s), ${data.saveur}`;
+    data._subject = `Commande Voltiz : ${strips(n)}, ${data.saveur}`;
 
     // Pas encore de lien Formspree : on le dit, rien n'est envoyé
     if (!ORDER_ENDPOINT) {
       showStatus(
         "Pas encore ouvert.",
-        "Les commandes ne sont pas encore ouvertes : rien n’a été envoyé. Reviens bientôt.",
+        "Les commandes ne sont pas encore ouvertes\u00A0: rien n’a été envoyé. Reviens bientôt.",
         false
       );
       return;
@@ -169,8 +186,8 @@ const QTY_MAX = 20;      // strips maximum par commande
       form.reset();
       updateTotal();
       showStatus(
-        `Merci ${data.prenom}.`,
-        `Commande reçue : ${n} strip(s), saveur ${data.saveur}, total ${data.total}. On t’envoie la confirmation et la facture par e-mail.`,
+        `Merci, ${data.prenom}.`,
+        `Commande reçue\u00A0: ${strips(n)}, saveur ${data.saveur}, total ${data.total}. On t’envoie la confirmation et la facture par e-mail.`,
         false
       );
     } catch (e) {
