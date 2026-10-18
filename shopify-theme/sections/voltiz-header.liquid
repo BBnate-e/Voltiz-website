@@ -1,0 +1,90 @@
+{%- comment -%} En-tête Voltiz : logo, ancres de la page d'accueil, panier, bouton Commander. {%- endcomment -%}
+{%- liquid
+  assign base = ''
+  unless template.name == 'index'
+    assign base = routes.root_url
+  endunless
+-%}
+<div class="vz vz-header">
+  {% render 'voltiz-sprite' %}
+  <a class="skip" href="#MainContent">Aller au contenu</a>
+  <header class="top" id="top">
+    <div class="top__in wrap">
+      <a class="top__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}, page d’accueil">
+        <svg viewBox="0 0 1118 536" aria-hidden="true"><use href="#logo"/></svg>
+      </a>
+      <nav class="top__nav" aria-label="Navigation principale">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign href = block.settings.target
+            if href contains '#'
+              assign first = href | slice: 0
+              if first == '#'
+                assign href = base | append: href
+              endif
+            endif
+          -%}
+          <a href="{{ href }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+        {%- endfor -%}
+      </nav>
+      <a class="top__cart" href="{{ routes.cart_url }}" aria-label="Panier, {{ cart.item_count }} article{% if cart.item_count > 1 %}s{% endif %}">
+        <svg aria-hidden="true"><use href="#i-bag"/></svg>
+        {%- if cart.item_count > 0 -%}<span class="top__count" aria-hidden="true">{{ cart.item_count }}</span>{%- endif -%}
+      </a>
+      {%- if section.settings.cta_label != blank -%}
+        {%- liquid
+          assign cta = section.settings.cta_target
+          assign first = cta | slice: 0
+          if first == '#'
+            assign cta = base | append: cta
+          endif
+        -%}
+        <a class="btn btn--sm" href="{{ cta }}">{{ section.settings.cta_label }}</a>
+      {%- endif -%}
+    </div>
+  </header>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz : en-tête",
+  "class": "vz-header-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Texte du bouton",
+      "default": "Commander"
+    },
+    {
+      "type": "text",
+      "id": "cta_target",
+      "label": "Lien du bouton",
+      "info": "Une ancre de l’accueil (#commander) ou une adresse.",
+      "default": "#commander"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Lien",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Texte",
+          "default": "Le boost"
+        },
+        {
+          "type": "text",
+          "id": "target",
+          "label": "Lien",
+          "info": "Une ancre de l’accueil (#boost, #dedans, #saveurs, #faq) ou une adresse.",
+          "default": "#boost"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5
+}
+{% endschema %}

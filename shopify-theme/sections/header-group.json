@@ -1,0 +1,49 @@
+{
+  "type": "header",
+  "name": "En-tête",
+  "sections": {
+    "voltiz_header": {
+      "type": "voltiz-header",
+      "settings": {},
+      "blocks": {
+        "lien_1": {
+          "type": "link",
+          "settings": {
+            "label": "Le boost",
+            "target": "#boost"
+          }
+        },
+        "lien_2": {
+          "type": "link",
+          "settings": {
+            "label": "Dedans",
+            "target": "#dedans"
+          }
+        },
+        "lien_3": {
+          "type": "link",
+          "settings": {
+            "label": "Saveurs",
+            "target": "#saveurs"
+          }
+        },
+        "lien_4": {
+          "type": "link",
+          "settings": {
+            "label": "FAQ",
+            "target": "#faq"
+          }
+        }
+      },
+      "block_order": [
+        "lien_1",
+        "lien_2",
+        "lien_3",
+        "lien_4"
+      ]
+    }
+  },
+  "order": [
+    "voltiz_header"
+  ]
+}

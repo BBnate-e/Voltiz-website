@@ -1,0 +1,2 @@
+{%- comment -%} Affiche un texte et surligne les [À COMPLÉTER : …] pour ne pas les oublier. {%- endcomment -%}
+{{- t | replace: '[', '<mark class="todo">[' | replace: ']', ']</mark>' | replace: 'L-théanine', '<span class="nowrap">L-théanine</span>' -}}

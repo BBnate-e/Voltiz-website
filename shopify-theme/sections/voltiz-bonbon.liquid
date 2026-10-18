@@ -1,0 +1,83 @@
+{%- comment -%} 4. Le bonbon : forme, poids, texture, sucre. {%- endcomment -%}
+<div class="vz">
+  <section class="bonbon" id="{{ section.settings.anchor }}" aria-labelledby="bonbon-titre-{{ section.id }}">
+    <div class="wrap bonbon__in">
+      <figure class="bonbon__fig" data-reveal>
+        <div class="candy candy--citron candy--xl" aria-hidden="true"><svg><use href="#i-bolt"/></svg></div>
+        {%- if section.settings.caption != blank -%}<figcaption>{{ section.settings.caption }}</figcaption>{%- endif -%}
+      </figure>
+      <div class="bonbon__text">
+        <h2 id="bonbon-titre-{{ section.id }}" class="display vz-h2" data-reveal>{{ section.settings.heading }}</h2>
+        {%- if section.settings.sub != blank -%}<p class="vz-h2-sub" data-reveal>{% render 'voltiz-t', t: section.settings.sub %}</p>{%- endif -%}
+        <dl class="specs">
+          {%- for block in section.blocks -%}
+            <div data-reveal {{ block.shopify_attributes }}><dt>{{ block.settings.label }}</dt><dd><b>{{ block.settings.value }}</b>{% render 'voltiz-t', t: block.settings.detail %}</dd></div>
+          {%- endfor -%}
+        </dl>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz : le bonbon",
+  "settings": [
+    {
+      "type": "text",
+      "id": "anchor",
+      "label": "Ancre",
+      "default": "bonbon"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titre",
+      "default": "Un éclair à mâcher."
+    },
+    {
+      "type": "text",
+      "id": "sub",
+      "label": "Sous-titre",
+      "default": "Pas un chewing-gum : un bonbon mou, qu’on mâche et qu’on avale."
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Légende de l’illustration",
+      "default": "Illustration : la forme du bonbon."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "Caractéristique",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Nom",
+          "default": "Forme"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Valeur",
+          "default": "Éclair"
+        },
+        {
+          "type": "text",
+          "id": "detail",
+          "label": "Détail",
+          "default": "2,5 × 1,5 × 0,5 cm"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Voltiz : le bonbon"
+    }
+  ]
+}
+{% endschema %}

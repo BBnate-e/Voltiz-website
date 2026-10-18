@@ -1,0 +1,85 @@
+{%- comment -%} 8. FAQ et encadré « Usage responsable ». {%- endcomment -%}
+<div class="vz">
+  <section class="faq-sec" id="{{ section.settings.anchor }}" aria-labelledby="faq-titre-{{ section.id }}">
+    <div class="wrap faq-sec__in">
+      <div class="faq-sec__side">
+        <h2 id="faq-titre-{{ section.id }}" class="display vz-h2" data-reveal>{{ section.settings.heading }}</h2>
+        {%- if section.settings.care_text != blank -%}
+          <aside class="care" aria-labelledby="care-titre-{{ section.id }}" data-reveal>
+            <h3 id="care-titre-{{ section.id }}"><svg aria-hidden="true"><use href="#i-warning"/></svg>{{ section.settings.care_title }}</h3>
+            {%- assign paras = section.settings.care_text | newline_to_br | split: '<br />' -%}
+            {%- for p in paras -%}{%- assign p = p | strip -%}{%- if p != blank -%}<p>{% render 'voltiz-t', t: p %}</p>{%- endif -%}{%- endfor -%}
+          </aside>
+        {%- endif -%}
+      </div>
+      <div class="faq">
+        <div class="faq__list" data-reveal>
+          {%- for block in section.blocks -%}
+            <details {{ block.shopify_attributes }}>
+              <summary>{{ block.settings.question }}<svg aria-hidden="true"><use href="#i-caret"/></svg></summary>
+              <p>{% render 'voltiz-t', t: block.settings.answer %}</p>
+            </details>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz : FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "anchor",
+      "label": "Ancre",
+      "default": "faq"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titre",
+      "default": "Questions fréquentes."
+    },
+    {
+      "type": "text",
+      "id": "care_title",
+      "label": "Titre de l’encadré",
+      "default": "Usage responsable"
+    },
+    {
+      "type": "textarea",
+      "id": "care_text",
+      "label": "Texte de l’encadré",
+      "info": "Un paragraphe par ligne.",
+      "default": "Contient de la caféine (50 mg par gum, [À COMPLÉTER] mg/100 g). Déconseillé aux enfants, aux femmes enceintes ou allaitantes et aux personnes sensibles à la caféine.\nNe pas dépasser la dose recommandée : [À COMPLÉTER : nombre de gums par jour].\nUne consommation excessive peut avoir des effets laxatifs."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "C’est un chewing-gum ?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Réponse",
+          "default": "Non. Voltiz est un bonbon mou en forme d’éclair, qu’on mâche et qu’on avale."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Voltiz : FAQ"
+    }
+  ]
+}
+{% endschema %}

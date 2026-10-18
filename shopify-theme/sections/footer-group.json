@@ -1,0 +1,13 @@
+{
+  "type": "footer",
+  "name": "Pied de page",
+  "sections": {
+    "voltiz_footer": {
+      "type": "voltiz-footer",
+      "settings": {}
+    }
+  },
+  "order": [
+    "voltiz_footer"
+  ]
+}

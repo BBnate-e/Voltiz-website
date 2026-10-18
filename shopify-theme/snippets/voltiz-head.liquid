@@ -1,0 +1,21 @@
+{%- comment -%}
+  Styles, polices et scripts Voltiz. Rendu dans layout/theme.liquid, après les variables d'Horizon,
+  pour que les pages d'Horizon (produit, panier) prennent aussi les polices Saira.
+{%- endcomment -%}
+<link rel="preload" href="{{ 'voltiz-saira-display.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ 'voltiz-saira.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+{{ 'voltiz.css' | asset_url | stylesheet_tag }}
+<style>
+  :root {
+    --font-body--family: "Saira", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-subheading--family: "Saira", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-heading--family: "Saira Display", "Arial Narrow", system-ui, sans-serif;
+    --font-heading--style: italic;
+    --font-heading--weight: 900;
+    --font-accent--family: "Saira Display", "Arial Narrow", system-ui, sans-serif;
+    --font-accent--style: italic;
+    --font-accent--weight: 900;
+  }
+</style>
+<script>document.documentElement.classList.add('js')</script>
+<script src="{{ 'voltiz.js' | asset_url }}" defer></script>

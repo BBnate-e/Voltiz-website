@@ -1,0 +1,614 @@
+/* =====================================================================
+   VOLTIZ ENERGY GUM : feuille de style
+   ---------------------------------------------------------------------
+   Pour changer une couleur ou une police, modifie seulement les
+   variables du bloc :root ci-dessous. Tout le site suit.
+   Couleurs échantillonnées sur le sachet Voltiz.
+   Rayons : 12px pour ce qui se clique (boutons, champs),
+            20px pour les blocs et cartes, 6px pour les étiquettes.
+   ===================================================================== */
+
+/* ---------- Polices (Saira, licence SIL OFL, hébergées ici) ---------- */
+@font-face {
+  font-family: "Saira Display";
+  src: url("voltiz-saira-display.woff2") format("woff2");
+  font-weight: 800 900;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Saira";
+  src: url("voltiz-saira.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+.vz {
+  /* Fonds (papier kraft du sachet) */
+  --paper: #EEE7DF;      /* fond principal */
+  --kraft: #DDD4C9;      /* fond des sections alternées */
+  --kraft-2: #E5DCD2;    /* cartes */
+  --field: #F7F2EC;      /* champs du formulaire */
+
+  /* Texte */
+  --ink: #141414;        /* noir du logo */
+  --ink-2: #4F4843;      /* texte secondaire */
+  --line: rgba(20, 20, 20, .16);
+  --edge: #7D746D;       /* bord des champs */
+
+  /* Accents */
+  --yellow: #E4AC2C;     /* jaune doré du gum : boutons, chiffres clés */
+  --yellow-hover: #D89D19;
+  --yellow-soft: #F2D58F;
+  --navy: #1C3C64;       /* bleu du badge MATÉ */
+  --bolt: #7A7068;       /* gris de l'éclair du sachet */
+  --red-ch: #DA291C;     /* croix suisse uniquement */
+  --error: #A1231B;
+
+  /* Typo */
+  --f-display: "Saira Display", "Arial Narrow", system-ui, sans-serif;
+  --f-text: "Saira", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Mise en page */
+  --wrap: 1280px;
+  --gutter: clamp(16px, 4vw, 48px);
+  --header-h: 64px;
+  --r-ui: 12px;
+  --r-block: 20px;
+  --r-tag: 6px;
+  --caps: .28em;         /* espacement des petites capitales, comme sur le sachet */
+  --ease: cubic-bezier(.16, 1, .3, 1);
+}
+
+/* ---------- Base ---------- */
+/* Remise à zéro des titres d'Horizon dans les sections Voltiz */
+.vz :is(h1, h2, h3, h4) { font: inherit; letter-spacing: normal; text-transform: none; color: inherit; margin: 0; }
+.vz img { width: auto; }
+
+.vz *, .vz *::before, .vz *::after { box-sizing: border-box; }
+.vz {
+  color-scheme: light;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 16px);
+  -webkit-text-size-adjust: 100%;
+}
+@media (prefers-reduced-motion: reduce) { .vz { scroll-behavior: auto; } }
+.vz {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 1.0625rem/1.55 var(--f-text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.vz img, .vz svg { display: block; max-width: 100%; }
+.vz [hidden] { display: none !important; }
+.vz .nowrap { white-space: nowrap; }
+.vz h1, .vz h2, .vz h3, .vz p, .vz figure, .vz dl, .vz dd { margin: 0; }
+.vz a { color: inherit; }
+.vz b, .vz strong { font-weight: 700; }
+.vz button, .vz input, .vz textarea { font: inherit; color: inherit; }
+.vz :focus-visible { outline: 3px solid var(--navy); outline-offset: 3px; border-radius: 4px; }
+
+.vz .wrap {
+  width: 100%; max-width: var(--wrap); margin-inline: auto;
+  padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+}
+.vz .sr-only {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.vz .skip {
+  position: absolute; left: 16px; top: -100px; z-index: 30;
+  background: var(--ink); color: var(--paper); padding: 10px 16px; border-radius: var(--r-ui);
+  font-weight: 700; text-decoration: none;
+}
+.vz .skip:focus { top: 12px; }
+
+/* Titres en italique très gras, comme le logo */
+.vz .display {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-weight: 900;
+  line-height: .98;
+  letter-spacing: -.005em;
+  padding-bottom: .06em;           /* place pour les jambages (g, p, y) */
+  overflow-wrap: break-word;
+}
+.vz .vz-h2 { font-size: clamp(2.6rem, 1.2rem + 5vw, 5.2rem); }
+.vz .vz-h2-sub { margin-top: 14px; max-width: 46ch; color: var(--ink-2); font-size: 1.125rem; }
+
+/* Petite ligne en capitales espacées, comme « SWISS MADE » sur le sachet */
+.vz .eyebrow {
+  display: inline-flex; align-items: center; gap: 12px;
+  font: 600 .8125rem/1 var(--f-text); letter-spacing: var(--caps); text-transform: uppercase;
+}
+.vz .ch { width: 18px; height: 18px; flex: none; }
+
+/* Texte à compléter : bien visible pour ne pas l'oublier */
+.vz mark.todo {
+  background: rgba(228, 172, 44, .3);
+  color: var(--ink);
+  outline: 1.5px dashed #8A5E00;
+  outline-offset: 1px;
+  border-radius: 4px;
+  padding: 0 .3em;
+  font-size: .95em;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+
+/* Étiquettes */
+.vz .tag {
+  display: inline-block;
+  font: 600 .75rem/1.2 var(--f-text); letter-spacing: var(--caps); text-transform: uppercase;
+  padding: 7px 10px; border-radius: var(--r-tag); border: 1.5px solid currentColor;
+}
+.vz .tag--line { color: var(--ink-2); padding: 5px 8px; font-size: .6875rem; }
+
+/* ---------- Boutons et liens ---------- */
+.vz .btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 52px; padding: 0 26px;
+  background: var(--yellow); color: var(--ink);
+  border: 0; border-radius: var(--r-ui);
+  font: 700 1.0625rem/1 var(--f-text); text-decoration: none; white-space: nowrap;
+  cursor: pointer;
+  box-shadow: inset 0 -3px 0 rgba(20, 20, 20, .14);
+  transition: transform .25s var(--ease), background-color .25s var(--ease);
+}
+.vz .btn svg { width: 20px; height: 20px; transition: transform .3s var(--ease); }
+.vz .btn:hover { background: var(--yellow-hover); transform: translateY(-1px); }
+.vz .btn:hover svg { transform: translateX(3px); }
+.vz .btn:active { transform: scale(.98); }
+.vz .btn--sm { min-height: 44px; padding: 0 18px; font-size: .9375rem; background: var(--ink); color: var(--paper); box-shadow: none; }
+.vz .btn--sm:hover { background: #2A2A2A; }
+.vz .btn--lg { min-height: 58px; padding: 0 32px; font-size: 1.125rem; }
+.vz .btn[aria-busy="true"] { opacity: .7; cursor: progress; }
+.vz .btn:disabled:not([aria-busy="true"]) { opacity: .5; cursor: not-allowed; }
+
+.vz .link {
+  display: inline-block; padding-block: 10px;
+  font-weight: 600; text-decoration: underline; text-decoration-color: var(--yellow);
+  text-decoration-thickness: 3px; text-underline-offset: 6px;
+  transition: text-underline-offset .25s var(--ease);
+}
+.vz .link:hover { text-underline-offset: 3px; }
+
+/* ---------- En-tête ---------- */
+.vz .top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: rgba(221, 212, 201, .92);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .3s, background-color .3s;
+}
+.vz .top.is-stuck { background: rgba(238, 231, 223, .94); border-bottom-color: var(--line); }
+.vz .top__in { height: var(--header-h); display: flex; align-items: center; gap: 24px; }
+.vz .top__logo { display: block; width: 104px; color: var(--ink); }
+.vz .top__logo svg { width: 100%; height: auto; }
+.vz .top__nav { margin-left: auto; display: flex; gap: 28px; }
+.vz .top__nav a { font-weight: 600; font-size: .9375rem; text-decoration: none; padding: 12px 0; background: linear-gradient(var(--yellow), var(--yellow)) left bottom / 0 3px no-repeat; transition: background-size .3s var(--ease); }
+.vz .top__nav a:hover { background-size: 100% 3px; }
+.vz .top-sentinel { position: absolute; top: 0; height: 8px; width: 1px; }
+@media (max-width: 819px) {
+  .vz .top__nav { display: none; }
+  .vz .top .btn--sm { margin-left: auto; }
+}
+
+/* ---------- 1. Hero ---------- */
+.vz .hero {
+  position: relative; overflow: hidden;
+  background: var(--kraft);
+}
+.vz .hero__eclair {
+  position: absolute; z-index: 0;
+  width: auto; height: 112%; aspect-ratio: 340 / 635;
+  left: 47%; top: -6%;
+  color: var(--bolt); opacity: .16;
+  pointer-events: none;
+}
+.vz .hero__in {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; align-items: center;
+  min-height: min(calc(100svh - var(--header-h)), 900px);
+  padding-block: clamp(32px, 6vh, 72px);
+}
+.vz .hero__text { grid-column: 1 / span 7; }
+/* Taille limitée aussi par la hauteur d'écran : le bouton reste visible sur un portable */
+.vz .hero__title { font-size: min(clamp(3.75rem, 1.5rem + 8.4vw, 9rem), 15svh); margin-top: 22px; }
+.vz .hero__title span { display: block; }
+.vz .hero__title span + span { color: var(--ink); }
+.vz .hero__lead { margin-top: 22px; max-width: 36ch; font-size: clamp(1.06rem, 1rem + .35vw, 1.25rem); color: var(--ink-2); }
+.vz .hero__cta { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; }
+/* Le sachet suit la hauteur d'écran (668/1176 = proportions de la photo) */
+.vz .hero__pouch {
+  grid-column: 8 / span 5; justify-self: center;
+  width: min(100%, 420px, calc((100svh - var(--header-h) - 120px) * .55));
+}
+.vz .hero__tilt {
+  transform: rotate(-4deg);
+  /* fond du photo fondu dans la page */
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 4%, #000 96%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 4%, #000 95%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent 0, #000 4%, #000 96%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 4%, #000 95%, transparent 100%);
+  mask-composite: intersect;
+}
+.vz .hero__tilt img { width: 100%; height: auto; }
+
+@media (max-width: 899px) {
+  .vz .hero__in { grid-template-columns: minmax(0, 1fr); gap: 8px; min-height: 0; padding-top: 28px; padding-bottom: 0; }
+  .vz .hero__text, .vz .hero__pouch { grid-column: 1; }
+  .vz .hero__title { font-size: clamp(3.75rem, 1.5rem + 8.4vw, 9rem); margin-top: 16px; }
+  /* Le bas du sachet déborde un peu, toujours dans la marge vide de la photo */
+  .vz .hero__pouch { width: min(62vw, 300px); margin-top: 24px; margin-bottom: calc(min(62vw, 300px) * -.08); }
+  .vz .hero__eclair { height: 70%; top: auto; bottom: -6%; left: auto; right: -4%; }
+}
+
+/* ---------- 2. Le boost ---------- */
+.vz .boost { padding-block: clamp(72px, 12vh, 140px); }
+.vz .boost__row {
+  display: grid; grid-template-columns: 120px minmax(0, 1fr) minmax(0, 30ch); gap: 32px; align-items: end;
+  padding-block: clamp(36px, 6vh, 64px);
+}
+.vz .boost__row + .boost__row { border-top: 1.5px solid var(--ink); }
+.vz .boost__icons { display: flex; gap: 4px; align-self: center; }
+.vz .boost__icons svg { width: 56px; height: 56px; color: var(--yellow); }
+.vz .boost__eq { font-size: clamp(3.4rem, 1rem + 8.6vw, 9.4rem); white-space: nowrap; }
+.vz .boost__n { display: block; font-size: .4em; color: var(--ink-2); margin-bottom: .1em; }
+.vz .boost__w { display: block; }
+.vz .boost__w .o, .vz .boost__w .st { display: inline-block; }
+.vz .boost__note { color: var(--ink-2); padding-bottom: 1.2em; }
+.vz .boost__note strong { color: var(--ink); }
+@media (max-width: 899px) {
+  .vz .boost__row { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .vz .boost__icons svg { width: 40px; height: 40px; }
+  .vz .boost__note { padding-bottom: 0; max-width: 40ch; }
+}
+
+/* ---------- 3. Ce qu'il y a dedans ---------- */
+.vz .dedans { padding-block: 0 clamp(72px, 12vh, 140px); }
+.vz .bento {
+  margin-top: 48px;
+  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px;
+}
+.vz .cell {
+  position: relative; border-radius: var(--r-block); padding: clamp(24px, 3vw, 40px);
+  background: var(--kraft-2);
+  display: flex; flex-direction: column; gap: 12px;
+}
+.vz .cell h3 { font-size: 1.15rem; font-weight: 700; }
+.vz .cell p { max-width: 42ch; }
+.vz .cell__icon { width: 44px; height: 44px; }
+.vz .cell__big { font-size: clamp(2.6rem, 1.4rem + 3.6vw, 4.6rem); margin-top: auto; padding-top: 12px; }
+.vz .cell__unit { margin-top: -10px; font-weight: 700; }
+.vz .cell__note { font-size: .9375rem; color: var(--ink-2); }
+/* Ligne 1 : maté + guarana = total. Ligne 2 : L-théanine et B12 */
+.vz .cell--mate, .vz .cell--guarana, .vz .cell--total { grid-column: span 2; }
+.vz .cell--thea, .vz .cell--b12 { grid-column: span 3; }
+.vz .cell--mate { background: var(--navy); color: var(--paper); }
+.vz .cell--mate .cell__icon, .vz .cell--mate .cell__big { color: var(--yellow); }
+.vz .cell--mate p:not(.cell__big) { color: rgba(238, 231, 223, .9); }
+.vz .cell--total { background: var(--yellow); }
+.vz .cell--total p:first-child { font-weight: 600; }
+.vz .cell__hex { position: relative; width: 56px; height: 56px; display: grid; place-items: center; }
+.vz .cell__hex svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.vz .cell__hex b { position: relative; font: 800 .8125rem/1 var(--f-text); letter-spacing: .02em; }
+.vz .cell--b12 h3 { margin-top: auto; padding-top: 12px; }
+@media (max-width: 899px) {
+  .vz .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vz .cell--mate, .vz .cell--guarana, .vz .cell--thea, .vz .cell--b12 { grid-column: span 1; }
+  .vz .cell--total { grid-column: span 2; }
+}
+@media (max-width: 559px) {
+  .vz .bento { grid-template-columns: minmax(0, 1fr); }
+  .vz .cell--mate, .vz .cell--guarana, .vz .cell--total, .vz .cell--thea, .vz .cell--b12 { grid-column: 1; }
+}
+
+/* ---------- Bonbon dessiné (forme d'éclair) ---------- */
+.vz .candy { color: var(--yellow); }
+.vz .candy svg {
+  width: 100%; height: auto; aspect-ratio: 1;
+  filter: drop-shadow(0 2px 0 rgba(120, 70, 0, .35)) drop-shadow(0 18px 22px rgba(80, 50, 10, .22));
+}
+.vz .candy--citron { color: var(--yellow); }
+.vz .candy--bois { color: var(--kraft); }
+.vz .candy--bois svg { filter: none; }
+.vz .candy--xl { width: min(78%, 360px); transform: rotate(-10deg); }
+.vz .candy--sm { width: 56px; flex: none; transform: rotate(-10deg); }
+.vz .candy--xs { width: 30px; flex: none; }
+.vz .candy--xs svg, .vz .candy--sm svg { filter: drop-shadow(0 1px 0 rgba(0, 0, 0, .25)); }
+.vz .pick .candy--bois { color: var(--ink); }
+
+/* ---------- 4. Le bonbon ---------- */
+.vz .bonbon { background: var(--kraft); padding-block: clamp(72px, 12vh, 140px); }
+.vz .bonbon__in { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
+.vz .bonbon__fig { display: grid; justify-items: center; gap: 28px; }
+.vz .bonbon__fig figcaption { font-size: .875rem; color: var(--ink-2); }
+.vz .specs { margin-top: 40px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 40px; }
+.vz .specs dt { font: 600 .75rem/1 var(--f-text); letter-spacing: var(--caps); text-transform: uppercase; color: var(--ink-2); }
+.vz .specs dd { margin-top: 10px; color: var(--ink-2); }
+.vz .specs dd b { display: block; font: italic 900 clamp(1.9rem, 1.2rem + 1.6vw, 2.6rem)/1.05 var(--f-display); color: var(--ink); padding-bottom: .04em; }
+@media (max-width: 899px) {
+  .vz .bonbon__in { grid-template-columns: minmax(0, 1fr); }
+  .vz .candy--xl { width: min(52vw, 220px); }
+}
+@media (max-width: 479px) { .vz .specs { gap: 24px 20px; } }
+/* Une section = un écran, sur ordinateur */
+@media (min-width: 900px) {
+  .vz .bonbon, .vz .saveurs { min-height: calc(100svh - var(--header-h)); display: grid; align-content: center; }
+}
+
+/* ---------- 5. Saveurs ---------- */
+.vz .saveurs { padding-block: clamp(72px, 12vh, 140px); }
+.vz .flavors { margin-top: 40px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.vz .flavor {
+  position: relative; border-radius: var(--r-block);
+  min-height: clamp(380px, 46vw, 540px);
+  padding: clamp(24px, 3vw, 40px);
+  display: flex; flex-direction: column; justify-content: flex-end; gap: 8px;
+  overflow: hidden;
+}
+.vz .flavor .candy { position: absolute; top: 14%; left: 50%; width: min(46%, 230px); transform: translateX(-50%) rotate(-12deg); }
+.vz .flavor h3 { font-size: clamp(2.6rem, 1.4rem + 3vw, 4rem); }
+.vz .flavor--citron { background: var(--yellow-soft); }
+.vz .flavor--bois { background: var(--ink); color: var(--paper); }
+.vz .flavor--bois .candy { transform: translateX(-50%) rotate(14deg); }
+.vz .flavor .tag { position: absolute; top: 24px; left: 24px; }
+@media (max-width: 767px) {
+  .vz .flavors { grid-template-columns: minmax(0, 1fr); }
+  .vz .flavor { min-height: 360px; }
+}
+
+/* ---------- 6. Ingrédients et valeurs (comme le dos du sachet) ---------- */
+.vz .label-sec { padding-block: 0 clamp(72px, 12vh, 140px); }
+.vz .label {
+  border: 1.5px solid var(--ink); border-radius: var(--r-block);
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+}
+.vz .label__col { padding: clamp(24px, 3.4vw, 48px); display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+.vz .label__col + .label__col { border-left: 1.5px solid var(--ink); }
+.vz .label__h { font: 800 1.25rem/1.2 var(--f-text); text-transform: uppercase; letter-spacing: .06em; }
+.vz .label__h span { text-transform: none; letter-spacing: 0; font-weight: 500; color: var(--ink-2); font-size: 1rem; }
+.vz .label__ingr { max-width: 52ch; }
+.vz .nutri { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.vz .nutri th, .vz .nutri td { padding: 9px 0; border-bottom: 1px solid var(--line); text-align: left; font-weight: 500; }
+.vz .nutri td { text-align: right; font-weight: 600; white-space: nowrap; padding-left: 12px; }
+.vz .nutri tr.sub th { padding-left: 18px; color: var(--ink-2); font-weight: 400; }
+.vz .nutri tr:last-child th, .vz .nutri tr:last-child td { border-bottom: 0; }
+.vz .label__foot { font-size: .875rem; color: var(--ink-2); }
+@media (max-width: 767px) {
+  .vz .label { grid-template-columns: minmax(0, 1fr); }
+  .vz .label__col + .label__col { border-left: 0; border-top: 1.5px solid var(--ink); }
+}
+@media (max-width: 479px) {
+  .vz .nutri td { white-space: normal; }
+  .vz .nutri__vnr { display: block; font-weight: 500; }
+}
+
+/* ---------- 7. Swiss made ---------- */
+.vz .swiss { background: var(--kraft); padding-block: clamp(72px, 12vh, 140px); }
+.vz .swiss__in { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(28px, 6vw, 96px); align-items: center; }
+.vz .swiss__cross { width: clamp(96px, 16vw, 220px); height: auto; aspect-ratio: 1; }
+.vz .swiss__text { display: grid; gap: 18px; justify-items: start; }
+.vz .swiss__text p { max-width: 40ch; font-size: 1.125rem; }
+@media (max-width: 559px) { .vz .swiss__in { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- 8. FAQ ---------- */
+.vz .faq-sec { padding-block: clamp(72px, 12vh, 140px) 0; }
+.vz .faq-sec__in { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
+.vz .faq-sec__side { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; }
+.vz .care { border: 1.5px solid var(--ink); border-radius: var(--r-block); background: var(--kraft-2); padding: 24px 26px; display: grid; gap: 10px; }
+.vz .care h3 { display: flex; align-items: center; gap: 10px; font-size: 1.05rem; font-weight: 700; }
+.vz .care h3 svg { width: 24px; height: 24px; }
+.vz .faq__list { border-top: 1.5px solid var(--ink); }
+.vz .faq details { border-bottom: 1.5px solid var(--ink); }
+.vz .faq summary {
+  list-style: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  padding: 20px 2px; font-weight: 700; font-size: 1.125rem;
+}
+.vz .faq summary::-webkit-details-marker { display: none; }
+.vz .faq summary svg { width: 22px; height: 22px; flex: none; transition: transform .3s var(--ease); }
+.vz .faq details[open] summary svg { transform: rotate(180deg); }
+.vz .faq details p { padding: 0 2px 22px; max-width: 58ch; color: var(--ink-2); }
+@media (max-width: 899px) { .vz .faq-sec__in { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- Séparateur éclair ---------- */
+.vz .sep { display: flex; justify-content: center; padding-block: clamp(48px, 9vh, 96px); }
+.vz .sep__bolt { height: clamp(120px, 18vh, 180px); width: auto; overflow: visible; }
+.vz .sep__bolt path { fill: var(--bolt); stroke: var(--bolt); stroke-width: 12; stroke-linejoin: round; }
+
+/* ---------- 8. Commander ---------- */
+.vz .order { padding-block: 0 clamp(72px, 12vh, 140px); }
+.vz .order .closed { margin-top: 24px; max-width: 62ch; }
+.vz .order__grid { margin-top: 44px; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 4vw, 64px); align-items: start; }
+.vz .summary {
+  position: sticky; top: calc(var(--header-h) + 24px);
+  background: var(--kraft); border-radius: var(--r-block); padding: clamp(22px, 2.6vw, 32px);
+  display: grid; gap: 22px;
+}
+.vz .summary__prod { display: flex; align-items: center; gap: 18px; }
+
+.vz .summary__name { font-weight: 700; font-size: 1.15rem; }
+.vz .summary__unit { color: var(--ink-2); }
+.vz .qty label { display: block; font-weight: 600; margin-bottom: 8px; }
+.vz .qty__ctrl { display: inline-flex; align-items: center; gap: 6px; }
+.vz .qty__btn {
+  width: 48px; height: 48px; display: grid; place-items: center;
+  border: 1.5px solid var(--edge); background: var(--field); border-radius: var(--r-ui); cursor: pointer;
+  transition: transform .2s var(--ease), background-color .2s;
+}
+.vz .qty__btn svg { width: 18px; height: 18px; }
+.vz .qty__btn:hover { background: #fff8ef; }
+.vz .qty__btn:active { transform: scale(.95); }
+.vz .qty__btn:disabled { opacity: .4; cursor: not-allowed; }
+.vz .qty input {
+  width: 68px; height: 48px; text-align: center; font-weight: 700; font-size: 1.25rem;
+  border: 1.5px solid var(--edge); border-radius: var(--r-ui); background: var(--field);
+  -moz-appearance: textfield; appearance: textfield;
+}
+.vz .qty input::-webkit-outer-spin-button, .vz .qty input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.vz .summary__total {
+  display: flex; justify-content: space-between; align-items: baseline;
+  border-top: 1.5px solid var(--ink); padding-top: 18px; font-weight: 700; font-size: 1.1rem;
+}
+.vz .summary__total output { font: italic 900 2.6rem/1 var(--f-display); }
+.vz .summary__info { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; color: var(--ink-2); font-size: .9375rem; }
+.vz .summary__info li { display: flex; gap: 10px; align-items: flex-start; }
+.vz .summary__info svg { width: 20px; height: 20px; flex: none; margin-top: 2px; color: var(--ink); }
+
+.vz .fields { display: grid; gap: 20px; }
+.vz .field { display: grid; gap: 8px; align-content: start; }
+.vz .field label, .vz .flavor-pick legend { font-weight: 600; font-size: .9375rem; }
+.vz .opt { font-weight: 400; color: var(--ink-2); }
+.vz .field input, .vz .field textarea {
+  width: 100%; min-height: 50px; padding: 12px 14px; font-size: 1.0625rem;
+  background: var(--field); border: 1.5px solid var(--edge); border-radius: var(--r-ui);
+  transition: border-color .2s, box-shadow .2s;
+}
+.vz .field textarea { resize: vertical; min-height: 96px; }
+.vz .field input[aria-invalid="true"] { border-color: var(--error); }
+/* Focus bien visible, même sur un champ en erreur */
+.vz .field input:focus-visible, .vz .field textarea:focus-visible, .vz .qty input:focus-visible {
+  outline: 3px solid var(--navy); outline-offset: 2px; border-radius: var(--r-ui);
+}
+.vz .help { font-size: .875rem; color: var(--ink-2); }
+.vz .err { font-size: .875rem; font-weight: 600; color: var(--error); }
+.vz .row2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.vz .row-npa { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 20px; }
+@media (max-width: 559px) { .vz .row2 { grid-template-columns: minmax(0, 1fr); } }
+
+.vz .flavor-pick { border: 0; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.vz .flavor-pick legend { padding: 0; margin-bottom: 8px; }
+.vz .pick { position: relative; cursor: pointer; }
+.vz .pick input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.vz .pick__box {
+  height: 100%; display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px; border-radius: var(--r-ui);
+  border: 1.5px solid var(--edge); background: var(--field);
+  transition: border-color .2s, background-color .2s, box-shadow .2s;
+}
+.vz .pick__box b { display: block; font-size: 1rem; }
+.vz .pick__box > span:last-child { font-size: .875rem; color: var(--ink-2); line-height: 1.35; }
+.vz .pick input:checked + .pick__box { border-color: var(--ink); background: var(--kraft-2); box-shadow: inset 0 0 0 1.5px var(--ink); }
+.vz .pick input:focus-visible + .pick__box { outline: 3px solid var(--navy); outline-offset: 3px; }
+@media (max-width: 379px) { .vz .flavor-pick { grid-template-columns: minmax(0, 1fr); } }
+
+.vz .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+.vz .closed {
+  display: flex; gap: 10px; align-items: flex-start;
+  background: rgba(228, 172, 44, .22); border-left: 4px solid var(--yellow);
+  padding: 14px 16px; border-radius: 0 var(--r-ui) var(--r-ui) 0; font-weight: 500;
+}
+.vz .closed svg { width: 22px; height: 22px; flex: none; margin-top: 1px; }
+.vz .submit { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; }
+.vz .submit__total { font-weight: 600; color: var(--ink-2); }
+.vz .submit__total span { color: var(--ink); font-weight: 700; }
+.vz .status { border-radius: var(--r-block); padding: 20px 22px; border: 1.5px solid var(--ink); background: var(--kraft-2); }
+.vz .status h3 { font: italic 900 1.8rem/1.05 var(--f-display); margin-bottom: 6px; }
+.vz .status.is-error { border-color: var(--error); }
+.vz .status:focus { outline: none; }
+
+@media (max-width: 899px) {
+  .vz .order__grid { grid-template-columns: minmax(0, 1fr); }
+  .vz .summary { position: static; }
+}
+
+/* ---------- Pied de page ---------- */
+.vz .foot { background: var(--kraft); padding-block: clamp(56px, 9vh, 96px) 32px; }
+.vz .foot__top { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px; padding-bottom: 40px; border-bottom: 1.5px solid var(--ink); }
+.vz .foot__logo { width: min(100%, 460px); height: auto; color: var(--ink); }
+.vz .foot__slogan { font: 600 .875rem/1.4 var(--f-text); letter-spacing: var(--caps); text-transform: uppercase; }
+.vz .foot__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; padding-block: 36px; }
+.vz .foot__h { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+.vz .foot__grid p { color: var(--ink-2); font-size: .9375rem; max-width: 34ch; }
+.vz .foot__copy { display: flex; align-items: center; gap: 10px; font-size: .875rem; color: var(--ink-2); }
+@media (max-width: 1023px) { .vz .foot__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 559px) { .vz .foot__grid { grid-template-columns: minmax(0, 1fr); gap: 24px; } }
+
+/* =====================================================================
+   ANIMATIONS
+   Toutes coupées si le visiteur a réduit les animations dans son système.
+   ===================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+
+  /* Arrivée du hero au chargement */
+  .vz .load { animation: rise .9s var(--ease) both; }
+  .vz .d1 { animation-delay: .05s; } .vz .d2 { animation-delay: .15s; } .vz .d3 { animation-delay: .28s; } .vz .d4 { animation-delay: .4s; }
+  .vz .hero__tilt.load { animation-name: pouch-in; animation-duration: 1.2s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(18px); } }
+  @keyframes pouch-in { from { opacity: 0; transform: translateY(40px) rotate(-10deg); } }
+
+  /* Apparition au scroll (une seule fois) */
+  .js .vz [data-reveal] { opacity: 0; transform: translateY(20px); transition: opacity .8s var(--ease), transform .8s var(--ease); transition-delay: var(--d, 0s); }
+  .js .vz [data-reveal].is-in { opacity: 1; transform: none; }
+
+  /* BOOOOST : les O arrivent un par un */
+  .js .vz .boost__row--2 .o { opacity: 0; transform: translateY(.2em) scale(.4); transition: opacity .45s var(--ease), transform .6s var(--ease); }
+  .js .vz .boost__row--2 .st { transform: translateX(calc(var(--ow, .58em) * -2)); transition: transform .9s var(--ease) .25s; }
+  .js .vz .boost__row--2.is-in .o { opacity: 1; transform: none; }
+  .js .vz .boost__row--2.is-in .o:nth-child(1) { transition-delay: .3s; }
+  .js .vz .boost__row--2.is-in .o:nth-child(2) { transition-delay: .45s; }
+  .js .vz .boost__row--2.is-in .st { transform: none; }
+
+  /* Éclair séparateur : il se dessine, puis se remplit */
+  .js .vz .sep__bolt path { fill-opacity: 0; stroke-dasharray: 1; stroke-dashoffset: 1; }
+  .js .vz .sep.is-in .sep__bolt path { animation: draw 1.2s cubic-bezier(.65, 0, .35, 1) forwards, fill-in .5s ease 1.1s forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes fill-in { to { fill-opacity: 1; } }
+
+  /* Sachet : léger parallax au scroll (ordinateur seulement) */
+  @media (min-width: 900px) {
+    @supports (animation-timeline: scroll()) {
+      /* Le cadre entier bouge, pour que le fondu des bords suive la photo */
+      .vz .hero__pouch {
+        animation: pouch-scroll linear both;
+        animation-timeline: scroll(nearest);
+        animation-range: 0 100vh;
+      }
+      .vz .hero__eclair {
+        animation: eclair-scroll linear both;
+        animation-timeline: scroll(nearest);
+        animation-range: 0 100vh;
+      }
+      @keyframes pouch-scroll { to { transform: translateY(10%) rotate(4deg); } }
+      @keyframes eclair-scroll { to { transform: translateY(-8%); } }
+    }
+  }
+}
+
+/* Animations réduites : boutons et flèches ne bougent plus non plus */
+@media (prefers-reduced-motion: reduce) {
+  .vz .btn, .vz .btn svg, .vz .qty__btn, .vz .faq summary svg, .vz .link, .vz .top__nav a { transition: none; }
+  .vz .btn:hover, .vz .btn:active, .vz .btn:hover svg, .vz .qty__btn:active { transform: none; }
+}
+
+/* =====================================================================
+   AJOUTS SHOPIFY (en-tête collant, panier, bloc de commande)
+   ===================================================================== */
+#header-group:has(.vz-header) { position: sticky; top: 0; z-index: 20; }
+.vz .top { position: relative; top: auto; }
+html, .page-wrapper { scroll-padding-top: 80px; }
+
+.vz .top__cart {
+  position: relative; display: grid; place-items: center;
+  width: 44px; height: 44px; color: var(--ink); text-decoration: none;
+}
+.vz .top__cart svg { width: 24px; height: 24px; }
+.vz .top__count {
+  position: absolute; top: 2px; right: 0; min-width: 20px; height: 20px; padding: 0 5px;
+  display: grid; place-items: center; border-radius: 10px;
+  background: var(--yellow); color: var(--ink); font: 700 .75rem/1 var(--f-text);
+}
+@media (max-width: 819px) { .vz .top__cart { margin-left: 0; } }
+
+.vz .summary__img { width: 72px; flex: none; transform: rotate(-6deg); }
+.vz .summary__price { font: italic 900 1.6rem/1 var(--f-display); margin-top: 6px; }
+.vz .pick input:disabled + .pick__box { opacity: .5; cursor: not-allowed; }
+.vz .order .submit .btn { min-width: 240px; }
+.vz .foot__links { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.vz .foot__links a { color: var(--ink-2); font-size: .9375rem; }
+.vz .foot__grid a { text-decoration: underline; text-underline-offset: 3px; }
