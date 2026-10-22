@@ -1,7 +1,6 @@
 /* =====================================================================
    VOLTIZ : scripts des sections Voltiz du thème
-   1. Apparitions au scroll   2. En-tête   3. Bloc produit (packs, quantité, total)   4. Photos de l'accueil
-   5. Étiquette qui se retourne   6. Barre d'achat en bas de l'écran
+   1. Apparitions au scroll   2. En-tête   3. Bloc produit (quantité et total)   4. Photos de l'accueil
    ===================================================================== */
 (() => {
   "use strict";
@@ -11,7 +10,7 @@
   /* ---------- 1. Apparitions au scroll (une seule fois) ---------- */
   const initReveal = (root) => {
     const els = root.querySelectorAll(".vz [data-reveal]");
-    root.querySelectorAll(".vz .moments__list, .vz .cards, .vz .offers, .vz .rows, .vz .formula").forEach((list) => {
+    root.querySelectorAll(".vz .moments__list").forEach((list) => {
       list.querySelectorAll("[data-reveal]").forEach((el, i) => el.style.setProperty("--d", `${(i % 3) * 90}ms`));
     });
     // Dans l'éditeur de thème, tout est visible tout de suite
@@ -79,10 +78,6 @@
       const max = parseInt(form.dataset.max, 10) || 20;
       const fmt = form.dataset.moneyFormat;
       if (!qty) return;
-      const packs = form.querySelectorAll('input[type="radio"][name^="vz-pack"]');
-      const cta = form.querySelector("[data-vz-cta]");
-      const ctaTexts = document.querySelectorAll("[data-vz-cta-text]");
-      const isStepper = qty.type === "number";
 
       const clamp = (n) => Math.min(max, Math.max(1, Number.isFinite(n) ? Math.round(n) : 1));
       const price = () => {
@@ -94,32 +89,17 @@
         const p = price();
         totals.forEach((el) => { el.textContent = formatMoney(n * p, fmt); });
         if (unit) unit.textContent = formatMoney(p, fmt);
-        if (minus) minus.disabled = n <= 1;
-        if (plus) plus.disabled = n >= max;
-        const pack = form.querySelector('input[name^="vz-pack"]:checked');
-        if (cta && pack) {
-          const label = cta.dataset.label.replace("[n]", `${pack.value} ${pack.dataset.unit}`);
-          ctaTexts.forEach((el) => { el.textContent = label; });
-        }
+        minus.disabled = n <= 1;
+        plus.disabled = n >= max;
       };
-      // Pack choisi : il fixe la quantité. Le lien ?qty=3 présélectionne le pack correspondant.
-      packs.forEach((r) => r.addEventListener("change", () => { qty.value = r.value; update(); }));
-      const wanted = new URLSearchParams(window.location.search).get("qty");
-      if (wanted) {
-        const match = Array.prototype.find.call(packs, (r) => r.value === wanted);
-        if (match) { match.checked = true; qty.value = match.value; }
-        else if (isStepper) qty.value = clamp(parseInt(wanted, 10));
-      }
       form.querySelectorAll(".qty__btn").forEach((btn) => {
         btn.addEventListener("click", () => {
           qty.value = clamp(parseInt(qty.value, 10) + Number(btn.dataset.step));
           update();
         });
       });
-      if (isStepper) {
-        qty.addEventListener("input", update);
-        qty.addEventListener("blur", () => { qty.value = clamp(parseInt(qty.value, 10)); update(); });
-      }
+      qty.addEventListener("input", update);
+      qty.addEventListener("blur", () => { qty.value = clamp(parseInt(qty.value, 10)); update(); });
       form.querySelectorAll('input[name="id"]').forEach((r) => r.addEventListener("change", update));
       form.addEventListener("submit", () => { qty.value = clamp(parseInt(qty.value, 10)); });
       update();
@@ -166,39 +146,7 @@
     });
   };
 
-  /* ---------- 5. Étiquette : la carte se retourne ---------- */
-  const initFlip = (root) => {
-    root.querySelectorAll("[data-vz-flip]").forEach((card) => {
-      const btn = card.querySelector(".flip__btn");
-      if (!btn || btn._vz) return;
-      btn._vz = true;
-      btn.addEventListener("click", () => {
-        const on = !card.classList.contains("is-flipped");
-        card.classList.toggle("is-flipped", on);
-        btn.setAttribute("aria-pressed", String(on));
-        btn.textContent = on ? btn.dataset.back : btn.dataset.front;
-      });
-    });
-  };
-
-  /* ---------- 6. Barre d'achat : visible quand le bloc d'achat est sorti de l'écran ---------- */
-  const initStick = (root) => {
-    root.querySelectorAll("[data-vz-stick]").forEach((bar) => {
-      const form = document.getElementById("vz-order");
-      const target = form && form.querySelector("[data-vz-cta]");
-      if (!target || !("IntersectionObserver" in window)) return;
-      const btn = bar.querySelector("button");
-      const io = new IntersectionObserver(([entry]) => {
-        const show = !entry.isIntersecting && entry.boundingClientRect.top < 0;
-        bar.classList.toggle("is-on", show);
-        bar.setAttribute("aria-hidden", String(!show));
-        if (btn) btn.tabIndex = show ? 0 : -1;
-      });
-      io.observe(target);
-    });
-  };
-
-  const init = (root) => { initReveal(root); initOrder(root); initSlides(root); initFlip(root); initStick(root); };
+  const init = (root) => { initReveal(root); initOrder(root); initSlides(root); };
   init(document);
   // Éditeur de thème : une section rechargée doit être réinitialisée
   document.addEventListener("shopify:section:load", (e) => init(e.target));

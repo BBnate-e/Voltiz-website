@@ -1,7 +1,7 @@
 {%- comment -%} Bandeau jaune qui défile : quelques mots séparés par un éclair. {%- endcomment -%}
 {%- assign words = section.settings.words | split: '|' -%}
 <div class="vz">
-  <div class="band band--{{ section.settings.style }}" role="presentation">
+  <div class="band" role="presentation">
     <p class="sr-only">{{ section.settings.words | replace: '|', ' · ' }}</p>
     <div class="band__track" aria-hidden="true">
       {%- for i in (1..2) -%}
@@ -18,8 +18,7 @@
 {
   "name": "Voltiz : bandeau",
   "settings": [
-    { "type": "text", "id": "words", "label": "Mots", "info": "Séparés par le signe |.", "default": "Ton énergie | Partout, à tout moment | Energy candy | Au maté | Sans sucre | Swiss made" },
-    { "type": "select", "id": "style", "label": "Style", "options": [{ "value": "yellow", "label": "Jaune" }, { "value": "dark", "label": "Noir" }, { "value": "slim", "label": "Fin (annonce)" }], "default": "yellow" }
+    { "type": "text", "id": "words", "label": "Mots", "info": "Séparés par le signe |.", "default": "Ton énergie | Partout, à tout moment | Energy candy | Au maté | Sans sucre | Swiss made" }
   ],
   "presets": [{ "name": "Voltiz : bandeau" }]
 }

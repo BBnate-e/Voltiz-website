@@ -2,13 +2,6 @@
   "type": "header",
   "name": "En-tête",
   "sections": {
-    "annonce": {
-      "type": "voltiz-bandeau",
-      "settings": {
-        "style": "slim",
-        "words": "Livraison en Suisse | Sans sucre | 50 mg de caféine par bonbon | Fabriqué en Suisse"
-      }
-    },
     "voltiz_header": {
       "type": "voltiz-header",
       "settings": {},
@@ -67,7 +60,6 @@
     }
   },
   "order": [
-    "annonce",
     "voltiz_header"
   ]
 }
