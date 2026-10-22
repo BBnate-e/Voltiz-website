@@ -1,5 +1,6 @@
 {%- comment -%}
-  1. Accueil : photos plein écran qui défilent (une par moment), slogan, une phrase, le bouton Commander.
+  1. Accueil : photos plein écran qui défilent (une par moment), slogan, une phrase, le bouton Commander,
+  et la photo du produit (sachet) à droite si elle est choisie.
   Chaque photo est un bloc (photo, heure, moment). Un bouton met le défilement en pause.
 {%- endcomment -%}
 <div class="vz">
@@ -32,6 +33,14 @@
           </p>
         {%- endif -%}
       </div>
+
+      {%- if section.settings.pack_image != blank -%}
+        <a class="hero__pack" href="{{ section.settings.button_link | default: '/pages/boutique' }}" data-reveal>
+          {{ section.settings.pack_image | image_url: width: 1000 | image_tag: widths: '320, 480, 720, 1000', sizes: '(min-width: 990px) 34vw, 60vw', class: 'hero__pack-img', alt: section.settings.pack_alt, fetchpriority: 'high' }}
+        </a>
+      {%- elsif request.design_mode -%}
+        <p class="hero__pack hero__pack--empty">Ajoute ici la photo du sachet<br><small>Réglages de la section, « Photo du produit »</small></p>
+      {%- endif -%}
 
       {%- if section.blocks.size > 0 -%}
         <div class="hero__now">
@@ -67,6 +76,8 @@
     { "type": "text", "id": "lead", "label": "Phrase d’accroche", "default": "Le bonbon énergisant au maté. 50 mg de caféine par pièce, absorbé en 5 minutes." },
     { "type": "text", "id": "button_label", "label": "Texte du bouton", "default": "Commander" },
     { "type": "text", "id": "button_link", "label": "Lien du bouton", "default": "/pages/boutique" },
+    { "type": "image_picker", "id": "pack_image", "label": "Photo du produit", "info": "Le sachet, idéalement détouré (PNG sans fond). Elle s’affiche à droite du texte, par-dessus les photos." },
+    { "type": "text", "id": "pack_alt", "label": "Description de la photo du produit", "default": "Sachet Voltiz Energy Candy" },
     { "type": "range", "id": "interval", "label": "Durée par photo", "min": 3, "max": 10, "step": 1, "unit": "s", "default": 5 }
   ],
   "blocks": [

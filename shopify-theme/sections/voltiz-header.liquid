@@ -1,4 +1,4 @@
-{%- comment -%} En-tête Voltiz : logo, panier, bouton Commander, puis les onglets, toujours visibles (sur une 2e ligne qui défile sur petit écran). {%- endcomment -%}
+{%- comment -%} En-tête Voltiz : logo, panier, bouton Commander, puis les onglets, toujours visibles (2e ligne sur tablette, menu caché sur téléphone). {%- endcomment -%}
 {%- liquid
   assign base = ''
   unless template.name == 'index'
@@ -51,6 +51,10 @@
         <a class="btn btn--sm top__cta" href="{{ cta }}">{{ section.settings.cta_label }}</a>
       {%- endif -%}
       <nav class="top__nav" aria-label="Navigation principale">{{ vz_links }}</nav>
+      <details class="menu">
+        <summary aria-label="Menu"><span></span><span></span><span></span></summary>
+        <nav class="menu__panel" aria-label="Menu">{{ vz_links }}</nav>
+      </details>
     </div>
   </header>
 </div>
