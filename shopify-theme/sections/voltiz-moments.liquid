@@ -1,0 +1,41 @@
+{%- comment -%} 2. Moments : une rangée d'icônes, quand prendre un Voltiz. {%- endcomment -%}
+<div class="vz">
+  <section class="moments" aria-label="{{ section.settings.label | escape }}">
+    <ul class="wrap moments__list" data-reveal>
+      {%- for block in section.blocks -%}
+        <li {{ block.shopify_attributes }}><svg aria-hidden="true"><use href="#u-{{ block.settings.icon }}"/></svg>{{ block.settings.text }}</li>
+      {%- endfor -%}
+    </ul>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz : moments",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Nom pour les lecteurs d’écran", "default": "Les moments Voltiz" }
+  ],
+  "blocks": [
+    {
+      "type": "moment",
+      "name": "Moment",
+      "settings": [
+        {
+          "type": "select", "id": "icon", "label": "Icône", "default": "energie",
+          "options": [
+            { "value": "energie", "label": "Éclair" },
+            { "value": "sport", "label": "Course" },
+            { "value": "etudes", "label": "Livre" },
+            { "value": "conduite", "label": "Voiture" },
+            { "value": "travail", "label": "Mallette" },
+            { "value": "aventure", "label": "Montagnes" }
+          ]
+        },
+        { "type": "text", "id": "text", "label": "Texte", "default": "Énergie" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [{ "name": "Voltiz : moments" }]
+}
+{% endschema %}

@@ -4,89 +4,50 @@
       "type": "voltiz-hero",
       "settings": {}
     },
-    "boost": {
-      "type": "voltiz-boost",
+    "moments": {
+      "type": "voltiz-moments",
       "settings": {},
       "blocks": {
         "b_1": {
-          "type": "row",
+          "type": "moment",
           "settings": {
-            "amount": "1 gum",
-            "word": "BOOST",
-            "bolts": 1,
-            "note": "<strong>50 mg de caféine.</strong> Un gum, quand tu en as besoin."
+            "icon": "energie",
+            "text": "Énergie"
           }
         },
         "b_2": {
-          "type": "row",
+          "type": "moment",
           "settings": {
-            "amount": "2 gums",
-            "word": "BOOOOST",
-            "bolts": 2,
-            "note": "<strong>100 mg de caféine.</strong> Compte aussi le café, le thé et les boissons énergisantes de ta journée."
-          }
-        }
-      },
-      "block_order": [
-        "b_1",
-        "b_2"
-      ]
-    },
-    "dedans": {
-      "type": "voltiz-dedans",
-      "settings": {},
-      "blocks": {
-        "b_1": {
-          "type": "cell",
-          "settings": {
-            "style": "mate",
-            "icon": "leaf",
-            "title": "Extrait de yerba maté",
-            "text": "100 mg d’extrait en poudre, standardisé à 20 % de caféine.",
-            "big": "20 mg",
-            "unit": "de caféine"
-          }
-        },
-        "b_2": {
-          "type": "cell",
-          "settings": {
-            "style": "guarana",
-            "icon": "bolt",
-            "title": "Caféine de guarana",
-            "text": "Extraite des graines de guarana.",
-            "big": "30 mg",
-            "unit": "de caféine"
+            "icon": "sport",
+            "text": "Sport"
           }
         },
         "b_3": {
-          "type": "cell",
+          "type": "moment",
           "settings": {
-            "style": "total",
-            "icon": "none",
-            "text": "Maté et guarana réunis.",
-            "big": "= 50 mg",
-            "unit": "de caféine par gum"
+            "icon": "etudes",
+            "text": "Études"
           }
         },
         "b_4": {
-          "type": "cell",
+          "type": "moment",
           "settings": {
-            "style": "thea",
-            "icon": "plant",
-            "title": "L-théanine",
-            "text": "Extraite des feuilles de thé vert (<i>Camellia sinensis</i>).",
-            "big": "100 mg",
-            "unit": "par gum"
+            "icon": "conduite",
+            "text": "Conduite"
           }
         },
         "b_5": {
-          "type": "cell",
+          "type": "moment",
           "settings": {
-            "style": "b12",
-            "icon": "b12",
-            "title": "Vitamine B12",
-            "text": "Contribue à réduire la fatigue et au fonctionnement normal du système nerveux.",
-            "note": "Une alimentation variée et équilibrée et un mode de vie sain sont importants."
+            "icon": "travail",
+            "text": "Travail"
+          }
+        },
+        "b_6": {
+          "type": "moment",
+          "settings": {
+            "icon": "aventure",
+            "text": "Aventure"
           }
         }
       },
@@ -95,43 +56,42 @@
         "b_2",
         "b_3",
         "b_4",
-        "b_5"
+        "b_5",
+        "b_6"
       ]
     },
-    "bonbon": {
-      "type": "voltiz-bonbon",
-      "settings": {},
+    "produit": {
+      "type": "voltiz-produit",
+      "settings": {
+        "product": "voltiz-energy-candy"
+      },
       "blocks": {
         "b_1": {
-          "type": "spec",
+          "type": "fact",
           "settings": {
-            "label": "Forme",
-            "value": "Éclair",
-            "detail": "2,5 × 1,5 × 0,5 cm"
+            "value": "50 mg",
+            "text": "de caféine naturelle, maté et guarana"
           }
         },
         "b_2": {
-          "type": "spec",
+          "type": "fact",
           "settings": {
-            "label": "Poids",
-            "value": "3 à 3,5 g",
-            "detail": "par gum"
+            "value": "100 mg",
+            "text": "de L-théanine"
           }
         },
         "b_3": {
-          "type": "spec",
+          "type": "fact",
           "settings": {
-            "label": "Texture",
-            "value": "Molle",
-            "detail": "sans sensation qui reste en bouche"
+            "value": "B12",
+            "text": "contribue à réduire la fatigue"
           }
         },
         "b_4": {
-          "type": "spec",
+          "type": "fact",
           "settings": {
-            "label": "Sucre",
-            "value": "Sans sucre",
-            "detail": "sucré avec des édulcorants"
+            "value": "0 g",
+            "text": "de sucre, fait en Suisse"
           }
         }
       },
@@ -142,118 +102,6 @@
         "b_4"
       ]
     },
-    "saveurs": {
-      "type": "voltiz-saveurs",
-      "settings": {},
-      "blocks": {
-        "b_1": {
-          "type": "flavor",
-          "settings": {
-            "style": "citron",
-            "name": "Citron",
-            "text": "La saveur principale de Voltiz.",
-            "tag": ""
-          }
-        },
-        "b_2": {
-          "type": "flavor",
-          "settings": {
-            "style": "bois",
-            "name": "Fruits des bois",
-            "text": "En petite série, tant qu’il y en a.",
-            "tag": "Édition limitée"
-          }
-        }
-      },
-      "block_order": [
-        "b_1",
-        "b_2"
-      ]
-    },
-    "ingredients": {
-      "type": "voltiz-ingredients",
-      "settings": {},
-      "blocks": {
-        "b_1": {
-          "type": "row",
-          "settings": {
-            "label": "Énergie",
-            "value": "698 kJ / 167 kcal",
-            "sub": false
-          }
-        },
-        "b_2": {
-          "type": "row",
-          "settings": {
-            "label": "Matières grasses",
-            "value": "0 g",
-            "sub": false
-          }
-        },
-        "b_3": {
-          "type": "row",
-          "settings": {
-            "label": "dont acides gras saturés",
-            "value": "0 g",
-            "sub": true
-          }
-        },
-        "b_4": {
-          "type": "row",
-          "settings": {
-            "label": "Glucides",
-            "value": "66 g",
-            "sub": false
-          }
-        },
-        "b_5": {
-          "type": "row",
-          "settings": {
-            "label": "dont sucres",
-            "value": "0 g",
-            "sub": true
-          }
-        },
-        "b_6": {
-          "type": "row",
-          "settings": {
-            "label": "Protéines",
-            "value": "0 g",
-            "sub": false
-          }
-        },
-        "b_7": {
-          "type": "row",
-          "settings": {
-            "label": "Sel",
-            "value": "0 g",
-            "sub": false
-          }
-        },
-        "b_8": {
-          "type": "row",
-          "settings": {
-            "label": "Vitamine B12",
-            "value": "25 µg (1000 % VNR)",
-            "sub": false
-          }
-        }
-      },
-      "block_order": [
-        "b_1",
-        "b_2",
-        "b_3",
-        "b_4",
-        "b_5",
-        "b_6",
-        "b_7",
-        "b_8"
-      ]
-    },
-    "swiss": {
-      "type": "voltiz-swiss",
-      "settings": {}
-    },
     "faq": {
       "type": "voltiz-faq",
       "settings": {},
@@ -261,50 +109,29 @@
         "b_1": {
           "type": "question",
           "settings": {
-            "question": "C’est un chewing-gum ?",
+            "question": "C’est un chewing-gum ?",
             "answer": "Non. Voltiz est un bonbon mou en forme d’éclair, qu’on mâche et qu’on avale."
           }
         },
         "b_2": {
           "type": "question",
           "settings": {
-            "question": "Combien de caféine dans un gum ?",
-            "answer": "50 mg : 20 mg viennent de l’extrait de maté et 30 mg du guarana."
+            "question": "Combien j’en prends ?",
+            "answer": "Un bonbon pour un coup de boost. Compte aussi le café, le thé et les boissons énergisantes de ta journée."
           }
         },
         "b_3": {
           "type": "question",
           "settings": {
-            "question": "Combien j’en prends ?",
-            "answer": "Un gum pour un boost, deux pour un gros boost. Ne dépasse pas la dose recommandée : [À COMPLÉTER : nombre de gums par jour]."
+            "question": "Comment je paie ?",
+            "answer": "En ligne, à la caisse. Tu reçois une confirmation par e-mail."
           }
         },
         "b_4": {
           "type": "question",
           "settings": {
-            "question": "Il y a du sucre ?",
-            "answer": "Non, Voltiz est sans sucre. Il est sucré avec des édulcorants."
-          }
-        },
-        "b_5": {
-          "type": "question",
-          "settings": {
-            "question": "Comment je commande et je paie ?",
-            "answer": "Choisis ta saveur et ta quantité en bas de la page, puis ajoute au panier. Tu paies en ligne à la caisse et tu reçois une confirmation par e-mail."
-          }
-        },
-        "b_6": {
-          "type": "question",
-          "settings": {
-            "question": "Vous livrez où ?",
-            "answer": "Partout en Suisse. Les frais de livraison s’affichent à la caisse, avant le paiement. Délai : [À COMPLÉTER]."
-          }
-        },
-        "b_7": {
-          "type": "question",
-          "settings": {
-            "question": "C’est pour qui ?",
-            "answer": "Pour les adultes qui veulent un coup de boost. Pas pour les enfants, les femmes enceintes ou allaitantes, ni les personnes sensibles à la caféine."
+            "question": "Vous livrez où ?",
+            "answer": "Partout en Suisse. Les frais s’affichent à la caisse, avant le paiement. Délai : [À COMPLÉTER]."
           }
         }
       },
@@ -312,28 +139,14 @@
         "b_1",
         "b_2",
         "b_3",
-        "b_4",
-        "b_5",
-        "b_6",
-        "b_7"
+        "b_4"
       ]
-    },
-    "commander": {
-      "type": "voltiz-commander",
-      "settings": {
-        "product": "voltiz-energy-gum"
-      }
     }
   },
   "order": [
     "hero",
-    "boost",
-    "dedans",
-    "bonbon",
-    "saveurs",
-    "ingredients",
-    "swiss",
-    "faq",
-    "commander"
+    "moments",
+    "produit",
+    "faq"
   ]
 }

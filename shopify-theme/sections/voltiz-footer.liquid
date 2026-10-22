@@ -1,4 +1,4 @@
-{%- comment -%} Pied de page Voltiz : logo, slogan, contact, mentions légales, politiques, caféine. {%- endcomment -%}
+{%- comment -%} Pied de page Voltiz : logo, slogan, contact, mentions légales, conditions, caféine. {%- endcomment -%}
 <div class="vz">
   <footer class="foot">
     <div class="wrap">
@@ -6,32 +6,17 @@
         <svg class="foot__logo" viewBox="0 0 1118 536" role="img" aria-label="{{ shop.name | escape }}"><use href="#logo"/></svg>
         <p class="foot__slogan">{{ section.settings.slogan }}</p>
       </div>
-      <div class="foot__grid">
-        <div>
-          <h2 class="foot__h">{{ section.settings.contact_heading }}</h2>
-          {%- if shop.email != blank -%}<p><a href="mailto:{{ shop.email }}">{{ shop.email }}</a></p>{%- endif -%}
-        </div>
-        <div>
-          <h2 class="foot__h">{{ section.settings.legal_heading }}</h2>
-          <p>{% render 'voltiz-t', t: section.settings.legal_text %}</p>
-          {%- if shop.address.street != blank -%}<p>{{ shop.address.street }}, {{ shop.address.zip }} {{ shop.address.city }}</p>{%- endif -%}
-        </div>
-        <div>
-          <h2 class="foot__h">{{ section.settings.policies_heading }}</h2>
-          {%- assign has_policy = false -%}
-          <ul class="foot__links">
-            {%- for policy in shop.policies -%}
-              {%- if policy.body != blank -%}{%- assign has_policy = true -%}<li><a href="{{ policy.url }}">{{ policy.title }}</a></li>{%- endif -%}
-            {%- endfor -%}
-          </ul>
-          {%- unless has_policy -%}<p>{% render 'voltiz-t', t: '[À COMPLÉTER : conditions de vente, retours, confidentialité]' %}</p>{%- endunless -%}
-        </div>
-        <div>
-          <h2 class="foot__h">{{ section.settings.caffeine_heading }}</h2>
-          <p>{% render 'voltiz-t', t: section.settings.caffeine_text %}</p>
-        </div>
+      <div class="foot__row">
+        {%- if shop.email != blank -%}<p><a href="mailto:{{ shop.email }}">{{ shop.email }}</a></p>{%- endif -%}
+        <p>{% render 'voltiz-t', t: section.settings.legal_text %}{% if shop.address.street != blank %}, {{ shop.address.street }}, {{ shop.address.zip }} {{ shop.address.city }}{% endif %}</p>
+        <ul class="foot__links">
+          {%- for policy in shop.policies -%}
+            {%- if policy.body != blank -%}<li><a href="{{ policy.url }}">{{ policy.title }}</a></li>{%- endif -%}
+          {%- endfor -%}
+        </ul>
       </div>
-      <p class="foot__copy"><svg class="ch" aria-hidden="true"><use href="#ch"/></svg><span>© {{ 'now' | date: '%Y' }} {{ shop.name | escape }}. <span lang="en">Swiss made.</span></span></p>
+      <p class="foot__small">{% render 'voltiz-t', t: section.settings.caffeine_text %}</p>
+      <p class="foot__small foot__copy"><svg class="ch" aria-hidden="true"><use href="#ch"/></svg><span>© {{ 'now' | date: '%Y' }} {{ shop.name | escape }}. <span lang="en">Swiss made.</span></span></p>
     </div>
   </footer>
 </div>
@@ -40,48 +25,9 @@
 {
   "name": "Voltiz : pied de page",
   "settings": [
-    {
-      "type": "text",
-      "id": "slogan",
-      "label": "Slogan",
-      "default": "Partout, à tout moment"
-    },
-    {
-      "type": "text",
-      "id": "contact_heading",
-      "label": "Titre contact",
-      "default": "Contact"
-    },
-    {
-      "type": "text",
-      "id": "legal_heading",
-      "label": "Titre mentions légales",
-      "default": "Mentions légales"
-    },
-    {
-      "type": "text",
-      "id": "legal_text",
-      "label": "Mentions légales",
-      "default": "[À COMPLÉTER : nom du responsable de la boutique]"
-    },
-    {
-      "type": "text",
-      "id": "policies_heading",
-      "label": "Titre des conditions",
-      "default": "Conditions et données"
-    },
-    {
-      "type": "text",
-      "id": "caffeine_heading",
-      "label": "Titre caféine",
-      "default": "Caféine"
-    },
-    {
-      "type": "text",
-      "id": "caffeine_text",
-      "label": "Texte caféine",
-      "default": "Contient de la caféine (50 mg par gum). Déconseillé aux enfants, aux femmes enceintes ou allaitantes et aux personnes sensibles à la caféine."
-    }
+    { "type": "text", "id": "slogan", "label": "Slogan", "default": "Partout. À tout moment." },
+    { "type": "text", "id": "legal_text", "label": "Mentions légales", "default": "[À COMPLÉTER : nom du responsable de la boutique]" },
+    { "type": "text", "id": "caffeine_text", "label": "Texte caféine", "default": "Contient de la caféine (50 mg par bonbon). Déconseillé aux enfants, aux femmes enceintes ou allaitantes et aux personnes sensibles à la caféine." }
   ]
 }
 {% endschema %}

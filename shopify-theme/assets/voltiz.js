@@ -1,6 +1,6 @@
 /* =====================================================================
    VOLTIZ : scripts des sections Voltiz du thème
-   1. Apparitions au scroll   2. En-tête   3. BOOOOST   4. Bloc Commander
+   1. Apparitions au scroll   2. En-tête   3. Bloc produit (quantité et total)
    ===================================================================== */
 (() => {
   "use strict";
@@ -9,10 +9,7 @@
 
   /* ---------- 1. Apparitions au scroll (une seule fois) ---------- */
   const initReveal = (root) => {
-    const els = root.querySelectorAll(".vz [data-reveal], .vz .sep");
-    root.querySelectorAll(".vz .bento, .vz .specs, .vz .flavors").forEach((group) => {
-      group.querySelectorAll("[data-reveal]").forEach((el, i) => el.style.setProperty("--d", `${i * 80}ms`));
-    });
+    const els = root.querySelectorAll(".vz [data-reveal]");
     // Dans l'éditeur de thème, tout est visible tout de suite
     if (!("IntersectionObserver" in window) || reduceMotion || window.Shopify?.designMode) {
       els.forEach((el) => el.classList.add("is-in"));
@@ -47,20 +44,7 @@
     update();
   }
 
-  /* ---------- 3. BOOOOST : largeur d'un « O » pour l'animation ---------- */
-  const initBoost = (root) => {
-    const word = root.querySelector(".vz .boost__row--2 .boost__w");
-    if (!word) return;
-    const measure = () => {
-      const o = word.querySelector(".o");
-      if (o) word.style.setProperty("--ow", `${o.offsetWidth}px`);
-    };
-    measure();
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
-    window.addEventListener("resize", measure, { passive: true });
-  };
-
-  /* ---------- 4. Bloc Commander : quantité et total ---------- */
+  /* ---------- 3. Bloc produit : quantité et total ---------- */
   const formatMoney = (cents, format) => {
     const group = (n, sep) => n.replace(/\B(?=(\d{3})+(?!\d))/g, sep);
     const [int, dec] = (cents / 100).toFixed(2).split(".");
@@ -114,7 +98,7 @@
     });
   };
 
-  const init = (root) => { initReveal(root); initBoost(root); initOrder(root); };
+  const init = (root) => { initReveal(root); initOrder(root); };
   init(document);
   // Éditeur de thème : une section rechargée doit être réinitialisée
   document.addEventListener("shopify:section:load", (e) => init(e.target));

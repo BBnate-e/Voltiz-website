@@ -1,0 +1,110 @@
+{%- comment -%}
+  3. Le produit : visuel, l'essentiel en quatre lignes, quantité et ajout au panier Shopify.
+  Ingrédients et valeurs nutritionnelles restent repliés. Le paiement se fait ensuite dans la caisse Shopify.
+{%- endcomment -%}
+{%- assign product = section.settings.product -%}
+<div class="vz">
+  <section class="prod" id="{{ section.settings.anchor }}" aria-labelledby="prod-titre-{{ section.id }}">
+    <div class="wrap prod__in">
+      <div class="prod__visual" data-reveal>
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 1200 | image_tag: widths: '480, 720, 960, 1200', sizes: '(min-width: 990px) 45vw, 100vw', class: 'prod__img', alt: section.settings.image.alt, loading: 'lazy' }}
+        {%- else -%}
+          <div class="mark mark--panel" aria-hidden="true">
+            <span class="mark__hatch"></span>
+            <svg class="mark__bolt"><use href="#i-bolt"/></svg>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="prod__body" data-reveal>
+        {%- if section.settings.eyebrow != blank -%}<p class="kicker">{{ section.settings.eyebrow }}</p>{%- endif -%}
+        <h2 id="prod-titre-{{ section.id }}" class="prod__title">{{ section.settings.heading }}</h2>
+
+        <ul class="facts">
+          {%- for block in section.blocks -%}
+            <li {{ block.shopify_attributes }}><b>{{ block.settings.value }}</b><span>{% render 'voltiz-t', t: block.settings.text %}</span></li>
+          {%- endfor -%}
+        </ul>
+
+        {%- if product == blank or product.available == false -%}
+          <p class="closed"><svg aria-hidden="true"><use href="#i-warning"/></svg>{{ section.settings.closed_text }}</p>
+        {%- else -%}
+          {%- assign current = product.selected_or_first_available_variant -%}
+          {%- form 'product', product, class: 'buy', id: 'vz-order', data-money-format: shop.money_format, data-max: section.settings.max_qty, novalidate: 'novalidate' -%}
+            <input type="hidden" name="id" value="{{ current.id }}" data-price="{{ current.price }}">
+            <p class="buy__price"><span data-vz-total aria-live="polite">{{ current.price | money }}</span><small>{{ section.settings.unit_label }}{% if product.variants.size == 1 and product.has_only_default_variant == false %} · {{ current.title }}{% endif %}</small></p>
+            <div class="buy__row">
+              <div class="qty">
+                <label class="sr-only" for="qty-{{ section.id }}">Quantité</label>
+                <button type="button" class="qty__btn" data-step="-1" aria-label="Un de moins"><svg aria-hidden="true"><use href="#i-minus"/></svg></button>
+                <input id="qty-{{ section.id }}" name="quantity" type="number" inputmode="numeric" min="1" max="{{ section.settings.max_qty }}" value="1">
+                <button type="button" class="qty__btn" data-step="1" aria-label="Un de plus"><svg aria-hidden="true"><use href="#i-plus"/></svg></button>
+              </div>
+              <button class="btn btn--wide" type="submit">{{ section.settings.button_label }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            </div>
+            {%- if section.settings.info != blank -%}<p class="buy__info"><svg aria-hidden="true"><use href="#i-truck"/></svg>{% render 'voltiz-t', t: section.settings.info %}</p>{%- endif -%}
+          {%- endform -%}
+        {%- endif -%}
+
+        <details class="more">
+          <summary>{{ section.settings.label_heading }}<svg aria-hidden="true"><use href="#i-caret"/></svg></summary>
+          <div class="more__body">
+            <p>{% render 'voltiz-t', t: section.settings.ingredients %}</p>
+            {%- assign rows = section.settings.nutrition | newline_to_br | split: '<br />' -%}
+            <table class="nutri">
+              <caption>{{ section.settings.nutrition_caption }}</caption>
+              <tbody>
+                {%- for r in rows -%}
+                  {%- assign r = r | strip -%}
+                  {%- if r != blank -%}
+                    {%- assign cells = r | split: '|' -%}
+                    {%- assign label = cells[0] | strip -%}
+                    {%- assign value = cells[1] | strip -%}
+                    <tr{% if label contains 'dont ' %} class="sub"{% endif %}><th scope="row">{{ label }}</th><td>{% render 'voltiz-t', t: value %}</td></tr>
+                  {%- endif -%}
+                {%- endfor -%}
+              </tbody>
+            </table>
+            {%- if section.settings.label_note != blank -%}<p class="more__note">{% render 'voltiz-t', t: section.settings.label_note %}</p>{%- endif -%}
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz : produit",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Ancre", "default": "commander" },
+    { "type": "image_picker", "id": "image", "label": "Photo du sachet (facultatif)", "info": "Sans photo, un visuel jaune à l’éclair s’affiche." },
+    { "type": "text", "id": "eyebrow", "label": "Petit texte au-dessus", "default": "Energy candy" },
+    { "type": "text", "id": "heading", "label": "Titre", "default": "Citron." },
+    { "type": "product", "id": "product", "label": "Produit" },
+    { "type": "text", "id": "unit_label", "label": "Unité", "default": "le strip" },
+    { "type": "range", "id": "max_qty", "label": "Quantité maximum", "min": 1, "max": 20, "step": 1, "default": 20 },
+    { "type": "text", "id": "button_label", "label": "Texte du bouton", "default": "Ajouter au panier" },
+    { "type": "text", "id": "info", "label": "Ligne livraison", "default": "Livraison en Suisse. Les frais s’affichent avant le paiement." },
+    { "type": "text", "id": "closed_text", "label": "Message si le produit n’est pas en vente", "default": "Les commandes ouvrent bientôt." },
+    { "type": "text", "id": "label_heading", "label": "Titre du volet replié", "default": "Ingrédients et valeurs nutritionnelles" },
+    { "type": "textarea", "id": "ingredients", "label": "Ingrédients", "default": "Édulcorants (xylitol, sorbitol), arômes naturels (citron), caféine de guarana, extrait de yerba maté, L-théanine, vitamine B12 (cyanocobalamine), acidifiant (acide citrique), colorant naturel (curcumine). [À CONFIRMER par le fabricant]" },
+    { "type": "text", "id": "nutrition_caption", "label": "Titre du tableau", "default": "Valeurs nutritionnelles pour 100 g (indicatives)" },
+    { "type": "textarea", "id": "nutrition", "label": "Tableau", "info": "Une ligne par valeur, sous la forme « Nom | valeur ».", "default": "Énergie | 698 kJ / 167 kcal\nMatières grasses | 0 g\ndont acides gras saturés | 0 g\nGlucides | 66 g\ndont sucres | 0 g\nProtéines | 0 g\nSel | 0 g\nVitamine B12 | 25 µg (1000 % VNR)" },
+    { "type": "text", "id": "label_note", "label": "Note sous le tableau", "default": "VNR : valeur nutritionnelle de référence. Une consommation excessive peut avoir des effets laxatifs." }
+  ],
+  "blocks": [
+    {
+      "type": "fact",
+      "name": "Point clé",
+      "settings": [
+        { "type": "text", "id": "value", "label": "Chiffre ou mot", "default": "50 mg" },
+        { "type": "text", "id": "text", "label": "Texte", "default": "de caféine naturelle (maté et guarana)" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [{ "name": "Voltiz : produit" }]
+}
+{% endschema %}

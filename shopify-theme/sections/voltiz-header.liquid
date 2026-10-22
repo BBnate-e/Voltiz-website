@@ -12,6 +12,7 @@
     <div class="top__in wrap">
       <a class="top__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}, page d’accueil">
         <svg viewBox="0 0 1118 536" aria-hidden="true"><use href="#logo"/></svg>
+        {%- if section.settings.tagline != blank -%}<span class="top__tag">{{ section.settings.tagline }}</span>{%- endif -%}
       </a>
       <nav class="top__nav" aria-label="Navigation principale">
         {%- for block in section.blocks -%}
@@ -52,6 +53,12 @@
   "settings": [
     {
       "type": "text",
+      "id": "tagline",
+      "label": "Texte sous le logo",
+      "default": "Energy candy"
+    },
+    {
+      "type": "text",
       "id": "cta_label",
       "label": "Texte du bouton",
       "default": "Commander"
@@ -73,14 +80,14 @@
           "type": "text",
           "id": "label",
           "label": "Texte",
-          "default": "Le boost"
+          "default": "Le produit"
         },
         {
           "type": "text",
           "id": "target",
           "label": "Lien",
-          "info": "Une ancre de l’accueil (#boost, #dedans, #saveurs, #faq) ou une adresse.",
-          "default": "#boost"
+          "info": "Une ancre de l’accueil (#commander, #faq) ou une adresse.",
+          "default": "#commander"
         }
       ]
     }
