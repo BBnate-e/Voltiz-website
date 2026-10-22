@@ -1,6 +1,7 @@
 {%- comment -%} 5. À propos de nous, puis le contact (e-mail de la boutique). {%- endcomment -%}
 <div class="vz">
   <section class="sec sec--dark" id="{{ section.settings.anchor }}" aria-labelledby="apropos-titre-{{ section.id }}">
+    {%- if section.settings.show_about -%}
     <div class="wrap split">
       <div class="sec__head" data-reveal>
         {%- if section.settings.kicker != blank -%}<p class="kicker">{{ section.settings.kicker }}</p>{%- endif -%}
@@ -11,8 +12,10 @@
         {%- for p in paras -%}{%- assign p = p | strip -%}{%- if p != blank -%}<p>{% render 'voltiz-t', t: p %}</p>{%- endif -%}{%- endfor -%}
       </div>
     </div>
+    {%- endif -%}
+    {%- if section.settings.show_contact -%}
     <div class="wrap">
-      <div class="contact" id="{{ section.settings.contact_anchor }}" data-reveal>
+      <div class="contact{% unless section.settings.show_about %} contact--alone{% endunless %}" id="{{ section.settings.contact_anchor }}" data-reveal>
         <div>
           <h3 class="contact__title">{{ section.settings.contact_heading }}</h3>
           {%- if section.settings.contact_text != blank -%}<p class="contact__text">{{ section.settings.contact_text }}</p>{%- endif -%}
@@ -22,6 +25,7 @@
         {%- endif -%}
       </div>
     </div>
+    {%- endif -%}
   </section>
 </div>
 
@@ -30,6 +34,8 @@
   "name": "Voltiz : à propos",
   "settings": [
     { "type": "text", "id": "anchor", "label": "Ancre", "default": "a-propos" },
+    { "type": "checkbox", "id": "show_about", "label": "Afficher « À propos »", "default": true },
+    { "type": "checkbox", "id": "show_contact", "label": "Afficher le contact", "default": true },
     { "type": "text", "id": "kicker", "label": "Petit texte au-dessus", "default": "À propos de nous" },
     { "type": "text", "id": "heading", "label": "Titre", "default": "Voltiz, c’est nous." },
     { "type": "textarea", "id": "text", "label": "Texte", "info": "Un paragraphe par ligne.", "default": "[À COMPLÉTER : texte de présentation de l’entreprise]" },

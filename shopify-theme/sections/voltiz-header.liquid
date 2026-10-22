@@ -25,7 +25,15 @@
               endif
             endif
           -%}
-          <a href="{{ href }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+          {%- liquid
+            assign current = false
+            if href == request.path
+              assign current = true
+            elsif template.name == 'index' and href == routes.root_url
+              assign current = true
+            endif
+          -%}
+          <a href="{{ href }}"{% if current %} aria-current="page"{% endif %} {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
         {%- endfor -%}
       {%- endcapture -%}
       <nav class="top__nav" aria-label="Navigation principale">{{ vz_links }}</nav>
@@ -72,8 +80,8 @@
       "type": "text",
       "id": "cta_target",
       "label": "Lien du bouton",
-      "info": "Une ancre de l’accueil (#boutique) ou une adresse.",
-      "default": "#boutique"
+      "info": "Une adresse du site, par exemple /pages/boutique.",
+      "default": "/pages/boutique"
     }
   ],
   "blocks": [
@@ -91,7 +99,7 @@
           "type": "text",
           "id": "target",
           "label": "Lien",
-          "info": "Une ancre de l’accueil (#accueil, #bonbons, #composition, #boutique, #a-propos, #contact) ou une adresse.",
+          "info": "Une ancre de l’accueil /pages/boutique, /, … ou une adresse.",
           "default": "#boutique"
         }
       ]

@@ -28,7 +28,7 @@
         {%- if section.settings.lead != blank -%}<p class="hero__lead" data-reveal>{% render 'voltiz-t', t: section.settings.lead %}</p>{%- endif -%}
         {%- if section.settings.button_label != blank -%}
           <p class="hero__cta" data-reveal>
-            <a class="btn" href="{{ section.settings.button_link | default: '#boutique' }}">{{ section.settings.button_label }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn" href="{{ section.settings.button_link | default: '/pages/boutique' }}">{{ section.settings.button_label }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </p>
         {%- endif -%}
       </div>
@@ -66,7 +66,7 @@
     { "type": "text", "id": "title_2", "label": "Titre, ligne 2", "default": "Partout, à tout moment." },
     { "type": "text", "id": "lead", "label": "Phrase d’accroche", "default": "Le bonbon énergisant au maté. 50 mg de caféine par pièce, absorbé en 5 minutes." },
     { "type": "text", "id": "button_label", "label": "Texte du bouton", "default": "Commander" },
-    { "type": "text", "id": "button_link", "label": "Lien du bouton", "default": "#boutique" },
+    { "type": "text", "id": "button_link", "label": "Lien du bouton", "default": "/pages/boutique" },
     { "type": "range", "id": "interval", "label": "Durée par photo", "min": 3, "max": 10, "step": 1, "unit": "s", "default": 5 }
   ],
   "blocks": [

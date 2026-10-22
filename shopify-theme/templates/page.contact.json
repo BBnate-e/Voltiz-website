@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "contact": {
+      "type": "voltiz-apropos",
+      "settings": {
+        "show_about": false
+      }
+    }
+  },
+  "order": [
+    "contact"
+  ]
+}

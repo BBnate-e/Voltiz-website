@@ -1,0 +1,62 @@
+{
+  "sections": {
+    "bonbons": {
+      "type": "voltiz-bonbons",
+      "settings": {},
+      "blocks": {
+        "b_1": {
+          "type": "perk",
+          "settings": {
+            "icon": "timer",
+            "title": "Effet rapide",
+            "text": "La caféine est absorbée directement dans la bouche et fait effet en 5 à 10 minutes."
+          }
+        },
+        "b_2": {
+          "type": "perk",
+          "settings": {
+            "icon": "backpack",
+            "title": "Pratique",
+            "text": "Dans le sac ou dans la poche, ton énergie est toujours à portée de main."
+          }
+        },
+        "b_3": {
+          "type": "perk",
+          "settings": {
+            "icon": "nosugar",
+            "title": "Sans sucre",
+            "text": "Nos bonbons ne contiennent pas de sucre."
+          }
+        },
+        "b_4": {
+          "type": "dose",
+          "settings": {
+            "count": 1,
+            "unit": "bonbon",
+            "equals": "un expresso",
+            "text": "50 mg de caféine. Avant un cours, une présentation ou un long trajet."
+          }
+        },
+        "b_5": {
+          "type": "dose",
+          "settings": {
+            "count": 2,
+            "unit": "bonbons",
+            "equals": "300 ml de boisson énergisante",
+            "text": "100 mg de caféine. Avant une séance de sport ou pendant une longue journée de ski."
+          }
+        }
+      },
+      "block_order": [
+        "b_1",
+        "b_2",
+        "b_3",
+        "b_4",
+        "b_5"
+      ]
+    }
+  },
+  "order": [
+    "bonbons"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "sections": {
+    "boutique": {
+      "type": "voltiz-produit",
+      "settings": {
+        "product": "voltiz-energy-candy",
+        "eyebrow": "Boutique",
+        "heading": "Voltiz Energy Candy."
+      },
+      "blocks": {
+        "b_1": {
+          "type": "fact",
+          "settings": {
+            "value": "50 mg",
+            "text": "de caféine par bonbon"
+          }
+        },
+        "b_2": {
+          "type": "fact",
+          "settings": {
+            "value": "0 g",
+            "text": "de sucre"
+          }
+        },
+        "b_3": {
+          "type": "fact",
+          "settings": {
+            "value": "B12",
+            "text": "contribue à réduire la fatigue"
+          }
+        },
+        "b_4": {
+          "type": "fact",
+          "settings": {
+            "value": "Swiss",
+            "text": "fabriqué en Suisse"
+          }
+        }
+      },
+      "block_order": [
+        "b_1",
+        "b_2",
+        "b_3",
+        "b_4"
+      ]
+    }
+  },
+  "order": [
+    "boutique"
+  ]
+}

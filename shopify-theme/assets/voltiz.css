@@ -348,3 +348,9 @@ html, .page-wrapper { scroll-padding-top: 84px; }
   .vz .compo__visual { max-width: 240px; }
   .vz .mark--panel { aspect-ratio: 1; }
 }
+
+/* ---------- Pages séparées : onglet actif, contact seul ---------- */
+.vz .top__nav a[aria-current="page"] { background-size: 100% 3px; }
+.vz .menu__panel a[aria-current="page"] { box-shadow: inset 4px 0 0 var(--yellow); }
+.vz .contact--alone { margin-top: 0; padding-top: 0; border-top: 0; }
+.vz .sec:has(.contact--alone) { min-height: 60svh; display: grid; align-content: center; }
