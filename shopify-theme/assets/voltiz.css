@@ -354,3 +354,29 @@ html, .page-wrapper { scroll-padding-top: 84px; }
 .vz .menu__panel a[aria-current="page"] { box-shadow: inset 4px 0 0 var(--yellow); }
 .vz .contact--alone { margin-top: 0; padding-top: 0; border-top: 0; }
 .vz .sec:has(.contact--alone) { min-height: 60svh; display: grid; align-content: center; }
+
+/* ---------- En-tête : onglets toujours affichés, à droite du bouton Commander ---------- */
+.vz .top__in { flex-wrap: wrap; gap: 0 20px; height: auto; min-height: var(--header-h); }
+.vz .top__cart { margin-left: auto; }
+.vz .top__nav { margin-left: 0; gap: 20px; }
+.vz .top__nav a { white-space: nowrap; }
+@media (max-width: 1149px) {
+  .vz .top__nav {
+    display: flex; flex-basis: 100%; justify-content: center; gap: 22px;
+    overflow-x: auto; scrollbar-width: none; border-top: 1px solid var(--line); padding-block: 2px;
+  }
+  .vz .top__nav::-webkit-scrollbar { display: none; }
+  .vz .top__in { padding-top: 6px; }
+}
+@media (max-width: 749px) {
+  .vz .top__in { gap: 0 8px; }
+  .vz .top__cta { display: inline-flex; min-height: 38px; padding: 0 14px; }
+  .vz .top__nav { justify-content: flex-start; gap: 18px; margin-inline: calc(-1 * clamp(16px, 4vw, 40px)); padding-inline: clamp(16px, 4vw, 40px); flex-basis: calc(100% + 2 * clamp(16px, 4vw, 40px)); }
+  .vz .top__nav a { font-size: .6875rem; letter-spacing: .1em; }
+}
+html, .page-wrapper { scroll-padding-top: 120px; }
+
+/* Photos de l'accueil : seulement le moment, sans l'heure */
+.vz .hero__cap > span { font-size: .875rem; letter-spacing: .18em; gap: 10px; }
+.vz .hero__cap svg { width: 24px; height: 24px; padding: 3px; }
+.vz .hero__caption { height: 32px; }

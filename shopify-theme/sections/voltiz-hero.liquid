@@ -37,7 +37,7 @@
         <div class="hero__now">
           <p class="hero__caption" aria-live="off">
             {%- for block in section.blocks -%}
-              <span class="hero__cap{% if forloop.first %} is-on{% endif %}"><b>{{ block.settings.time }}</b><span><svg aria-hidden="true"><use href="#u-{{ block.settings.icon }}"/></svg>{{ block.settings.text }}</span></span>
+              <span class="hero__cap{% if forloop.first %} is-on{% endif %}"><span><svg aria-hidden="true"><use href="#u-{{ block.settings.icon }}"/></svg>{{ block.settings.text }}</span></span>
             {%- endfor -%}
           </p>
           <div class="hero__bars" aria-hidden="true">
@@ -75,7 +75,6 @@
       "name": "Photo",
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Photo" },
-        { "type": "text", "id": "time", "label": "Heure", "default": "06:12" },
         {
           "type": "select", "id": "icon", "label": "Icône", "default": "energie",
           "options": [

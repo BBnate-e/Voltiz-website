@@ -8,7 +8,6 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/photo-1759222973646-cde48a020726.jpg",
-            "time": "06:12",
             "icon": "energie",
             "text": "Énergie"
           }
@@ -17,7 +16,6 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/photo-1774280898104-d329acaae7b7.jpg",
-            "time": "08:30",
             "icon": "travail",
             "text": "Travail"
           }
@@ -26,7 +24,6 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/photo-1789349073387-a80f692223aa.jpg",
-            "time": "14:05",
             "icon": "aventure",
             "text": "Aventure"
           }
@@ -35,7 +32,6 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/photo-1759167581561-3b1fbe906b52.jpg",
-            "time": "17:20",
             "icon": "sport",
             "text": "Sport"
           }
@@ -44,7 +40,6 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/photo-1758740040473-b8089bda136f.jpg",
-            "time": "22:31",
             "icon": "conduite",
             "text": "Conduite"
           }
@@ -53,7 +48,6 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/photo-1671104695361-8b16c458b552.jpg",
-            "time": "23:47",
             "icon": "etudes",
             "text": "Études"
           }

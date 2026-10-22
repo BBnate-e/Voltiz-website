@@ -1,4 +1,4 @@
-{%- comment -%} En-tête Voltiz : logo, ancres de la page d'accueil, panier, bouton Commander. {%- endcomment -%}
+{%- comment -%} En-tête Voltiz : logo, panier, bouton Commander, puis les onglets, toujours visibles (sur une 2e ligne qui défile sur petit écran). {%- endcomment -%}
 {%- liquid
   assign base = ''
   unless template.name == 'index'
@@ -36,7 +36,6 @@
           <a href="{{ href }}"{% if current %} aria-current="page"{% endif %} {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
         {%- endfor -%}
       {%- endcapture -%}
-      <nav class="top__nav" aria-label="Navigation principale">{{ vz_links }}</nav>
       <a class="top__cart" href="{{ routes.cart_url }}" aria-label="Panier, {{ cart.item_count }} article{% if cart.item_count > 1 %}s{% endif %}">
         <svg aria-hidden="true"><use href="#i-bag"/></svg>
         {%- if cart.item_count > 0 -%}<span class="top__count" aria-hidden="true">{{ cart.item_count }}</span>{%- endif -%}
@@ -51,10 +50,7 @@
         -%}
         <a class="btn btn--sm top__cta" href="{{ cta }}">{{ section.settings.cta_label }}</a>
       {%- endif -%}
-      <details class="menu">
-        <summary aria-label="Menu"><span></span><span></span><span></span></summary>
-        <nav class="menu__panel" aria-label="Menu">{{ vz_links }}</nav>
-      </details>
+      <nav class="top__nav" aria-label="Navigation principale">{{ vz_links }}</nav>
     </div>
   </header>
 </div>
