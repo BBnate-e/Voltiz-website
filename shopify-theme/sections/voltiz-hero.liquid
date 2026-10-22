@@ -18,7 +18,11 @@
 
       <div class="hero__visual{% if section.settings.image != blank %} hero__visual--photo{% endif %}" data-reveal>
         {%- if section.settings.image != blank -%}
-          {{ section.settings.image | image_url: width: 1400 | image_tag: widths: '480, 720, 960, 1200, 1400', sizes: '(min-width: 990px) 50vw, 100vw', class: 'hero__img', alt: section.settings.image.alt, fetchpriority: 'high' }}
+          <span class="hero__ring" aria-hidden="true"></span>
+          <div class="hero__frame">
+            {{ section.settings.image | image_url: width: 1400 | image_tag: widths: '480, 720, 960, 1200, 1400', sizes: '(min-width: 990px) 45vw, 90vw', class: 'hero__img', alt: '', fetchpriority: 'high' }}
+          </div>
+          <span class="hero__hatch" aria-hidden="true"></span>
         {%- else -%}
           <div class="mark" aria-hidden="true">
             <span class="mark__ring"></span>
@@ -26,9 +30,12 @@
             <svg class="mark__bolt"><use href="#i-bolt"/></svg>
           </div>
         {%- endif -%}
+        {%- if section.settings.badge_value != blank -%}
+          <p class="hero__badge"><b>{{ section.settings.badge_value }}</b><span>{{ section.settings.badge_text }}</span></p>
+        {%- endif -%}
       </div>
     </div>
-    <span class="hero__slash" aria-hidden="true"></span>
+    {%- if section.settings.image == blank -%}<span class="hero__slash" aria-hidden="true"></span>{%- endif -%}
   </section>
 </div>
 
@@ -42,7 +49,9 @@
     { "type": "text", "id": "lead", "label": "Phrase d’accroche", "default": "Un bonbon mou au citron, avec 50 mg de caféine naturelle. Sans sucre, fait en Suisse." },
     { "type": "text", "id": "button_label", "label": "Texte du bouton", "default": "Commander" },
     { "type": "text", "id": "button_link", "label": "Lien du bouton", "default": "#commander" },
-    { "type": "image_picker", "id": "image", "label": "Photo (facultatif)", "info": "Sans photo, un visuel jaune à l’éclair s’affiche." }
+    { "type": "image_picker", "id": "image", "label": "Photo (facultatif)", "info": "Sans photo, un visuel jaune à l’éclair s’affiche." },
+    { "type": "text", "id": "badge_value", "label": "Pastille : chiffre", "default": "50 mg" },
+    { "type": "text", "id": "badge_text", "label": "Pastille : texte", "default": "de caféine naturelle" }
   ],
   "presets": [{ "name": "Voltiz : hero" }]
 }

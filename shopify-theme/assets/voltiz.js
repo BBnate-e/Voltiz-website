@@ -10,6 +10,9 @@
   /* ---------- 1. Apparitions au scroll (une seule fois) ---------- */
   const initReveal = (root) => {
     const els = root.querySelectorAll(".vz [data-reveal]");
+    root.querySelectorAll(".vz .moments__list").forEach((list) => {
+      list.querySelectorAll("[data-reveal]").forEach((el, i) => el.style.setProperty("--d", `${(i % 3) * 90}ms`));
+    });
     // Dans l'éditeur de thème, tout est visible tout de suite
     if (!("IntersectionObserver" in window) || reduceMotion || window.Shopify?.designMode) {
       els.forEach((el) => el.classList.add("is-in"));

@@ -1,0 +1,25 @@
+{%- comment -%} Bandeau jaune qui défile : quelques mots séparés par un éclair. {%- endcomment -%}
+{%- assign words = section.settings.words | split: ',' -%}
+<div class="vz">
+  <div class="band" role="presentation">
+    <p class="sr-only">{{ section.settings.words | replace: ',', ' · ' }}</p>
+    <div class="band__track" aria-hidden="true">
+      {%- for i in (1..2) -%}
+        <span class="band__group">
+          {%- for w in words -%}<span>{{ w | strip }}</span><svg><use href="#i-bolt"/></svg>{%- endfor -%}
+          {%- for w in words -%}<span>{{ w | strip }}</span><svg><use href="#i-bolt"/></svg>{%- endfor -%}
+        </span>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz : bandeau",
+  "settings": [
+    { "type": "text", "id": "words", "label": "Mots", "info": "Séparés par des virgules.", "default": "Partout. À tout moment., Energy candy, Citron, Sans sucre, Swiss made" }
+  ],
+  "presets": [{ "name": "Voltiz : bandeau" }]
+}
+{% endschema %}

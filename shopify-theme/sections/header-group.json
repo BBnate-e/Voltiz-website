@@ -9,11 +9,18 @@
         "lien_1": {
           "type": "link",
           "settings": {
+            "label": "Moments",
+            "target": "#moments"
+          }
+        },
+        "lien_2": {
+          "type": "link",
+          "settings": {
             "label": "Le produit",
             "target": "#commander"
           }
         },
-        "lien_2": {
+        "lien_3": {
           "type": "link",
           "settings": {
             "label": "FAQ",
@@ -23,7 +30,8 @@
       },
       "block_order": [
         "lien_1",
-        "lien_2"
+        "lien_2",
+        "lien_3"
       ]
     }
   },

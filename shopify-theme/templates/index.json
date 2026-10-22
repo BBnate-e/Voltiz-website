@@ -2,6 +2,12 @@
   "sections": {
     "hero": {
       "type": "voltiz-hero",
+      "settings": {
+        "image": "shopify://shop_images/photo-1789349073387-a80f692223aa.jpg"
+      }
+    },
+    "bandeau": {
+      "type": "voltiz-bandeau",
       "settings": {}
     },
     "moments": {
@@ -11,6 +17,8 @@
         "b_1": {
           "type": "moment",
           "settings": {
+            "image": "shopify://shop_images/photo-1759222973646-cde48a020726.jpg",
+            "time": "06:12",
             "icon": "energie",
             "text": "Énergie"
           }
@@ -18,6 +26,8 @@
         "b_2": {
           "type": "moment",
           "settings": {
+            "image": "shopify://shop_images/photo-1759167581561-3b1fbe906b52.jpg",
+            "time": "17:20",
             "icon": "sport",
             "text": "Sport"
           }
@@ -25,6 +35,8 @@
         "b_3": {
           "type": "moment",
           "settings": {
+            "image": "shopify://shop_images/photo-1671104695361-8b16c458b552.jpg",
+            "time": "23:47",
             "icon": "etudes",
             "text": "Études"
           }
@@ -32,6 +44,8 @@
         "b_4": {
           "type": "moment",
           "settings": {
+            "image": "shopify://shop_images/photo-1758740040473-b8089bda136f.jpg",
+            "time": "22:31",
             "icon": "conduite",
             "text": "Conduite"
           }
@@ -39,6 +53,8 @@
         "b_5": {
           "type": "moment",
           "settings": {
+            "image": "shopify://shop_images/photo-1774280898104-d329acaae7b7.jpg",
+            "time": "08:30",
             "icon": "travail",
             "text": "Travail"
           }
@@ -46,6 +62,8 @@
         "b_6": {
           "type": "moment",
           "settings": {
+            "image": "shopify://shop_images/photo-1496571787586-b392e2c2d2d4.jpg",
+            "time": "14:05",
             "icon": "aventure",
             "text": "Aventure"
           }
@@ -145,6 +163,7 @@
   },
   "order": [
     "hero",
+    "bandeau",
     "moments",
     "produit",
     "faq"
