@@ -1,22 +1,61 @@
-{%- comment -%} Pied de page Voltiz : logo, slogan, contact, mentions légales, conditions, caféine. {%- endcomment -%}
+{%- comment -%}
+  Pied de page Voltiz : inscription aux nouvelles, colonnes de liens (pages, aide, conditions),
+  réseaux sociaux s'ils sont remplis, mentions légales et texte caféine.
+{%- endcomment -%}
 <div class="vz">
   <footer class="foot">
     <div class="wrap">
-      <div class="foot__top">
-        <svg class="foot__logo" viewBox="0 0 1118 536" role="img" aria-label="{{ shop.name | escape }}"><use href="#logo"/></svg>
-        <p class="foot__slogan">{{ section.settings.slogan }}</p>
+      <div class="foot__news">
+        <div>
+          <p class="foot__h">{{ section.settings.news_heading }}</p>
+          {%- if section.settings.news_text != blank -%}<p class="foot__small">{{ section.settings.news_text }}</p>{%- endif -%}
+        </div>
+        {%- form 'customer', id: 'vz-news', class: 'news' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          {%- if form.posted_successfully? -%}
+            <p class="news__ok" role="status"><svg aria-hidden="true"><use href="#i-check"/></svg>{{ section.settings.news_ok }}</p>
+          {%- else -%}
+            <label class="sr-only" for="news-{{ section.id }}">Adresse e-mail</label>
+            <input id="news-{{ section.id }}" type="email" name="contact[email]" autocomplete="email" placeholder="ton@email.ch" required{% if form.errors %} aria-invalid="true" aria-describedby="news-err-{{ section.id }}"{% endif %}>
+            <button class="btn" type="submit">{{ section.settings.news_button }}</button>
+            {%- if form.errors -%}<p class="news__err" id="news-err-{{ section.id }}" role="alert">Vérifie ton adresse e-mail.</p>{%- endif -%}
+          {%- endif -%}
+        {%- endform -%}
       </div>
-      <div class="foot__row">
-        {%- if shop.email != blank -%}<p><a href="mailto:{{ shop.email }}">{{ shop.email }}</a></p>{%- endif -%}
-        <p>{% render 'voltiz-t', t: section.settings.legal_text %}{% if shop.address.street != blank %}, {{ shop.address.street }}, {{ shop.address.zip }} {{ shop.address.city }}{% endif %}</p>
-        <ul class="foot__links">
-          {%- for policy in shop.policies -%}
-            {%- if policy.body != blank -%}<li><a href="{{ policy.url }}">{{ policy.title }}</a></li>{%- endif -%}
-          {%- endfor -%}
-        </ul>
+
+      <div class="foot__cols">
+        <div class="foot__brand">
+          <svg class="foot__logo" viewBox="0 0 1118 536" role="img" aria-label="{{ shop.name | escape }}"><use href="#logo"/></svg>
+          <p class="foot__slogan">{{ section.settings.slogan }}</p>
+          {%- if section.settings.instagram != blank or section.settings.tiktok != blank -%}
+            <ul class="foot__social" role="list">
+              {%- if section.settings.instagram != blank -%}<li><a href="{{ section.settings.instagram }}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-insta"/></svg><span class="sr-only">Instagram</span></a></li>{%- endif -%}
+              {%- if section.settings.tiktok != blank -%}<li><a href="{{ section.settings.tiktok }}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-tiktok"/></svg><span class="sr-only">TikTok</span></a></li>{%- endif -%}
+            </ul>
+          {%- endif -%}
+        </div>
+        <nav class="foot__col" aria-label="{{ section.settings.col_1 | escape }}">
+          <p class="foot__h">{{ section.settings.col_1 }}</p>
+          <ul role="list">
+            {%- for block in section.blocks -%}<li {{ block.shopify_attributes }}><a href="{{ block.settings.target }}">{{ block.settings.label }}</a></li>{%- endfor -%}
+          </ul>
+        </nav>
+        <nav class="foot__col" aria-label="{{ section.settings.col_2 | escape }}">
+          <p class="foot__h">{{ section.settings.col_2 }}</p>
+          <ul role="list">
+            {%- if shop.email != blank -%}<li><a href="mailto:{{ shop.email }}">{{ shop.email }}</a></li>{%- endif -%}
+            {%- for policy in shop.policies -%}
+              {%- if policy.body != blank -%}<li><a href="{{ policy.url }}">{{ policy.title }}</a></li>{%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </nav>
       </div>
-      <p class="foot__small">{% render 'voltiz-t', t: section.settings.caffeine_text %}</p>
-      <p class="foot__small foot__copy"><svg class="ch" aria-hidden="true"><use href="#ch"/></svg><span>© {{ 'now' | date: '%Y' }} {{ shop.name | escape }}. <span lang="en">Swiss made.</span></span></p>
+
+      <div class="foot__bottom">
+        <p class="foot__small">{% render 'voltiz-t', t: section.settings.legal_text %}{% if shop.address.street != blank %}, {{ shop.address.street }}, {{ shop.address.zip }} {{ shop.address.city }}{% endif %}</p>
+        <p class="foot__small">{% render 'voltiz-t', t: section.settings.caffeine_text %}</p>
+        <p class="foot__small foot__copy"><svg class="ch" aria-hidden="true"><use href="#ch"/></svg><span>© {{ 'now' | date: '%Y' }} {{ shop.name | escape }}. <span lang="en">Swiss made.</span></span></p>
+      </div>
     </div>
   </footer>
 </div>
@@ -25,9 +64,28 @@
 {
   "name": "Voltiz : pied de page",
   "settings": [
+    { "type": "text", "id": "news_heading", "label": "Titre inscription", "default": "Reste au courant." },
+    { "type": "text", "id": "news_text", "label": "Texte inscription", "default": "Sorties, nouveautés et lancement des commandes. Pas de spam." },
+    { "type": "text", "id": "news_button", "label": "Bouton inscription", "default": "Je m’inscris" },
+    { "type": "text", "id": "news_ok", "label": "Message après inscription", "default": "Merci, c’est noté." },
     { "type": "text", "id": "slogan", "label": "Slogan", "default": "Partout. À tout moment." },
+    { "type": "url", "id": "instagram", "label": "Lien Instagram" },
+    { "type": "url", "id": "tiktok", "label": "Lien TikTok" },
+    { "type": "text", "id": "col_1", "label": "Titre colonne 1", "default": "Voltiz" },
+    { "type": "text", "id": "col_2", "label": "Titre colonne 2", "default": "Aide" },
     { "type": "text", "id": "legal_text", "label": "Mentions légales", "default": "[À COMPLÉTER : nom du responsable de la boutique]" },
     { "type": "text", "id": "caffeine_text", "label": "Texte caféine", "default": "Contient de la caféine (50 mg par bonbon). Déconseillé aux enfants, aux femmes enceintes ou allaitantes et aux personnes sensibles à la caféine." }
-  ]
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Lien",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Texte", "default": "Boutique" },
+        { "type": "text", "id": "target", "label": "Lien", "default": "/pages/boutique" }
+      ]
+    }
+  ],
+  "max_blocks": 8
 }
 {% endschema %}

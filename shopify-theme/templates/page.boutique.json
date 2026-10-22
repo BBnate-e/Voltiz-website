@@ -8,32 +8,179 @@
         "heading": "Voltiz Energy Candy."
       },
       "blocks": {
-        "b_1": {
+        "bloc_1": {
+          "type": "fact",
+          "settings": {
+            "value": "5 à 10 min",
+            "text": "pour sentir l’effet"
+          }
+        },
+        "bloc_2": {
           "type": "fact",
           "settings": {
             "value": "50 mg",
             "text": "de caféine par bonbon"
           }
         },
-        "b_2": {
+        "bloc_3": {
           "type": "fact",
           "settings": {
             "value": "0 g",
             "text": "de sucre"
           }
         },
-        "b_3": {
-          "type": "fact",
-          "settings": {
-            "value": "B12",
-            "text": "contribue à réduire la fatigue"
-          }
-        },
-        "b_4": {
+        "bloc_4": {
           "type": "fact",
           "settings": {
             "value": "Swiss",
             "text": "fabriqué en Suisse"
+          }
+        },
+        "bloc_5": {
+          "type": "pack",
+          "settings": {
+            "qty": 1,
+            "unit": "strip",
+            "text": "Pour essayer."
+          }
+        },
+        "bloc_6": {
+          "type": "pack",
+          "settings": {
+            "qty": 3,
+            "unit": "strips",
+            "text": "Pour la semaine, au bureau ou en cours.",
+            "tag": "Notre conseil",
+            "highlight": true
+          }
+        },
+        "bloc_7": {
+          "type": "pack",
+          "settings": {
+            "qty": 5,
+            "unit": "strips",
+            "text": "La réserve pour le sac, la voiture et le bureau."
+          }
+        },
+        "bloc_8": {
+          "type": "tab",
+          "settings": {
+            "title": "Comment l’utiliser",
+            "text": "Mâche un bonbon tranquillement : la caféine est absorbée directement dans la bouche et l’effet se fait sentir en 5 à 10 minutes.\n1 bonbon = 50 mg de caféine, à peu près un expresso. 2 bonbons = 100 mg, à peu près 300 ml de boisson énergisante."
+          }
+        },
+        "bloc_9": {
+          "type": "tab",
+          "settings": {
+            "title": "Livraison",
+            "text": "Nous livrons partout en Suisse. Les frais de port s’affichent avant le paiement."
+          }
+        },
+        "bloc_10": {
+          "type": "tab",
+          "settings": {
+            "title": "Précautions",
+            "text": "Contient de la caféine (50 mg par bonbon). Déconseillé aux enfants, aux femmes enceintes ou allaitantes et aux personnes sensibles à la caféine.\nNe pas dépasser [À COMPLÉTER : nombre de bonbons] par jour."
+          }
+        }
+      },
+      "block_order": [
+        "bloc_1",
+        "bloc_2",
+        "bloc_3",
+        "bloc_4",
+        "bloc_5",
+        "bloc_6",
+        "bloc_7",
+        "bloc_8",
+        "bloc_9",
+        "bloc_10"
+      ]
+    },
+    "bandeau": {
+      "type": "voltiz-bandeau",
+      "settings": {}
+    },
+    "pourquoi": {
+      "type": "voltiz-pourquoi",
+      "settings": {
+        "image": "shopify://shop_images/photo-1496571787586-b392e2c2d2d4.jpg",
+        "text": "Un bonbon au maté, sans sucre. La caféine est absorbée directement dans la bouche."
+      },
+      "blocks": {
+        "b_1": {
+          "type": "row",
+          "settings": {
+            "icon": "timer",
+            "title": "Effet rapide",
+            "text": "Tu sens l’effet en 5 à 10 minutes."
+          }
+        },
+        "b_2": {
+          "type": "row",
+          "settings": {
+            "icon": "target",
+            "title": "Dose précise",
+            "text": "50 mg de caféine par bonbon, ni plus ni moins."
+          }
+        },
+        "b_3": {
+          "type": "row",
+          "settings": {
+            "icon": "backpack",
+            "title": "Toujours sur toi",
+            "text": "Un strip se glisse dans la poche, le sac ou la veste de ski."
+          }
+        }
+      },
+      "block_order": [
+        "b_1",
+        "b_2",
+        "b_3"
+      ]
+    },
+    "formule": {
+      "type": "voltiz-formule",
+      "settings": {},
+      "blocks": {
+        "b_1": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "bolt",
+            "big": "50 mg",
+            "role": "Le boost",
+            "name": "Caféine",
+            "text": "Dosée précisément dans chaque bonbon."
+          }
+        },
+        "b_2": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "leaf",
+            "big": "Maté",
+            "role": "L’origine",
+            "name": "Extrait de yerba maté",
+            "text": "Une source naturelle de caféine, en extrait standardisé."
+          }
+        },
+        "b_3": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "flask",
+            "big": "B12",
+            "role": "La vitamine",
+            "name": "Vitamine B12",
+            "text": "Elle contribue à réduire la fatigue."
+          }
+        },
+        "b_4": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "nosugar",
+            "big": "0 g",
+            "role": "Le sucre",
+            "name": "Sans sucre",
+            "text": "Nos bonbons ne contiennent pas de sucre."
           }
         }
       },
@@ -43,9 +190,150 @@
         "b_3",
         "b_4"
       ]
+    },
+    "comparatif": {
+      "type": "voltiz-comparatif",
+      "settings": {
+        "heading": "Voltiz face aux autres."
+      },
+      "blocks": {
+        "b_1": {
+          "type": "row",
+          "settings": {
+            "label": "Caféine dosée précisément",
+            "v1": "oui",
+            "v2": "~",
+            "v3": "oui",
+            "v4": "oui"
+          }
+        },
+        "b_2": {
+          "type": "row",
+          "settings": {
+            "label": "Sans sucre",
+            "v1": "oui",
+            "v2": "~",
+            "v3": "~",
+            "v4": "oui"
+          }
+        },
+        "b_3": {
+          "type": "row",
+          "settings": {
+            "label": "Sans eau ni gobelet",
+            "v1": "oui",
+            "v2": "non",
+            "v3": "non",
+            "v4": "non"
+          }
+        },
+        "b_4": {
+          "type": "row",
+          "settings": {
+            "label": "Tient dans la poche",
+            "v1": "oui",
+            "v2": "non",
+            "v3": "~",
+            "v4": "oui"
+          }
+        },
+        "b_5": {
+          "type": "row",
+          "settings": {
+            "label": "Un vrai goût de bonbon",
+            "v1": "oui",
+            "v2": "non",
+            "v3": "~",
+            "v4": "non"
+          }
+        }
+      },
+      "block_order": [
+        "b_1",
+        "b_2",
+        "b_3",
+        "b_4",
+        "b_5"
+      ]
+    },
+    "faq": {
+      "type": "voltiz-faq",
+      "settings": {
+        "heading": "Tes questions."
+      },
+      "blocks": {
+        "b_1": {
+          "type": "question",
+          "settings": {
+            "question": "C’est quoi, Voltiz ?",
+            "answer": "Un bonbon énergisant au maté, sans sucre, avec 50 mg de caféine par bonbon. Fabriqué en Suisse."
+          }
+        },
+        "b_2": {
+          "type": "question",
+          "settings": {
+            "question": "En combien de temps je sens l’effet ?",
+            "answer": "La caféine est absorbée directement dans la bouche : compte 5 à 10 minutes."
+          }
+        },
+        "b_3": {
+          "type": "question",
+          "settings": {
+            "question": "Combien de bonbons par jour ?",
+            "answer": "Un bonbon contient 50 mg de caféine, à peu près un expresso. Ne dépasse pas [À COMPLÉTER : nombre de bonbons] par jour et pense au café, au thé et aux boissons que tu bois aussi."
+          }
+        },
+        "b_4": {
+          "type": "question",
+          "settings": {
+            "question": "Ça a quel goût ?",
+            "answer": "Saveur citron. L’arôme masque l’amertume de la caféine."
+          }
+        },
+        "b_5": {
+          "type": "question",
+          "settings": {
+            "question": "Qui ne devrait pas en prendre ?",
+            "answer": "Les enfants, les femmes enceintes ou allaitantes et les personnes sensibles à la caféine."
+          }
+        },
+        "b_6": {
+          "type": "question",
+          "settings": {
+            "question": "Vous livrez où ?",
+            "answer": "Partout en Suisse. Les frais de port s’affichent avant le paiement."
+          }
+        },
+        "b_7": {
+          "type": "question",
+          "settings": {
+            "question": "Comment je paie ?",
+            "answer": "À la caisse de la boutique, par un paiement sécurisé."
+          }
+        }
+      },
+      "block_order": [
+        "b_1",
+        "b_2",
+        "b_3",
+        "b_4",
+        "b_5",
+        "b_6",
+        "b_7"
+      ]
+    },
+    "cta": {
+      "type": "voltiz-cta",
+      "settings": {}
     }
   },
   "order": [
-    "boutique"
+    "boutique",
+    "bandeau",
+    "pourquoi",
+    "formule",
+    "comparatif",
+    "faq",
+    "cta"
   ]
 }

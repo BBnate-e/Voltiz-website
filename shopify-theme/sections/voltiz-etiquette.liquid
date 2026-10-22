@@ -1,0 +1,64 @@
+{%- comment -%} L'étiquette : un texte et une carte qui se retourne pour montrer ingrédients et valeurs nutritionnelles. {%- endcomment -%}
+<div class="vz">
+  <section class="sec" id="{{ section.settings.anchor }}" aria-labelledby="etiquette-titre-{{ section.id }}">
+    <div class="wrap label">
+      <div class="sec__head" data-reveal>
+        {%- if section.settings.kicker != blank -%}<p class="kicker">{{ section.settings.kicker }}</p>{%- endif -%}
+        <h2 id="etiquette-titre-{{ section.id }}" class="sec__title">{{ section.settings.heading }}</h2>
+        {%- if section.settings.text != blank -%}<p class="sec__intro">{% render 'voltiz-t', t: section.settings.text %}</p>{%- endif -%}
+      </div>
+      <div class="flip" data-vz-flip data-reveal>
+        <div class="flip__inner">
+          <div class="flip__face flip__front">
+            {%- if section.settings.image != blank -%}
+              {{ section.settings.image | image_url: width: 900 | image_tag: widths: '480, 720, 900', sizes: '(min-width: 990px) 40vw, 90vw', class: 'flip__img', alt: '', loading: 'lazy' }}
+            {%- else -%}
+              <div class="mark mark--panel" aria-hidden="true"><span class="mark__hatch"></span><svg class="mark__bolt"><use href="#i-bolt"/></svg></div>
+            {%- endif -%}
+          </div>
+          <div class="flip__face flip__back">
+            <p class="flip__h">Ingrédients</p>
+            <p class="flip__ingr">{% render 'voltiz-t', t: section.settings.ingredients %}</p>
+            {%- assign rows = section.settings.nutrition | newline_to_br | split: '<br />' -%}
+            <table class="nutri">
+              <caption>{{ section.settings.nutrition_caption }}</caption>
+              <tbody>
+                {%- for r in rows -%}
+                  {%- assign r = r | strip -%}
+                  {%- if r != blank -%}
+                    {%- assign cells = r | split: '|' -%}
+                    {%- assign label = cells[0] | strip -%}
+                    {%- assign value = cells[1] | strip -%}
+                    <tr{% if label contains 'dont ' %} class="sub"{% endif %}><th scope="row">{{ label }}</th><td>{% render 'voltiz-t', t: value %}</td></tr>
+                  {%- endif -%}
+                {%- endfor -%}
+              </tbody>
+            </table>
+            {%- if section.settings.note != blank -%}<p class="flip__note">{% render 'voltiz-t', t: section.settings.note %}</p>{%- endif -%}
+          </div>
+        </div>
+        <button type="button" class="btn btn--sm flip__btn" aria-pressed="false" data-front="{{ section.settings.button_front | escape }}" data-back="{{ section.settings.button_back | escape }}">{{ section.settings.button_front }}</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz : étiquette",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Ancre", "default": "etiquette" },
+    { "type": "text", "id": "kicker", "label": "Petit texte au-dessus", "default": "L’étiquette" },
+    { "type": "text", "id": "heading", "label": "Titre", "default": "Rien à cacher. Retourne le sachet." },
+    { "type": "textarea", "id": "text", "label": "Texte", "default": "Tout ce qu’il y a dans un bonbon Voltiz est écrit au dos. Pas de sucre, une dose de caféine précise." },
+    { "type": "image_picker", "id": "image", "label": "Photo du sachet (facultatif)" },
+    { "type": "text", "id": "button_front", "label": "Bouton côté face", "default": "Retourner pour lire l’étiquette" },
+    { "type": "text", "id": "button_back", "label": "Bouton côté dos", "default": "Revoir le sachet" },
+    { "type": "textarea", "id": "ingredients", "label": "Ingrédients", "default": "Extrait de yerba maté, caféine, arôme, vitamine B12. [À COMPLÉTER : liste complète du fabricant]" },
+    { "type": "text", "id": "nutrition_caption", "label": "Titre du tableau", "default": "Valeurs nutritionnelles" },
+    { "type": "textarea", "id": "nutrition", "label": "Tableau", "info": "Une ligne par valeur, sous la forme « Nom | valeur ».", "default": "Caféine | 50 mg par bonbon\nSucres | 0 g\nÉnergie | [À COMPLÉTER]\nVitamine B12 | [À COMPLÉTER]" },
+    { "type": "text", "id": "note", "label": "Note", "default": "Contient de la caféine. Déconseillé aux enfants et aux femmes enceintes ou allaitantes." }
+  ],
+  "presets": [{ "name": "Voltiz : étiquette" }]
+}
+{% endschema %}

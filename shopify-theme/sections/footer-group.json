@@ -4,7 +4,51 @@
   "sections": {
     "voltiz_footer": {
       "type": "voltiz-footer",
-      "settings": {}
+      "settings": {},
+      "blocks": {
+        "lien_1": {
+          "type": "link",
+          "settings": {
+            "label": "Nos bonbons",
+            "target": "/pages/nos-bonbons"
+          }
+        },
+        "lien_2": {
+          "type": "link",
+          "settings": {
+            "label": "Composition",
+            "target": "/pages/composition"
+          }
+        },
+        "lien_3": {
+          "type": "link",
+          "settings": {
+            "label": "Boutique",
+            "target": "/pages/boutique"
+          }
+        },
+        "lien_4": {
+          "type": "link",
+          "settings": {
+            "label": "À propos",
+            "target": "/pages/a-propos"
+          }
+        },
+        "lien_5": {
+          "type": "link",
+          "settings": {
+            "label": "Contact",
+            "target": "/pages/contact"
+          }
+        }
+      },
+      "block_order": [
+        "lien_1",
+        "lien_2",
+        "lien_3",
+        "lien_4",
+        "lien_5"
+      ]
     }
   },
   "order": [

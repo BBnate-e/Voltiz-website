@@ -44,6 +44,10 @@
         "b_4"
       ]
     },
+    "etiquette": {
+      "type": "voltiz-etiquette",
+      "settings": {}
+    },
     "infos": {
       "type": "voltiz-infos",
       "settings": {
@@ -77,10 +81,16 @@
         "b_2",
         "b_3"
       ]
+    },
+    "cta": {
+      "type": "voltiz-cta",
+      "settings": {}
     }
   },
   "order": [
     "composition",
-    "infos"
+    "etiquette",
+    "infos",
+    "cta"
   ]
 }

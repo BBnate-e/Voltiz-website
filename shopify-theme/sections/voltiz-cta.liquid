@@ -1,0 +1,24 @@
+{%- comment -%} Bandeau final : une phrase, une ligne, un bouton. {%- endcomment -%}
+<div class="vz">
+  <section class="final" aria-labelledby="cta-titre-{{ section.id }}">
+    <div class="wrap final__in" data-reveal>
+      <h2 id="cta-titre-{{ section.id }}" class="final__title">{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<p class="final__text">{{ section.settings.text }}</p>{%- endif -%}
+      {%- if section.settings.button_label != blank -%}<a class="btn btn--dark" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>{%- endif -%}
+    </div>
+    <svg class="final__bolt" aria-hidden="true"><use href="#i-bolt"/></svg>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz : appel final",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Titre", "default": "Un bonbon. Et c’est reparti." },
+    { "type": "text", "id": "text", "label": "Texte", "default": "Ton énergie, partout, à tout moment." },
+    { "type": "text", "id": "button_label", "label": "Texte du bouton", "default": "Commander" },
+    { "type": "text", "id": "button_link", "label": "Lien du bouton", "default": "/pages/boutique" }
+  ],
+  "presets": [{ "name": "Voltiz : appel final" }]
+}
+{% endschema %}

@@ -1,0 +1,62 @@
+{%- comment -%}
+  Choisis ta réserve : des cartes de quantité qui mènent à la boutique avec la quantité déjà choisie.
+  Le prix ne s'affiche que si la case est cochée (en attente des prix définitifs).
+{%- endcomment -%}
+{%- assign product = section.settings.product -%}
+<div class="vz">
+  <section class="sec sec--soft" id="{{ section.settings.anchor }}" aria-labelledby="offre-titre-{{ section.id }}">
+    <div class="wrap">
+      <div class="sec__head sec__head--center" data-reveal>
+        {%- if section.settings.kicker != blank -%}<p class="kicker">{{ section.settings.kicker }}</p>{%- endif -%}
+        <h2 id="offre-titre-{{ section.id }}" class="sec__title">{{ section.settings.heading }}</h2>
+      </div>
+      <ul class="offers" role="list">
+        {%- for block in section.blocks -%}
+          <li class="offer{% if block.settings.highlight %} offer--best{% endif %}" data-reveal {{ block.shopify_attributes }}>
+            {%- if block.settings.tag != blank -%}<p class="offer__tag">{{ block.settings.tag }}</p>{%- endif -%}
+            <p class="offer__qty">{{ block.settings.qty }}<span>{{ block.settings.unit }}</span></p>
+            <h3 class="offer__name">{{ block.settings.name }}</h3>
+            <p class="offer__text">{% render 'voltiz-t', t: block.settings.text %}</p>
+            {%- if section.settings.show_price and product != blank -%}
+              <p class="offer__price">{{ product.price | times: block.settings.qty | money }}</p>
+            {%- endif -%}
+            <a class="btn{% unless block.settings.highlight %} btn--line{% endunless %}" href="{{ section.settings.link }}?qty={{ block.settings.qty }}#acheter">{{ block.settings.button }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </li>
+        {%- endfor -%}
+      </ul>
+      {%- if section.settings.note != blank -%}<p class="compare__note" data-reveal>{% render 'voltiz-t', t: section.settings.note %}</p>{%- endif -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz : offre",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Ancre", "default": "offre" },
+    { "type": "text", "id": "kicker", "label": "Petit texte au-dessus", "default": "Ta réserve" },
+    { "type": "text", "id": "heading", "label": "Titre", "default": "Choisis ta réserve." },
+    { "type": "product", "id": "product", "label": "Produit" },
+    { "type": "checkbox", "id": "show_price", "label": "Afficher les prix", "default": false },
+    { "type": "text", "id": "link", "label": "Page de commande", "default": "/pages/boutique" },
+    { "type": "textarea", "id": "note", "label": "Note sous les cartes", "default": "Paiement sécurisé à la caisse. Livraison partout en Suisse." }
+  ],
+  "blocks": [
+    {
+      "type": "pack",
+      "name": "Réserve",
+      "settings": [
+        { "type": "range", "id": "qty", "label": "Quantité", "min": 1, "max": 20, "step": 1, "default": 1 },
+        { "type": "text", "id": "unit", "label": "Unité", "default": "strip" },
+        { "type": "text", "id": "name", "label": "Nom", "default": "Découverte" },
+        { "type": "text", "id": "text", "label": "Texte", "default": "Pour essayer." },
+        { "type": "text", "id": "tag", "label": "Étiquette (facultatif)" },
+        { "type": "checkbox", "id": "highlight", "label": "Mettre en avant", "default": false },
+        { "type": "text", "id": "button", "label": "Texte du bouton", "default": "Choisir" }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [{ "name": "Voltiz : offre" }]
+}
+{% endschema %}

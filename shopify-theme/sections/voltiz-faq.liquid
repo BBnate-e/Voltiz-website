@@ -2,11 +2,14 @@
 <div class="vz">
   <section class="faq" id="{{ section.settings.anchor }}" aria-labelledby="faq-titre-{{ section.id }}">
     <div class="wrap faq__in">
-      <h2 id="faq-titre-{{ section.id }}" class="faq__title" data-reveal>{{ section.settings.heading }}</h2>
+      <div class="sec__head" data-reveal>
+        {%- if section.settings.kicker != blank -%}<p class="kicker">{{ section.settings.kicker }}</p>{%- endif -%}
+        <h2 id="faq-titre-{{ section.id }}" class="faq__title">{{ section.settings.heading }}</h2>
+      </div>
       <div data-reveal>
         <div class="faq__list">
           {%- for block in section.blocks -%}
-            <details {{ block.shopify_attributes }}>
+            <details {{ block.shopify_attributes }}{% if forloop.first and section.settings.first_open %} open{% endif %}>
               <summary>{{ block.settings.question }}<svg aria-hidden="true"><use href="#i-plus"/></svg></summary>
               <p>{% render 'voltiz-t', t: block.settings.answer %}</p>
             </details>
@@ -29,7 +32,9 @@
   "name": "Voltiz : FAQ",
   "settings": [
     { "type": "text", "id": "anchor", "label": "Ancre", "default": "faq" },
+    { "type": "text", "id": "kicker", "label": "Petit texte au-dessus", "default": "FAQ" },
     { "type": "text", "id": "heading", "label": "Titre", "default": "Questions." },
+    { "type": "checkbox", "id": "first_open", "label": "Première question ouverte", "default": true },
     { "type": "text", "id": "care_title", "label": "Titre de l’encadré", "default": "Usage responsable" },
     { "type": "textarea", "id": "care_text", "label": "Texte de l’encadré", "info": "Un paragraphe par ligne.", "default": "Contient de la caféine (50 mg par bonbon). Déconseillé aux enfants, aux femmes enceintes ou allaitantes et aux personnes sensibles à la caféine.\nNe pas dépasser [À COMPLÉTER : nombre de bonbons] par jour." }
   ],
@@ -43,7 +48,7 @@
       ]
     }
   ],
-  "max_blocks": 8,
+  "max_blocks": 10,
   "presets": [{ "name": "Voltiz : FAQ" }]
 }
 {% endschema %}
