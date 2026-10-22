@@ -1,6 +1,6 @@
 /* =====================================================================
    VOLTIZ : scripts des sections Voltiz du thème
-   1. Apparitions au scroll   2. En-tête   3. Bloc produit (quantité et total)
+   1. Apparitions au scroll   2. En-tête   3. Bloc produit (quantité et total)   4. Photos de l'accueil
    ===================================================================== */
 (() => {
   "use strict";
@@ -42,6 +42,11 @@
       const y = Math.max(window.scrollY, scroller ? scroller.scrollTop : 0);
       header.classList.toggle("is-stuck", y > 8);
     };
+    // Menu mobile : se referme après un clic sur un lien
+    document.querySelectorAll(".vz .menu").forEach((menu) => {
+      menu.addEventListener("click", (e) => { if (e.target.closest("a")) menu.open = false; });
+      document.addEventListener("click", (e) => { if (!menu.contains(e.target)) menu.open = false; });
+    });
     window.addEventListener("scroll", update, { passive: true });
     if (scroller) scroller.addEventListener("scroll", update, { passive: true });
     update();
@@ -101,7 +106,47 @@
     });
   };
 
-  const init = (root) => { initReveal(root); initOrder(root); };
+  /* ---------- 4. Photos de l'accueil : fondu toutes les N secondes, bouton pause ---------- */
+  const initSlides = (root) => {
+    root.querySelectorAll("[data-vz-slides]").forEach((hero) => {
+      if (hero._vzTimer) clearInterval(hero._vzTimer);
+      const slides = hero.querySelectorAll(".hero__slide");
+      const caps = hero.querySelectorAll(".hero__cap");
+      const bars = hero.querySelectorAll(".hero__bar");
+      const btn = hero.querySelector("[data-vz-pause]");
+      if (slides.length < 2) return;
+      const delay = (parseInt(hero.dataset.interval, 10) || 5) * 1000;
+      hero.style.setProperty("--vz-slide", `${delay}ms`);
+      let i = 0;
+      let paused = reduceMotion;
+      const show = (n) => {
+        i = (n + slides.length) % slides.length;
+        [slides, caps, bars].forEach((list) => list.forEach((el, k) => el.classList.toggle("is-on", k === i)));
+        bars.forEach((el, k) => el.classList.toggle("is-done", k < i));
+      };
+      const start = () => { hero._vzTimer = setInterval(() => show(i + 1), delay); };
+      const setPaused = (p) => {
+        paused = p;
+        hero.classList.toggle("is-paused", p);
+        if (btn) {
+          btn.setAttribute("aria-pressed", String(p));
+          const label = btn.querySelector(".sr-only");
+          label.textContent = p ? label.dataset.labelPlay : label.dataset.labelPause;
+        }
+        clearInterval(hero._vzTimer);
+        if (!p) start();
+      };
+      if (btn) btn.addEventListener("click", () => setPaused(!paused));
+      // Éditeur : un bloc sélectionné s'affiche
+      hero.addEventListener("shopify:block:select", (e) => {
+        const k = Array.prototype.indexOf.call(slides, e.target);
+        if (k >= 0) { setPaused(true); show(k); }
+      });
+      setPaused(paused);
+    });
+  };
+
+  const init = (root) => { initReveal(root); initOrder(root); initSlides(root); };
   init(document);
   // Éditeur de thème : une section rechargée doit être réinitialisée
   document.addEventListener("shopify:section:load", (e) => init(e.target));

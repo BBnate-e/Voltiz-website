@@ -1,58 +1,97 @@
-{%- comment -%} 1. Hero : marque, slogan, une phrase, un bouton. Visuel graphique jaune tant qu'aucune photo n'est choisie. {%- endcomment -%}
+{%- comment -%}
+  1. Accueil : photos plein écran qui défilent (une par moment), slogan, une phrase, le bouton Commander.
+  Chaque photo est un bloc (photo, heure, moment). Un bouton met le défilement en pause.
+{%- endcomment -%}
 <div class="vz">
-  <section class="hero" aria-labelledby="hero-titre-{{ section.id }}">
+  <section class="hero" id="{{ section.settings.anchor }}" aria-labelledby="hero-titre-{{ section.id }}" data-vz-slides data-interval="{{ section.settings.interval }}">
+    <div class="hero__slides" aria-hidden="true">
+      {%- for block in section.blocks -%}
+        <figure class="hero__slide{% if forloop.first %} is-on{% endif %}" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            {%- if forloop.first -%}
+              {{ block.settings.image | image_url: width: 2400 | image_tag: widths: '750, 1100, 1500, 1920, 2400', sizes: '100vw', class: 'hero__img', alt: '', fetchpriority: 'high' }}
+            {%- else -%}
+              {{ block.settings.image | image_url: width: 2400 | image_tag: widths: '750, 1100, 1500, 1920, 2400', sizes: '100vw', class: 'hero__img', alt: '', loading: 'lazy' }}
+            {%- endif -%}
+          {%- endif -%}
+        </figure>
+      {%- endfor -%}
+    </div>
+
     <div class="wrap hero__in">
       <div class="hero__text">
         {%- if section.settings.eyebrow != blank -%}<p class="kicker" data-reveal>{{ section.settings.eyebrow }}</p>{%- endif -%}
         <h1 id="hero-titre-{{ section.id }}" class="hero__title" data-reveal>
           <span>{{ section.settings.title_1 }}</span>
-          <span>{{ section.settings.title_2 }}</span>
+          <span class="hero__title-2">{{ section.settings.title_2 }}</span>
         </h1>
         {%- if section.settings.lead != blank -%}<p class="hero__lead" data-reveal>{% render 'voltiz-t', t: section.settings.lead %}</p>{%- endif -%}
         {%- if section.settings.button_label != blank -%}
           <p class="hero__cta" data-reveal>
-            <a class="btn" href="{{ section.settings.button_link | default: '#commander' }}">{{ section.settings.button_label }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn" href="{{ section.settings.button_link | default: '#boutique' }}">{{ section.settings.button_label }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </p>
         {%- endif -%}
       </div>
 
-      <div class="hero__visual{% if section.settings.image != blank %} hero__visual--photo{% endif %}" data-reveal>
-        {%- if section.settings.image != blank -%}
-          <span class="hero__ring" aria-hidden="true"></span>
-          <div class="hero__frame">
-            {{ section.settings.image | image_url: width: 1400 | image_tag: widths: '480, 720, 960, 1200, 1400', sizes: '(min-width: 990px) 45vw, 90vw', class: 'hero__img', alt: '', fetchpriority: 'high' }}
+      {%- if section.blocks.size > 0 -%}
+        <div class="hero__now">
+          <p class="hero__caption" aria-live="off">
+            {%- for block in section.blocks -%}
+              <span class="hero__cap{% if forloop.first %} is-on{% endif %}"><b>{{ block.settings.time }}</b><span><svg aria-hidden="true"><use href="#u-{{ block.settings.icon }}"/></svg>{{ block.settings.text }}</span></span>
+            {%- endfor -%}
+          </p>
+          <div class="hero__bars" aria-hidden="true">
+            {%- for block in section.blocks -%}<span class="hero__bar{% if forloop.first %} is-on{% endif %}"><i></i></span>{%- endfor -%}
           </div>
-          <span class="hero__hatch" aria-hidden="true"></span>
-        {%- else -%}
-          <div class="mark" aria-hidden="true">
-            <span class="mark__ring"></span>
-            <span class="mark__hatch"></span>
-            <svg class="mark__bolt"><use href="#i-bolt"/></svg>
-          </div>
-        {%- endif -%}
-        {%- if section.settings.badge_value != blank -%}
-          <p class="hero__badge"><b>{{ section.settings.badge_value }}</b><span>{{ section.settings.badge_text }}</span></p>
-        {%- endif -%}
-      </div>
+          {%- if section.blocks.size > 1 -%}
+            <button type="button" class="hero__pause" data-vz-pause aria-pressed="false">
+              <span class="sr-only" data-label-pause="Mettre les photos en pause" data-label-play="Relancer les photos">Mettre les photos en pause</span>
+              <svg class="hero__i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3v14H7zM14 5h3v14h-3z"/></svg>
+              <svg class="hero__i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
     </div>
-    {%- if section.settings.image == blank -%}<span class="hero__slash" aria-hidden="true"></span>{%- endif -%}
   </section>
 </div>
 
 {% schema %}
 {
-  "name": "Voltiz : hero",
+  "name": "Voltiz : accueil",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Petit texte au-dessus", "default": "Energy candy · Citron" },
-    { "type": "text", "id": "title_1", "label": "Titre, ligne 1", "default": "Partout." },
-    { "type": "text", "id": "title_2", "label": "Titre, ligne 2", "default": "À tout moment." },
-    { "type": "text", "id": "lead", "label": "Phrase d’accroche", "default": "Un bonbon mou au citron, avec 50 mg de caféine naturelle. Sans sucre, fait en Suisse." },
+    { "type": "text", "id": "anchor", "label": "Ancre", "default": "accueil" },
+    { "type": "text", "id": "eyebrow", "label": "Petit texte au-dessus", "default": "Voltiz · Energy candy" },
+    { "type": "text", "id": "title_1", "label": "Titre, ligne 1", "default": "Ton énergie." },
+    { "type": "text", "id": "title_2", "label": "Titre, ligne 2", "default": "Partout, à tout moment." },
+    { "type": "text", "id": "lead", "label": "Phrase d’accroche", "default": "Le bonbon énergisant au maté. 50 mg de caféine par pièce, absorbé en 5 minutes." },
     { "type": "text", "id": "button_label", "label": "Texte du bouton", "default": "Commander" },
-    { "type": "text", "id": "button_link", "label": "Lien du bouton", "default": "#commander" },
-    { "type": "image_picker", "id": "image", "label": "Photo (facultatif)", "info": "Sans photo, un visuel jaune à l’éclair s’affiche." },
-    { "type": "text", "id": "badge_value", "label": "Pastille : chiffre", "default": "50 mg" },
-    { "type": "text", "id": "badge_text", "label": "Pastille : texte", "default": "de caféine naturelle" }
+    { "type": "text", "id": "button_link", "label": "Lien du bouton", "default": "#boutique" },
+    { "type": "range", "id": "interval", "label": "Durée par photo", "min": 3, "max": 10, "step": 1, "unit": "s", "default": 5 }
   ],
-  "presets": [{ "name": "Voltiz : hero" }]
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Photo",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photo" },
+        { "type": "text", "id": "time", "label": "Heure", "default": "06:12" },
+        {
+          "type": "select", "id": "icon", "label": "Icône", "default": "energie",
+          "options": [
+            { "value": "energie", "label": "Éclair" },
+            { "value": "sport", "label": "Course" },
+            { "value": "etudes", "label": "Livre" },
+            { "value": "conduite", "label": "Voiture" },
+            { "value": "travail", "label": "Mallette" },
+            { "value": "aventure", "label": "Montagnes" }
+          ]
+        },
+        { "type": "text", "id": "text", "label": "Moment", "default": "Énergie" }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [{ "name": "Voltiz : accueil" }]
 }
 {% endschema %}

@@ -14,7 +14,7 @@
         <svg viewBox="0 0 1118 536" aria-hidden="true"><use href="#logo"/></svg>
         {%- if section.settings.tagline != blank -%}<span class="top__tag">{{ section.settings.tagline }}</span>{%- endif -%}
       </a>
-      <nav class="top__nav" aria-label="Navigation principale">
+      {%- capture vz_links -%}
         {%- for block in section.blocks -%}
           {%- liquid
             assign href = block.settings.target
@@ -27,7 +27,8 @@
           -%}
           <a href="{{ href }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
         {%- endfor -%}
-      </nav>
+      {%- endcapture -%}
+      <nav class="top__nav" aria-label="Navigation principale">{{ vz_links }}</nav>
       <a class="top__cart" href="{{ routes.cart_url }}" aria-label="Panier, {{ cart.item_count }} article{% if cart.item_count > 1 %}s{% endif %}">
         <svg aria-hidden="true"><use href="#i-bag"/></svg>
         {%- if cart.item_count > 0 -%}<span class="top__count" aria-hidden="true">{{ cart.item_count }}</span>{%- endif -%}
@@ -40,8 +41,12 @@
             assign cta = base | append: cta
           endif
         -%}
-        <a class="btn btn--sm" href="{{ cta }}">{{ section.settings.cta_label }}</a>
+        <a class="btn btn--sm top__cta" href="{{ cta }}">{{ section.settings.cta_label }}</a>
       {%- endif -%}
+      <details class="menu">
+        <summary aria-label="Menu"><span></span><span></span><span></span></summary>
+        <nav class="menu__panel" aria-label="Menu">{{ vz_links }}</nav>
+      </details>
     </div>
   </header>
 </div>
@@ -67,8 +72,8 @@
       "type": "text",
       "id": "cta_target",
       "label": "Lien du bouton",
-      "info": "Une ancre de l’accueil (#commander) ou une adresse.",
-      "default": "#commander"
+      "info": "Une ancre de l’accueil (#boutique) ou une adresse.",
+      "default": "#boutique"
     }
   ],
   "blocks": [
@@ -86,12 +91,12 @@
           "type": "text",
           "id": "target",
           "label": "Lien",
-          "info": "Une ancre de l’accueil (#commander, #faq) ou une adresse.",
-          "default": "#commander"
+          "info": "Une ancre de l’accueil (#accueil, #bonbons, #composition, #boutique, #a-propos, #contact) ou une adresse.",
+          "default": "#boutique"
         }
       ]
     }
   ],
-  "max_blocks": 5
+  "max_blocks": 7
 }
 {% endschema %}

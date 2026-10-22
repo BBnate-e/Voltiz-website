@@ -2,20 +2,10 @@
   "sections": {
     "hero": {
       "type": "voltiz-hero",
-      "settings": {
-        "image": "shopify://shop_images/photo-1789349073387-a80f692223aa.jpg"
-      }
-    },
-    "bandeau": {
-      "type": "voltiz-bandeau",
-      "settings": {}
-    },
-    "moments": {
-      "type": "voltiz-moments",
       "settings": {},
       "blocks": {
         "b_1": {
-          "type": "moment",
+          "type": "slide",
           "settings": {
             "image": "shopify://shop_images/photo-1759222973646-cde48a020726.jpg",
             "time": "06:12",
@@ -24,34 +14,7 @@
           }
         },
         "b_2": {
-          "type": "moment",
-          "settings": {
-            "image": "shopify://shop_images/photo-1759167581561-3b1fbe906b52.jpg",
-            "time": "17:20",
-            "icon": "sport",
-            "text": "Sport"
-          }
-        },
-        "b_3": {
-          "type": "moment",
-          "settings": {
-            "image": "shopify://shop_images/photo-1671104695361-8b16c458b552.jpg",
-            "time": "23:47",
-            "icon": "etudes",
-            "text": "Études"
-          }
-        },
-        "b_4": {
-          "type": "moment",
-          "settings": {
-            "image": "shopify://shop_images/photo-1758740040473-b8089bda136f.jpg",
-            "time": "22:31",
-            "icon": "conduite",
-            "text": "Conduite"
-          }
-        },
-        "b_5": {
-          "type": "moment",
+          "type": "slide",
           "settings": {
             "image": "shopify://shop_images/photo-1774280898104-d329acaae7b7.jpg",
             "time": "08:30",
@@ -59,13 +22,40 @@
             "text": "Travail"
           }
         },
-        "b_6": {
-          "type": "moment",
+        "b_3": {
+          "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/photo-1496571787586-b392e2c2d2d4.jpg",
+            "image": "shopify://shop_images/photo-1789349073387-a80f692223aa.jpg",
             "time": "14:05",
             "icon": "aventure",
             "text": "Aventure"
+          }
+        },
+        "b_4": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/photo-1759167581561-3b1fbe906b52.jpg",
+            "time": "17:20",
+            "icon": "sport",
+            "text": "Sport"
+          }
+        },
+        "b_5": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/photo-1758740040473-b8089bda136f.jpg",
+            "time": "22:31",
+            "icon": "conduite",
+            "text": "Conduite"
+          }
+        },
+        "b_6": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/photo-1671104695361-8b16c458b552.jpg",
+            "time": "23:47",
+            "icon": "etudes",
+            "text": "Études"
           }
         }
       },
@@ -78,24 +68,129 @@
         "b_6"
       ]
     },
-    "produit": {
+    "bandeau": {
+      "type": "voltiz-bandeau",
+      "settings": {}
+    },
+    "bonbons": {
+      "type": "voltiz-bonbons",
+      "settings": {},
+      "blocks": {
+        "b_1": {
+          "type": "perk",
+          "settings": {
+            "icon": "timer",
+            "title": "Effet rapide",
+            "text": "La caféine est absorbée directement dans la bouche et fait effet en 5 à 10 minutes."
+          }
+        },
+        "b_2": {
+          "type": "perk",
+          "settings": {
+            "icon": "backpack",
+            "title": "Pratique",
+            "text": "Dans le sac ou dans la poche, ton énergie est toujours à portée de main."
+          }
+        },
+        "b_3": {
+          "type": "perk",
+          "settings": {
+            "icon": "nosugar",
+            "title": "Sans sucre",
+            "text": "Nos bonbons ne contiennent pas de sucre."
+          }
+        },
+        "b_4": {
+          "type": "dose",
+          "settings": {
+            "count": 1,
+            "unit": "bonbon",
+            "equals": "un expresso",
+            "text": "50 mg de caféine. Avant un cours, une présentation ou un long trajet."
+          }
+        },
+        "b_5": {
+          "type": "dose",
+          "settings": {
+            "count": 2,
+            "unit": "bonbons",
+            "equals": "300 ml de boisson énergisante",
+            "text": "100 mg de caféine. Avant une séance de sport ou pendant une longue journée de ski."
+          }
+        }
+      },
+      "block_order": [
+        "b_1",
+        "b_2",
+        "b_3",
+        "b_4",
+        "b_5"
+      ]
+    },
+    "composition": {
+      "type": "voltiz-composition",
+      "settings": {},
+      "blocks": {
+        "b_1": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "leaf",
+            "name": "Extrait de yerba maté",
+            "text": "Source naturelle de caféine, il apporte une partie de la caféine des bonbons."
+          }
+        },
+        "b_2": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "bolt",
+            "name": "Caféine",
+            "text": "La base du boost : 50 mg précisément par bonbon."
+          }
+        },
+        "b_3": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "flask",
+            "name": "Vitamine B12",
+            "text": "Elle contribue à un métabolisme énergétique normal et à réduire la fatigue."
+          }
+        },
+        "b_4": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "sparkle",
+            "name": "Arôme",
+            "text": "Il donne au bonbon un goût irrésistible et masque l’amertume de la caféine."
+          }
+        }
+      },
+      "block_order": [
+        "b_1",
+        "b_2",
+        "b_3",
+        "b_4"
+      ]
+    },
+    "boutique": {
       "type": "voltiz-produit",
       "settings": {
-        "product": "voltiz-energy-candy"
+        "product": "voltiz-energy-candy",
+        "eyebrow": "Boutique",
+        "heading": "Voltiz Energy Candy."
       },
       "blocks": {
         "b_1": {
           "type": "fact",
           "settings": {
             "value": "50 mg",
-            "text": "de caféine naturelle, maté et guarana"
+            "text": "de caféine par bonbon"
           }
         },
         "b_2": {
           "type": "fact",
           "settings": {
-            "value": "100 mg",
-            "text": "de L-théanine"
+            "value": "0 g",
+            "text": "de sucre"
           }
         },
         "b_3": {
@@ -108,8 +203,8 @@
         "b_4": {
           "type": "fact",
           "settings": {
-            "value": "0 g",
-            "text": "de sucre, fait en Suisse"
+            "value": "Swiss",
+            "text": "fabriqué en Suisse"
           }
         }
       },
@@ -120,52 +215,52 @@
         "b_4"
       ]
     },
-    "faq": {
-      "type": "voltiz-faq",
-      "settings": {},
+    "infos": {
+      "type": "voltiz-infos",
+      "settings": {
+        "intro": "Ce que fait chaque ingrédient, expliqué simplement."
+      },
       "blocks": {
         "b_1": {
-          "type": "question",
+          "type": "info",
           "settings": {
-            "question": "C’est un chewing-gum ?",
-            "answer": "Non. Voltiz est un bonbon mou en forme d’éclair, qu’on mâche et qu’on avale."
+            "title": "La caféine",
+            "text": "Pendant la journée, une molécule appelée adénosine s’accumule dans le cerveau et ralentit l’activité nerveuse : c’est elle qui prépare au sommeil.\nLa caféine rejoint le cerveau par la circulation sanguine et prend la place de l’adénosine sur ses récepteurs, sans les activer.\nChaque bonbon Voltiz en contient 50 mg, à peu près autant qu’un expresso."
           }
         },
         "b_2": {
-          "type": "question",
+          "type": "info",
           "settings": {
-            "question": "Combien j’en prends ?",
-            "answer": "Un bonbon pour un coup de boost. Compte aussi le café, le thé et les boissons énergisantes de ta journée."
+            "title": "La vitamine B12",
+            "text": "La vitamine B12 contribue à un métabolisme énergétique normal, au fonctionnement normal du système nerveux, à la formation normale de globules rouges et à réduire la fatigue.\nOn la trouve surtout dans la viande, le poisson, les fruits de mer, les œufs et les produits laitiers.\nUne alimentation variée et équilibrée et un mode de vie sain sont importants."
           }
         },
         "b_3": {
-          "type": "question",
+          "type": "info",
           "settings": {
-            "question": "Comment je paie ?",
-            "answer": "En ligne, à la caisse. Tu reçois une confirmation par e-mail."
-          }
-        },
-        "b_4": {
-          "type": "question",
-          "settings": {
-            "question": "Vous livrez où ?",
-            "answer": "Partout en Suisse. Les frais s’affichent à la caisse, avant le paiement. Délai : [À COMPLÉTER]."
+            "title": "Le maté",
+            "text": "Le maté est une infusion des feuilles de yerba maté (Ilex paraguariensis). Son goût est amer, terreux et herbacé, entre le café et le thé vert.\nLa teneur en caféine varie d’une feuille à l’autre. Nous utilisons donc un extrait en poudre standardisé, pour une dose de caféine précise dans chaque bonbon.\nLe maté contient aussi naturellement de la théobromine, de l’acide chlorogénique et des flavonoïdes."
           }
         }
       },
       "block_order": [
         "b_1",
         "b_2",
-        "b_3",
-        "b_4"
+        "b_3"
       ]
+    },
+    "apropos": {
+      "type": "voltiz-apropos",
+      "settings": {}
     }
   },
   "order": [
     "hero",
     "bandeau",
-    "moments",
-    "produit",
-    "faq"
+    "bonbons",
+    "composition",
+    "boutique",
+    "infos",
+    "apropos"
   ]
 }

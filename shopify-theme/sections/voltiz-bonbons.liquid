@@ -1,0 +1,87 @@
+{%- comment -%} 2. Nos bonbons : trois atouts, puis le dosage comparé à des repères connus. {%- endcomment -%}
+<div class="vz">
+  <section class="sec" id="{{ section.settings.anchor }}" aria-labelledby="bonbons-titre-{{ section.id }}">
+    <div class="wrap">
+      <div class="sec__head" data-reveal>
+        {%- if section.settings.kicker != blank -%}<p class="kicker">{{ section.settings.kicker }}</p>{%- endif -%}
+        <h2 id="bonbons-titre-{{ section.id }}" class="sec__title">{{ section.settings.heading }}</h2>
+      </div>
+
+      <ul class="perks" role="list">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'perk' -%}
+            <li class="perk" data-reveal {{ block.shopify_attributes }}>
+              <span class="perk__icon" aria-hidden="true"><svg><use href="#i-{{ block.settings.icon }}"/></svg></span>
+              <h3 class="perk__title">{{ block.settings.title }}</h3>
+              <p class="perk__text">{% render 'voltiz-t', t: block.settings.text %}</p>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+
+      {%- if section.settings.dose_heading != blank -%}<h3 class="dose__heading" data-reveal>{{ section.settings.dose_heading }}</h3>{%- endif -%}
+      <div class="doses">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'dose' -%}
+            <div class="dose" data-reveal {{ block.shopify_attributes }}>
+              <p class="dose__left">
+                <span class="dose__count">{{ block.settings.count }}</span>
+                <span class="dose__unit">{{ block.settings.unit }}</span>
+                <span class="dose__bolts" aria-hidden="true">{%- for i in (1..block.settings.count) -%}<svg><use href="#i-bolt"/></svg>{%- endfor -%}</span>
+              </p>
+              <div class="dose__right">
+                <p class="dose__eq"><span aria-hidden="true">=</span> {{ block.settings.equals }}</p>
+                <p class="dose__text">{% render 'voltiz-t', t: block.settings.text %}</p>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      {%- if section.settings.dose_note != blank -%}<p class="dose__note" data-reveal>{% render 'voltiz-t', t: section.settings.dose_note %}</p>{%- endif -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz : nos bonbons",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Ancre", "default": "bonbons" },
+    { "type": "text", "id": "kicker", "label": "Petit texte au-dessus", "default": "Nos bonbons" },
+    { "type": "text", "id": "heading", "label": "Titre", "default": "Petit bonbon, vrai boost." },
+    { "type": "text", "id": "dose_heading", "label": "Titre du dosage", "default": "Combien j’en prends ?" },
+    { "type": "text", "id": "dose_note", "label": "Note sous le dosage", "default": "Les repères sont indicatifs. Compte aussi le café, le thé et les boissons énergisantes de ta journée." }
+  ],
+  "blocks": [
+    {
+      "type": "perk",
+      "name": "Atout",
+      "settings": [
+        {
+          "type": "select", "id": "icon", "label": "Icône", "default": "timer",
+          "options": [
+            { "value": "timer", "label": "Chrono" },
+            { "value": "backpack", "label": "Sac" },
+            { "value": "nosugar", "label": "Sans sucre" },
+            { "value": "bolt", "label": "Éclair" },
+            { "value": "leaf", "label": "Feuille" }
+          ]
+        },
+        { "type": "text", "id": "title", "label": "Titre", "default": "Effet rapide" },
+        { "type": "textarea", "id": "text", "label": "Texte", "default": "La caféine passe directement par la bouche." }
+      ]
+    },
+    {
+      "type": "dose",
+      "name": "Dosage",
+      "settings": [
+        { "type": "range", "id": "count", "label": "Nombre de bonbons", "min": 1, "max": 4, "step": 1, "default": 1 },
+        { "type": "text", "id": "unit", "label": "Unité", "default": "bonbon" },
+        { "type": "text", "id": "equals", "label": "Équivaut à", "default": "un expresso" },
+        { "type": "textarea", "id": "text", "label": "Texte", "default": "50 mg de caféine." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Voltiz : nos bonbons" }]
+}
+{% endschema %}

@@ -9,29 +9,53 @@
         "lien_1": {
           "type": "link",
           "settings": {
-            "label": "Moments",
-            "target": "#moments"
+            "label": "Accueil",
+            "target": "#accueil"
           }
         },
         "lien_2": {
           "type": "link",
           "settings": {
-            "label": "Le produit",
-            "target": "#commander"
+            "label": "Nos bonbons",
+            "target": "#bonbons"
           }
         },
         "lien_3": {
           "type": "link",
           "settings": {
-            "label": "FAQ",
-            "target": "#faq"
+            "label": "Composition",
+            "target": "#composition"
+          }
+        },
+        "lien_4": {
+          "type": "link",
+          "settings": {
+            "label": "Boutique",
+            "target": "#boutique"
+          }
+        },
+        "lien_5": {
+          "type": "link",
+          "settings": {
+            "label": "À propos",
+            "target": "#a-propos"
+          }
+        },
+        "lien_6": {
+          "type": "link",
+          "settings": {
+            "label": "Contact",
+            "target": "#contact"
           }
         }
       },
       "block_order": [
         "lien_1",
         "lien_2",
-        "lien_3"
+        "lien_3",
+        "lien_4",
+        "lien_5",
+        "lien_6"
       ]
     }
   },

@@ -1,0 +1,42 @@
+{%- comment -%} 5. À propos de nous, puis le contact (e-mail de la boutique). {%- endcomment -%}
+<div class="vz">
+  <section class="sec sec--dark" id="{{ section.settings.anchor }}" aria-labelledby="apropos-titre-{{ section.id }}">
+    <div class="wrap split">
+      <div class="sec__head" data-reveal>
+        {%- if section.settings.kicker != blank -%}<p class="kicker">{{ section.settings.kicker }}</p>{%- endif -%}
+        <h2 id="apropos-titre-{{ section.id }}" class="sec__title">{{ section.settings.heading }}</h2>
+      </div>
+      <div class="about" data-reveal>
+        {%- assign paras = section.settings.text | newline_to_br | split: '<br />' -%}
+        {%- for p in paras -%}{%- assign p = p | strip -%}{%- if p != blank -%}<p>{% render 'voltiz-t', t: p %}</p>{%- endif -%}{%- endfor -%}
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="contact" id="{{ section.settings.contact_anchor }}" data-reveal>
+        <div>
+          <h3 class="contact__title">{{ section.settings.contact_heading }}</h3>
+          {%- if section.settings.contact_text != blank -%}<p class="contact__text">{{ section.settings.contact_text }}</p>{%- endif -%}
+        </div>
+        {%- if shop.email != blank -%}
+          <a class="btn" href="mailto:{{ shop.email }}"><svg aria-hidden="true"><use href="#i-mail"/></svg>{{ shop.email }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz : à propos et contact",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Ancre", "default": "a-propos" },
+    { "type": "text", "id": "kicker", "label": "Petit texte au-dessus", "default": "À propos de nous" },
+    { "type": "text", "id": "heading", "label": "Titre", "default": "Voltiz, c’est nous." },
+    { "type": "textarea", "id": "text", "label": "Texte", "info": "Un paragraphe par ligne.", "default": "[À COMPLÉTER : texte de présentation de l’entreprise]" },
+    { "type": "text", "id": "contact_anchor", "label": "Ancre du contact", "default": "contact" },
+    { "type": "text", "id": "contact_heading", "label": "Titre du contact", "default": "Contact" },
+    { "type": "text", "id": "contact_text", "label": "Texte du contact", "default": "Une question, une idée, une commande pour ton club ? Écris-nous." }
+  ],
+  "presets": [{ "name": "Voltiz : à propos et contact" }]
+}
+{% endschema %}

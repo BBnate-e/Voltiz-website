@@ -1,8 +1,8 @@
 {%- comment -%} Bandeau jaune qui défile : quelques mots séparés par un éclair. {%- endcomment -%}
-{%- assign words = section.settings.words | split: ',' -%}
+{%- assign words = section.settings.words | split: '|' -%}
 <div class="vz">
   <div class="band" role="presentation">
-    <p class="sr-only">{{ section.settings.words | replace: ',', ' · ' }}</p>
+    <p class="sr-only">{{ section.settings.words | replace: '|', ' · ' }}</p>
     <div class="band__track" aria-hidden="true">
       {%- for i in (1..2) -%}
         <span class="band__group">
@@ -18,7 +18,7 @@
 {
   "name": "Voltiz : bandeau",
   "settings": [
-    { "type": "text", "id": "words", "label": "Mots", "info": "Séparés par des virgules.", "default": "Partout. À tout moment., Energy candy, Citron, Sans sucre, Swiss made" }
+    { "type": "text", "id": "words", "label": "Mots", "info": "Séparés par le signe |.", "default": "Ton énergie | Partout, à tout moment | Energy candy | Au maté | Sans sucre | Swiss made" }
   ],
   "presets": [{ "name": "Voltiz : bandeau" }]
 }
