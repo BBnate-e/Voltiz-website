@@ -1,0 +1,34 @@
+/* =====================================================================
+   VOLTIZ, brouillon 4 : animation d'ouverture du premier écran (en plus de voltiz3.css)
+   ===================================================================== */
+.v3 .intro__canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
+.v3 .hero--intro .hero__in { position: relative; z-index: 1; }
+
+/* Ouverture du sachet : une ellipse sombre au bord supérieur, avec le bord clair du sachet */
+.v3 .pouch__mouth { position: absolute; left: 4%; right: 3%; top: -3.6%; height: 8%; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 62%, #02080F 0%, #071827 48%, #0C2236 70%, #DCE2E5 72%, #F7F8F6 86%, rgba(247,248,246,0) 100%);
+  box-shadow: inset 0 3px 6px rgba(0,0,0,.45);
+  transform: scaleY(0); opacity: 0; transform-origin: 50% 70%; }
+.v3 .pouch__zip { position: absolute; left: 1.5%; right: 1.5%; top: 12.4%; height: 2px; border-radius: 2px; pointer-events: none;
+  background: linear-gradient(90deg, rgba(245,214,41,0), #F5D629 18%, #FFF6C2 50%, #F5D629 82%, rgba(245,214,41,0));
+  box-shadow: 0 0 14px 3px rgba(245,214,41,.75);
+  transform: scaleX(0); transform-origin: left center; opacity: 0; }
+
+/* Pendant l'animation : sachet de face, immobile, ouvert */
+.v3 .hero.is-playing .pouch { pointer-events: none; }
+.v3 .hero.is-playing .pouch__float { animation: none; }
+.v3 .hero.is-playing .pouch__card { transform: none; }
+.v3 .hero.is-playing .pouch__mouth { transform: scaleY(1); opacity: 1; transition: transform .5s var(--ease), opacity .3s; }
+.v3 .hero.is-playing .hero__turn { opacity: 0; visibility: hidden; }
+.v3 .hero .hero__turn { transition: opacity .5s var(--ease) .3s, visibility 0s; }
+
+/* Fermeture : l'ouverture se referme, la fermeture éclair s'allume, le sachet rebondit */
+.v3 .hero.is-sealed .pouch__mouth { transform: scaleY(0); opacity: 0; transition: transform .32s cubic-bezier(.55,0,.75,.2), opacity .2s linear .22s; }
+.v3 .hero.is-sealed .pouch__zip { animation: vz4-zip 1s var(--ease) .18s both; }
+.v3 .hero.is-playing.is-sealed .pouch__float { animation: vz4-bounce .75s cubic-bezier(.3,1.5,.5,1) .2s both; }
+.v3 .hero.is-sealed .hero__ring { animation: vz4-ring 1.1s var(--ease) .2s both; }
+@keyframes vz4-zip { 0% { transform: scaleX(0); opacity: 1; } 50% { transform: scaleX(1); opacity: 1; } 100% { transform: scaleX(1); opacity: 0; } }
+@keyframes vz4-bounce { 0% { transform: translateY(0) scale(1); } 40% { transform: translateY(-3%) scale(1.035); } 100% { transform: translateY(0) scale(1); } }
+@keyframes vz4-ring { 0% { transform: scale(1); border-color: rgba(175,192,204,.28); } 35% { transform: scale(1.05); border-color: rgba(245,214,41,.7); } 100% { transform: scale(1); border-color: rgba(175,192,204,.28); } }
+
+@media (prefers-reduced-motion: reduce) { .v3 .intro__canvas { display: none; } }
