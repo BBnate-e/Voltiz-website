@@ -1,0 +1,59 @@
+{%- comment -%}
+  L'univers Voltiz : un bandeau de mots qui défile lentement, puis trois repères de la marque (photo facultative).
+{%- endcomment -%}
+{%- assign words = section.settings.marquee | split: '|' -%}
+<div class="v3">
+  <section class="world" id="{{ section.settings.anchor }}" aria-labelledby="univers-{{ section.id }}">
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        {%- for r in (1..2) -%}
+          <span class="marquee__set">{%- for w in words -%}<span>{{ w | strip }}</span><svg><use href="#i-bolt"/></svg>{%- endfor -%}</span>
+        {%- endfor -%}
+      </div>
+    </div>
+    <div class="wrap">
+      <header class="head" data-reveal>
+        <p class="tag"><span>{{ section.settings.number }}</span>{{ section.settings.kicker }}</p>
+        <h2 id="univers-{{ section.id }}" class="title">{{ section.settings.heading }}</h2>
+      </header>
+      <ul class="world__grid" role="list">
+        {%- for block in section.blocks -%}
+          <li class="world__item" data-reveal {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              <div class="world__media">{{ block.settings.image | image_url: width: 900 | image_tag: widths: '450, 600, 900', sizes: '(min-width: 990px) 30vw, 100vw', class: 'world__img', alt: block.settings.image.alt, loading: 'lazy' }}</div>
+            {%- endif -%}
+            <p class="world__n" aria-hidden="true">{{ forloop.index | prepend: '0' }}</p>
+            <h3 class="world__title">{{ block.settings.title }}</h3>
+            <p class="world__text">{% render 'voltiz-t', t: block.settings.text %}</p>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz 3 : univers",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Ancre", "default": "univers" },
+    { "type": "text", "id": "number", "label": "Numéro", "default": "07" },
+    { "type": "text", "id": "kicker", "label": "Repère", "default": "L’univers Voltiz" },
+    { "type": "text", "id": "heading", "label": "Titre", "default": "Pensé en Suisse, fait pour bouger." },
+    { "type": "text", "id": "marquee", "label": "Bandeau", "info": "Mots séparés par le signe |.", "default": "Movement | Focus | Lifestyle | Partout, à tout moment | Swiss made" }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Repère",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photo (facultative)" },
+        { "type": "text", "id": "title", "label": "Titre", "default": "Swiss made" },
+        { "type": "textarea", "id": "text", "label": "Texte", "default": "Fabriqué en Suisse." }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [{ "name": "Voltiz 3 : univers" }]
+}
+{% endschema %}

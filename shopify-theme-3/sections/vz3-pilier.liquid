@@ -1,0 +1,66 @@
+{%- comment -%}
+  Un pilier de la marque (Movement, Focus ou Lifestyle). Le style choisi change la mise en scène :
+  movement : photo plein cadre, mot géant qui glisse, lignes rapides ; focus : fond marine, calme, une ligne qui se trace ;
+  lifestyle : photo large qui bouge doucement, le sachet revient.
+{%- endcomment -%}
+{%- assign st = section.settings.style -%}
+<div class="v3">
+  <section class="pillar pillar--{{ st }}" id="{{ section.settings.anchor }}" aria-labelledby="pilier-{{ section.id }}" data-vz-progress>
+    <div class="wrap pillar__head">
+      <p class="tag{% if st == 'focus' %} tag--dark{% endif %}" data-reveal><span>{{ section.settings.number }}</span>{{ section.settings.name }}</p>
+      {%- if section.settings.marker != blank -%}<p class="pillar__marker" data-reveal>{{ section.settings.marker }}</p>{%- endif -%}
+    </div>
+    <p class="pillar__word" aria-hidden="true"><span>{{ section.settings.word }}</span>{% if st == 'lifestyle' %}<span>{{ section.settings.word }}</span><span>{{ section.settings.word }}</span>{% endif %}</p>
+    <div class="wrap pillar__grid">
+      <figure class="pillar__media" data-reveal>
+        <div class="pillar__frame">
+        {%- if section.settings.image != blank -%}
+          {%- if st == 'lifestyle' -%}
+            {{ section.settings.image | image_url: width: 2400 | image_tag: widths: '750, 1100, 1600, 2000, 2400', sizes: '100vw', class: 'pillar__img', alt: section.settings.image.alt, loading: 'lazy' }}
+          {%- else -%}
+            {{ section.settings.image | image_url: width: 1800 | image_tag: widths: '600, 900, 1200, 1800', sizes: '(min-width: 990px) 60vw, 100vw', class: 'pillar__img', alt: section.settings.image.alt, loading: 'lazy' }}
+          {%- endif -%}
+        {%- else -%}
+          <span class="pillar__ph"></span>
+        {%- endif -%}
+        </div>
+        {%- if st == 'movement' -%}
+          <svg class="lines lines--move" viewBox="0 0 1200 800" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <path pathLength="1" d="M-20 620 L 1220 180"/><path pathLength="1" d="M-20 700 L 1220 260"/><path pathLength="1" d="M-20 780 L 1220 340"/>
+          </svg>
+        {%- endif -%}
+        {%- if st == 'lifestyle' and section.settings.front != blank -%}
+          <div class="pillar__pouch">{% render 'vz2-pouch', front: section.settings.front, back: section.settings.back, mode: 'scroll', sizes: '(min-width: 990px) 14vw, 30vw' %}</div>
+        {%- endif -%}
+      </figure>
+      <div class="pillar__text">
+        <h2 id="pilier-{{ section.id }}" class="pillar__title" data-reveal>{{ section.settings.headline }}</h2>
+        {%- if st == 'focus' -%}<span class="pillar__trace" aria-hidden="true"></span>{%- endif -%}
+        <p class="pillar__body" data-reveal>{% render 'voltiz-t', t: section.settings.text %}</p>
+        {%- if section.settings.link_label != blank -%}<a class="link" href="{{ section.settings.link_target }}" data-reveal>{{ section.settings.link_label }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>{%- endif -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz 3 : pilier",
+  "settings": [
+    { "type": "select", "id": "style", "label": "Mise en scène", "options": [{ "value": "movement", "label": "Movement (rapide)" }, { "value": "focus", "label": "Focus (calme, fond marine)" }, { "value": "lifestyle", "label": "Lifestyle (large)" }], "default": "movement" },
+    { "type": "text", "id": "anchor", "label": "Ancre", "default": "movement" },
+    { "type": "text", "id": "number", "label": "Numéro", "default": "03" },
+    { "type": "text", "id": "name", "label": "Nom du pilier", "default": "Movement" },
+    { "type": "text", "id": "word", "label": "Mot géant", "default": "MOVE" },
+    { "type": "text", "id": "marker", "label": "Repère technique", "info": "Par exemple une altitude, une heure ou un lieu." },
+    { "type": "image_picker", "id": "image", "label": "Photo" },
+    { "type": "text", "id": "headline", "label": "Titre", "default": "Avant le départ." },
+    { "type": "textarea", "id": "text", "label": "Texte", "default": "Une pièce dans la poche, rien à préparer." },
+    { "type": "text", "id": "link_label", "label": "Lien (facultatif)" },
+    { "type": "text", "id": "link_target", "label": "Cible du lien", "default": "#acheter" },
+    { "type": "image_picker", "id": "front", "label": "Sachet, face (Lifestyle)" },
+    { "type": "image_picker", "id": "back", "label": "Sachet, dos (Lifestyle)" }
+  ],
+  "presets": [{ "name": "Voltiz 3 : pilier" }]
+}
+{% endschema %}

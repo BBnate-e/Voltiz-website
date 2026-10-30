@@ -1,0 +1,48 @@
+{%- comment -%} Pourquoi Voltiz : les caractéristiques réelles du produit, en grille sobre. {%- endcomment -%}
+<div class="v3">
+  <section class="why" id="{{ section.settings.anchor }}" aria-labelledby="why-titre-{{ section.id }}">
+    <div class="wrap">
+      <header class="head head--row" data-reveal>
+        <div>
+          {%- if section.settings.kicker != blank -%}<p class="label">{{ section.settings.kicker }}</p>{%- endif -%}
+          <h2 id="why-titre-{{ section.id }}" class="title">{{ section.settings.heading }}</h2>
+        </div>
+        {%- if section.settings.link_label != blank -%}<a class="link" href="{{ section.settings.link_target }}">{{ section.settings.link_label }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>{%- endif -%}
+      </header>
+      <ul class="why__grid" role="list">
+        {%- for block in section.blocks -%}
+          <li class="why__item" data-reveal {{ block.shopify_attributes }}>
+            <p class="why__n" aria-hidden="true">{{ forloop.index | prepend: '0' }}</p>
+            <p class="why__big">{{ block.settings.value }}</p>
+            <p class="why__text">{% render 'voltiz-t', t: block.settings.text %}</p>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz 3 : pourquoi",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Ancre", "default": "pourquoi" },
+    { "type": "text", "id": "kicker", "label": "Petit texte au-dessus", "default": "Pourquoi Voltiz" },
+    { "type": "text", "id": "heading", "label": "Titre", "default": "Simple. Dosé. Pratique." },
+    { "type": "text", "id": "link_label", "label": "Lien", "default": "Voir la composition" },
+    { "type": "text", "id": "link_target", "label": "Cible du lien", "default": "/pages/composition" }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Caractéristique",
+      "settings": [
+        { "type": "text", "id": "value", "label": "Chiffre ou mot", "default": "50 mg" },
+        { "type": "textarea", "id": "text", "label": "Texte", "default": "de caféine par pièce." }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [{ "name": "Voltiz 3 : pourquoi" }]
+}
+{% endschema %}

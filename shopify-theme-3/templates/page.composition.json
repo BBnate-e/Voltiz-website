@@ -1,0 +1,104 @@
+{
+  "sections": {
+    "composition": {
+      "type": "vz3-infos",
+      "settings": {},
+      "blocks": {
+        "b_1": {
+          "type": "info",
+          "settings": {
+            "title": "La caféine",
+            "text": "Pendant la journée, une molécule appelée adénosine s’accumule dans le cerveau et ralentit l’activité nerveuse : c’est elle qui prépare au sommeil.\nLa caféine rejoint le cerveau par la circulation sanguine et prend la place de l’adénosine sur ses récepteurs, sans les activer.\nChaque pièce Voltiz en contient 50 mg, à peu près autant qu’un expresso."
+          }
+        },
+        "b_2": {
+          "type": "info",
+          "settings": {
+            "title": "Le maté",
+            "text": "Le maté est une infusion des feuilles de yerba maté (Ilex paraguariensis). Son goût est amer, terreux et herbacé, entre le café et le thé vert.\nLa teneur en caféine varie d’une feuille à l’autre. Nous utilisons donc un extrait en poudre standardisé, pour une dose de caféine précise dans chaque pièce."
+          }
+        },
+        "b_3": {
+          "type": "info",
+          "settings": {
+            "title": "La vitamine B12",
+            "text": "La vitamine B12 contribue à un métabolisme énergétique normal, au fonctionnement normal du système nerveux, à la formation normale de globules rouges et à réduire la fatigue.\nUne alimentation variée et équilibrée et un mode de vie sain sont importants."
+          }
+        },
+        "b_4": {
+          "type": "info",
+          "settings": {
+            "title": "L’arôme",
+            "text": "Il donne à Voltiz son goût citron et masque l’amertume de la caféine."
+          }
+        }
+      },
+      "block_order": [
+        "b_1",
+        "b_2",
+        "b_3",
+        "b_4"
+      ]
+    },
+    "pourquoi": {
+      "type": "vz3-pourquoi",
+      "settings": {},
+      "blocks": {
+        "b_1": {
+          "type": "item",
+          "settings": {
+            "value": "50 mg",
+            "text": "de caféine par pièce, dosée précisément."
+          }
+        },
+        "b_2": {
+          "type": "item",
+          "settings": {
+            "value": "5 à 10 min",
+            "text": "pour sentir l’effet : la caféine est absorbée directement dans la bouche."
+          }
+        },
+        "b_3": {
+          "type": "item",
+          "settings": {
+            "value": "0 g",
+            "text": "de sucre."
+          }
+        },
+        "b_4": {
+          "type": "item",
+          "settings": {
+            "value": "Maté",
+            "text": "Extrait de yerba maté, une source naturelle de caféine."
+          }
+        },
+        "b_5": {
+          "type": "item",
+          "settings": {
+            "value": "B12",
+            "text": "La vitamine B12 contribue à réduire la fatigue."
+          }
+        },
+        "b_6": {
+          "type": "item",
+          "settings": {
+            "value": "Swiss made",
+            "text": "Fabriqué en Suisse."
+          }
+        }
+      },
+      "block_order": [
+        "b_1",
+        "b_2",
+        "b_3",
+        "b_4",
+        "b_5",
+        "b_6"
+      ]
+    }
+  },
+  "order": [
+    "composition",
+    "pourquoi"
+  ]
+}

@@ -1,0 +1,36 @@
+{%- comment -%}
+  Brouillon 3 : polices Sora (titres) et Manrope (texte), styles et script Voltiz (voltiz3.css, voltiz3.js).
+  Rendu dans layout/theme.liquid, après les variables d'Horizon, pour que les pages d'Horizon (produit, panier) prennent aussi ces polices.
+  Sora et Manrope : licence SIL Open Font License 1.1, fichiers hébergés dans le thème.
+{%- endcomment -%}
+<link rel="preload" href="{{ 'voltiz-sora.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ 'voltiz-manrope.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+<style>
+  @font-face {
+    font-family: "Sora";
+    font-style: normal;
+    font-weight: 100 800;
+    font-display: swap;
+    src: url("{{ 'voltiz-sora.woff2' | asset_url }}") format("woff2");
+  }
+  @font-face {
+    font-family: "Manrope";
+    font-style: normal;
+    font-weight: 200 800;
+    font-display: swap;
+    src: url("{{ 'voltiz-manrope.woff2' | asset_url }}") format("woff2");
+  }
+  :root {
+    --font-body--family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-subheading--family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-heading--family: "Sora", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-heading--style: normal;
+    --font-heading--weight: 600;
+    --font-accent--family: "Sora", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-accent--style: normal;
+    --font-accent--weight: 600;
+  }
+</style>
+{{ 'voltiz3.css' | asset_url | stylesheet_tag }}
+<script>document.documentElement.classList.add('js')</script>
+<script src="{{ 'voltiz3.js' | asset_url }}" defer></script>

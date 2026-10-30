@@ -1,0 +1,36 @@
+{%- comment -%}
+  Manifeste : une phrase géante, ligne par ligne, qui s'allume au défilement. La dernière ligne est soulignée en jaune.
+{%- endcomment -%}
+{%- assign lines = section.settings.text | newline_to_br | split: '<br />' -%}
+<div class="v3">
+  <section class="manifest" id="{{ section.settings.anchor }}" aria-labelledby="manifeste-{{ section.id }}" data-vz-progress>
+    <div class="wrap">
+      <p class="tag" data-reveal><span>02</span>{{ section.settings.kicker }}</p>
+      <h2 id="manifeste-{{ section.id }}" class="manifest__text">
+        {%- for l in lines -%}
+          {%- assign t = l | strip -%}
+          {%- if t != blank -%}<span class="manifest__line" style="--i: {{ forloop.index0 }}; --n: {{ lines.size }}">{{ t }}</span>{%- endif -%}
+        {%- endfor -%}
+      </h2>
+      {%- if section.settings.note != blank -%}
+        <div class="manifest__foot" data-reveal>
+          <span class="manifest__rule" aria-hidden="true"></span>
+          <p>{% render 'voltiz-t', t: section.settings.note %}</p>
+        </div>
+      {%- endif -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz 3 : manifeste",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Ancre", "default": "manifeste" },
+    { "type": "text", "id": "kicker", "label": "Repère", "default": "Manifeste" },
+    { "type": "textarea", "id": "text", "label": "Phrase géante", "info": "Une ligne par retour à la ligne. La dernière ligne est soulignée en jaune.", "default": "Pour ceux qui bougent.\nPour ceux qui tiennent.\nPour ceux qui vivent.\nPartout, à tout moment." },
+    { "type": "textarea", "id": "note", "label": "Petit texte", "default": "Voltiz est un complément alimentaire à mâcher, fabriqué en Suisse. Une pièce, 50 mg de caféine, rien à préparer." }
+  ],
+  "presets": [{ "name": "Voltiz 3 : manifeste" }]
+}
+{% endschema %}

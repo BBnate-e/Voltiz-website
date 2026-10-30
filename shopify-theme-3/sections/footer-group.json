@@ -1,0 +1,13 @@
+{
+  "type": "footer",
+  "name": "Pied de page",
+  "sections": {
+    "vz3_footer": {
+      "type": "vz3-footer",
+      "settings": {}
+    }
+  },
+  "order": [
+    "vz3_footer"
+  ]
+}

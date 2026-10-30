@@ -1,0 +1,65 @@
+{%- comment -%}
+  En-tête du brouillon 2 : logo, onglets, panier, bouton Acheter. Collé en haut de l'écran.
+  Sur téléphone, les onglets passent dans un menu caché.
+{%- endcomment -%}
+{%- capture vz_links -%}
+  {%- for block in section.blocks -%}
+    {%- liquid
+      assign current = false
+      if block.settings.target == request.path
+        assign current = true
+      elsif template.name == 'index' and block.settings.target == routes.root_url
+        assign current = true
+      endif
+    -%}
+    <a href="{{ block.settings.target }}"{% if current %} aria-current="page"{% endif %} {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+  {%- endfor -%}
+{%- endcapture -%}
+<div class="v3 v3-header">
+  {% render 'voltiz-sprite' %}
+  <a class="skip" href="#MainContent">Aller au contenu</a>
+  <header class="nav" data-vz-nav>
+    <div class="wrap nav__in">
+      <a class="nav__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}, page d’accueil">
+        <svg viewBox="0 0 1118 536" aria-hidden="true"><use href="#logo"/></svg>
+      </a>
+      <nav class="nav__links" aria-label="Navigation principale">{{ vz_links }}</nav>
+      <div class="nav__end">
+        <a class="nav__cart" href="{{ routes.cart_url }}" aria-label="Panier, {{ cart.item_count }} article{% if cart.item_count > 1 %}s{% endif %}">
+          <svg aria-hidden="true"><use href="#i-bag"/></svg>
+          {%- if cart.item_count > 0 -%}<span class="nav__count" aria-hidden="true">{{ cart.item_count }}</span>{%- endif -%}
+        </a>
+        {%- if section.settings.cta_label != blank -%}
+          <a class="btn btn--sm nav__cta" href="{{ section.settings.cta_link }}">{{ section.settings.cta_label }}</a>
+        {%- endif -%}
+        <details class="menu">
+          <summary aria-label="Menu"><span></span><span></span></summary>
+          <nav class="menu__panel" aria-label="Menu">{{ vz_links }}</nav>
+        </details>
+      </div>
+    </div>
+  </header>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz 3 : en-tête",
+  "class": "v3-header-section",
+  "settings": [
+    { "type": "text", "id": "cta_label", "label": "Texte du bouton", "default": "Acheter" },
+    { "type": "text", "id": "cta_link", "label": "Lien du bouton", "default": "/#acheter" }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Onglet",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Texte", "default": "Boutique" },
+        { "type": "text", "id": "target", "label": "Lien", "default": "/pages/boutique" }
+      ]
+    }
+  ],
+  "max_blocks": 7,
+  "enabled_on": { "groups": ["header"] }
+}
+{% endschema %}
