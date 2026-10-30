@@ -1,0 +1,258 @@
+{
+  "sections": {
+    "hero": {
+      "type": "vz2-hero",
+      "settings": {
+        "product": "voltiz-energy-candy",
+        "front": "shopify://shop_images/voltiz-sachet-v2-face.webp",
+        "back": "shopify://shop_images/voltiz-sachet-v2-dos.webp"
+      }
+    },
+    "produit": {
+      "type": "vz2-produit",
+      "settings": {
+        "front": "shopify://shop_images/voltiz-sachet-v2-face.webp",
+        "back": "shopify://shop_images/voltiz-sachet-v2-dos.webp"
+      },
+      "blocks": {
+        "b_1": {
+          "type": "step",
+          "settings": {
+            "title": "Un vrai bonbon.",
+            "text": "Un bonbon au maté, goût citron. Rien à préparer, rien à boire : tu le prends, c’est tout.",
+            "detail": "Goût citron",
+            "side": "front"
+          }
+        },
+        "b_2": {
+          "type": "step",
+          "settings": {
+            "title": "Une dose précise.",
+            "text": "50 mg de caféine dans chaque bonbon, à peu près autant qu’un expresso. Sans sucre.",
+            "detail": "50 mg par bonbon",
+            "side": "front"
+          }
+        },
+        "b_3": {
+          "type": "step",
+          "settings": {
+            "title": "Toujours sur toi.",
+            "text": "Le sachet se glisse dans la poche, le sac de sport ou la boîte à gants.",
+            "detail": "Swiss made",
+            "side": "back"
+          }
+        }
+      },
+      "block_order": [
+        "b_1",
+        "b_2",
+        "b_3"
+      ]
+    },
+    "moments": {
+      "type": "vz2-moments",
+      "settings": {},
+      "blocks": {
+        "b_1": {
+          "type": "moment",
+          "settings": {
+            "title": "Sport",
+            "icon": "sport",
+            "image": "shopify://shop_images/photo-1759167581561-3b1fbe906b52.jpg",
+            "headline": "Avant l’effort.",
+            "text": "Un bonbon avant l’entraînement ou la course, sans bouteille à emporter."
+          }
+        },
+        "b_2": {
+          "type": "moment",
+          "settings": {
+            "title": "Études",
+            "icon": "etudes",
+            "image": "shopify://shop_images/photo-1671104695361-8b16c458b552.jpg",
+            "headline": "Pour les longues révisions.",
+            "text": "Quand la soirée s’allonge avant un examen, il reste à portée de main sur le bureau."
+          }
+        },
+        "b_3": {
+          "type": "moment",
+          "settings": {
+            "title": "Quotidien et trajets",
+            "icon": "conduite",
+            "image": "shopify://shop_images/photo-1758740040473-b8089bda136f.jpg",
+            "headline": "Partout, à tout moment.",
+            "text": "Au bureau, en voyage ou sur la route. Pour un long trajet, les pauses restent indispensables."
+          }
+        }
+      },
+      "block_order": [
+        "b_1",
+        "b_2",
+        "b_3"
+      ]
+    },
+    "pourquoi": {
+      "type": "vz2-pourquoi",
+      "settings": {},
+      "blocks": {
+        "b_1": {
+          "type": "item",
+          "settings": {
+            "value": "50 mg",
+            "text": "de caféine par bonbon, dosée précisément."
+          }
+        },
+        "b_2": {
+          "type": "item",
+          "settings": {
+            "value": "5 à 10 min",
+            "text": "pour sentir l’effet : la caféine est absorbée directement dans la bouche."
+          }
+        },
+        "b_3": {
+          "type": "item",
+          "settings": {
+            "value": "0 g",
+            "text": "de sucre."
+          }
+        },
+        "b_4": {
+          "type": "item",
+          "settings": {
+            "value": "Maté",
+            "text": "Extrait de yerba maté, une source naturelle de caféine."
+          }
+        },
+        "b_5": {
+          "type": "item",
+          "settings": {
+            "value": "B12",
+            "text": "La vitamine B12 contribue à réduire la fatigue."
+          }
+        },
+        "b_6": {
+          "type": "item",
+          "settings": {
+            "value": "Swiss made",
+            "text": "Fabriqué en Suisse."
+          }
+        }
+      },
+      "block_order": [
+        "b_1",
+        "b_2",
+        "b_3",
+        "b_4",
+        "b_5",
+        "b_6"
+      ]
+    },
+    "acheter": {
+      "type": "vz2-acheter",
+      "settings": {
+        "product": "voltiz-energy-candy",
+        "front": "shopify://shop_images/voltiz-sachet-v2-face.webp",
+        "back": "shopify://shop_images/voltiz-sachet-v2-dos.webp"
+      },
+      "blocks": {
+        "b_1": {
+          "type": "panel",
+          "settings": {
+            "title": "Ingrédients et valeurs nutritionnelles",
+            "text": "Extrait de yerba maté, caféine, arôme, vitamine B12. [À COMPLÉTER : liste complète du fabricant]\nCaféine | 50 mg par bonbon\nSucres | 0 g\nÉnergie | [À COMPLÉTER]\nVitamine B12 | [À COMPLÉTER]"
+          }
+        },
+        "b_2": {
+          "type": "panel",
+          "settings": {
+            "title": "Utilisation",
+            "text": "Mâche un bonbon tranquillement : la caféine est absorbée directement dans la bouche et l’effet se fait sentir en 5 à 10 minutes.\n1 bonbon = 50 mg de caféine, à peu près un expresso."
+          }
+        },
+        "b_3": {
+          "type": "panel",
+          "settings": {
+            "title": "Précautions",
+            "text": "Contient de la caféine (50 mg par bonbon). Déconseillé aux enfants, aux femmes enceintes ou allaitantes et aux personnes sensibles à la caféine.\nNe pas dépasser [À COMPLÉTER : nombre de bonbons] par jour."
+          }
+        },
+        "b_4": {
+          "type": "panel",
+          "settings": {
+            "title": "Livraison",
+            "text": "Nous livrons partout en Suisse. Les frais de port s’affichent avant le paiement."
+          }
+        }
+      },
+      "block_order": [
+        "b_1",
+        "b_2",
+        "b_3",
+        "b_4"
+      ]
+    },
+    "faq": {
+      "type": "vz2-faq",
+      "settings": {},
+      "blocks": {
+        "b_1": {
+          "type": "question",
+          "settings": {
+            "question": "C’est quoi, Voltiz ?",
+            "answer": "Un bonbon énergisant au maté, sans sucre, avec 50 mg de caféine par bonbon. Fabriqué en Suisse."
+          }
+        },
+        "b_2": {
+          "type": "question",
+          "settings": {
+            "question": "En combien de temps je sens l’effet ?",
+            "answer": "La caféine est absorbée directement dans la bouche : compte 5 à 10 minutes."
+          }
+        },
+        "b_3": {
+          "type": "question",
+          "settings": {
+            "question": "Combien de bonbons par jour ?",
+            "answer": "Un bonbon contient 50 mg de caféine, à peu près un expresso. Ne dépasse pas [À COMPLÉTER : nombre de bonbons] par jour et pense au café, au thé et aux boissons que tu bois aussi."
+          }
+        },
+        "b_4": {
+          "type": "question",
+          "settings": {
+            "question": "Ça a quel goût ?",
+            "answer": "Citron. L’arôme masque l’amertume de la caféine."
+          }
+        },
+        "b_5": {
+          "type": "question",
+          "settings": {
+            "question": "Qui ne devrait pas en prendre ?",
+            "answer": "Les enfants, les femmes enceintes ou allaitantes et les personnes sensibles à la caféine."
+          }
+        },
+        "b_6": {
+          "type": "question",
+          "settings": {
+            "question": "Vous livrez où ?",
+            "answer": "Partout en Suisse. Les frais de port s’affichent avant le paiement."
+          }
+        }
+      },
+      "block_order": [
+        "b_1",
+        "b_2",
+        "b_3",
+        "b_4",
+        "b_5",
+        "b_6"
+      ]
+    }
+  },
+  "order": [
+    "hero",
+    "produit",
+    "moments",
+    "pourquoi",
+    "acheter",
+    "faq"
+  ]
+}

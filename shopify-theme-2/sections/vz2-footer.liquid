@@ -1,0 +1,68 @@
+{%- comment -%}
+  Pied de page : logo et slogan, contact, aide (FAQ, livraison), mentions légales et conditions, réseaux s'ils sont remplis.
+{%- endcomment -%}
+<div class="v2">
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot__grid">
+        <div class="foot__brand">
+          <svg class="foot__logo" viewBox="0 0 1118 536" role="img" aria-label="{{ shop.name | escape }}"><use href="#logo"/></svg>
+          <p class="foot__slogan">{{ section.settings.slogan }}</p>
+        </div>
+        <div class="foot__col">
+          <p class="label">Contact</p>
+          <ul role="list">
+            {%- if shop.email != blank -%}<li><a href="mailto:{{ shop.email }}">{{ shop.email }}</a></li>{%- endif -%}
+            <li><a href="/pages/contact">Nous écrire</a></li>
+          </ul>
+        </div>
+        <div class="foot__col">
+          <p class="label">Aide</p>
+          <ul role="list">
+            <li><a href="{{ section.settings.faq_link }}">FAQ</a></li>
+            {%- if shop.shipping_policy.body != blank -%}<li><a href="{{ shop.shipping_policy.url }}">{{ section.settings.shipping_label }}</a></li>{%- endif -%}
+            {%- if shop.refund_policy.body != blank -%}<li><a href="{{ shop.refund_policy.url }}">{{ shop.refund_policy.title }}</a></li>{%- endif -%}
+          </ul>
+        </div>
+        <div class="foot__col">
+          <p class="label">Légal</p>
+          <ul role="list">
+            {%- if shop.terms_of_service.body != blank -%}<li><a href="{{ shop.terms_of_service.url }}">{{ shop.terms_of_service.title }}</a></li>{%- endif -%}
+            {%- if shop.privacy_policy.body != blank -%}<li><a href="{{ shop.privacy_policy.url }}">{{ shop.privacy_policy.title }}</a></li>{%- endif -%}
+            {%- if shop.legal_notice.body != blank -%}<li><a href="{{ shop.legal_notice.url }}">{{ shop.legal_notice.title }}</a></li>{%- endif -%}
+          </ul>
+        </div>
+        {%- if section.settings.instagram != blank or section.settings.tiktok != blank -%}
+          <div class="foot__col">
+            <p class="label">Réseaux</p>
+            <ul role="list">
+              {%- if section.settings.instagram != blank -%}<li><a href="{{ section.settings.instagram }}" target="_blank" rel="noopener">Instagram</a></li>{%- endif -%}
+              {%- if section.settings.tiktok != blank -%}<li><a href="{{ section.settings.tiktok }}" target="_blank" rel="noopener">TikTok</a></li>{%- endif -%}
+            </ul>
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="foot__bottom">
+        <p>{% render 'voltiz-t', t: section.settings.caffeine_text %}</p>
+        <p>{% render 'voltiz-t', t: section.settings.legal_text %}</p>
+        <p class="foot__copy"><svg class="ch" aria-hidden="true"><use href="#ch"/></svg>© {{ 'now' | date: '%Y' }} {{ shop.name | escape }}. Swiss made.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz 2 : pied de page",
+  "settings": [
+    { "type": "text", "id": "slogan", "label": "Slogan", "default": "Partout, à tout moment." },
+    { "type": "text", "id": "faq_link", "label": "Lien FAQ", "default": "/#faq" },
+    { "type": "text", "id": "shipping_label", "label": "Texte du lien livraison", "default": "Livraison" },
+    { "type": "url", "id": "instagram", "label": "Lien Instagram" },
+    { "type": "url", "id": "tiktok", "label": "Lien TikTok" },
+    { "type": "text", "id": "caffeine_text", "label": "Texte caféine", "default": "Contient de la caféine (50 mg par bonbon). Déconseillé aux enfants, aux femmes enceintes ou allaitantes et aux personnes sensibles à la caféine." },
+    { "type": "text", "id": "legal_text", "label": "Mentions légales", "default": "[À COMPLÉTER : nom et adresse du responsable de la boutique]" }
+  ],
+  "enabled_on": { "groups": ["footer"] }
+}
+{% endschema %}

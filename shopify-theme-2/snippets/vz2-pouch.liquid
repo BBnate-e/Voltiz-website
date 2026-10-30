@@ -1,0 +1,38 @@
+{%- comment -%}
+  Sachet Voltiz en 3D léger (CSS) : deux faces (avant, dos) et une tranche.
+  Paramètres : front, back (images), id (identifiant unique), eager (true pour la première image visible),
+  sizes (attribut sizes des images), mode ('drag' : on peut le faire tourner ; 'scroll' : il tourne au défilement).
+  Sans image : un sachet gris neutre s'affiche (aucun faux détail de packaging).
+{%- endcomment -%}
+{%- liquid
+  assign loading = 'lazy'
+  if eager
+    assign loading = 'eager'
+  endif
+  assign sz = sizes | default: '(min-width: 990px) 34vw, 70vw'
+-%}
+<div class="pouch" data-vz-pouch="{{ mode | default: 'drag' }}"{% if mode == 'drag' %} tabindex="0" role="img" aria-label="{{ front.alt | default: 'Sachet Voltiz' | escape }}. Glisse pour le faire tourner."{% else %} aria-hidden="true"{% endif %}>
+  <div class="pouch__float">
+    <div class="pouch__card">
+      <div class="pouch__face pouch__face--front">
+        {%- if front != blank -%}
+          {{ front | image_url: width: 900 | image_tag: widths: '360, 540, 720, 900', sizes: sz, class: 'pouch__img', alt: '', loading: loading, draggable: 'false' }}
+        {%- else -%}
+          <span class="pouch__blank"><svg aria-hidden="true"><use href="#i-bolt"/></svg></span>
+        {%- endif -%}
+      </div>
+      <div class="pouch__side pouch__side--l"></div>
+      <div class="pouch__side pouch__side--r"></div>
+      <div class="pouch__face pouch__face--back">
+        {%- if back != blank -%}
+          {{ back | image_url: width: 900 | image_tag: widths: '360, 540, 720, 900', sizes: sz, class: 'pouch__img', alt: '', loading: 'lazy', draggable: 'false' }}
+        {%- elsif front != blank -%}
+          {{ front | image_url: width: 900 | image_tag: widths: '360, 540, 720, 900', sizes: sz, class: 'pouch__img pouch__img--mirror', alt: '', loading: 'lazy', draggable: 'false' }}
+        {%- else -%}
+          <span class="pouch__blank"></span>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+  <span class="pouch__shadow" aria-hidden="true"></span>
+</div>

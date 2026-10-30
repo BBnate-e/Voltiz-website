@@ -1,0 +1,63 @@
+{%- comment -%}
+  Tes moments : trois onglets (sport, études, quotidien et trajets) qui changent la photo et le texte.
+{%- endcomment -%}
+<div class="v2">
+  <section class="moments" id="{{ section.settings.anchor }}" aria-labelledby="moments-titre-{{ section.id }}" data-vz-tabs>
+    <div class="wrap">
+      <header class="head head--row" data-reveal>
+        <div>
+          {%- if section.settings.kicker != blank -%}<p class="label">{{ section.settings.kicker }}</p>{%- endif -%}
+          <h2 id="moments-titre-{{ section.id }}" class="title">{{ section.settings.heading }}</h2>
+        </div>
+        <div class="tabs" role="tablist" aria-label="{{ section.settings.heading | escape }}">
+          {%- for block in section.blocks -%}
+            <button type="button" class="tabs__btn" role="tab" id="tab-{{ section.id }}-{{ forloop.index }}" aria-controls="panel-{{ section.id }}-{{ forloop.index }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"{% unless forloop.first %} tabindex="-1"{% endunless %}>
+              <svg aria-hidden="true"><use href="#u-{{ block.settings.icon }}"/></svg>{{ block.settings.title }}
+            </button>
+          {%- endfor -%}
+        </div>
+      </header>
+      <div class="moments__stage" data-reveal>
+        {%- for block in section.blocks -%}
+          <div class="moment{% if forloop.first %} is-on{% endif %}" role="tabpanel" id="panel-{{ section.id }}-{{ forloop.index }}" aria-labelledby="tab-{{ section.id }}-{{ forloop.index }}"{% unless forloop.first %} hidden{% endunless %} {{ block.shopify_attributes }}>
+            <div class="moment__media">
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 1800 | image_tag: widths: '600, 900, 1200, 1800', sizes: '(min-width: 1200px) 1120px, 100vw', class: 'moment__img', alt: '', loading: 'lazy' }}
+              {%- endif -%}
+            </div>
+            <div class="moment__text">
+              <h3 class="moment__title">{{ block.settings.headline }}</h3>
+              <p>{% render 'voltiz-t', t: block.settings.text %}</p>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz 2 : moments",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Ancre", "default": "moments" },
+    { "type": "text", "id": "kicker", "label": "Petit texte au-dessus", "default": "Pour chaque moment" },
+    { "type": "text", "id": "heading", "label": "Titre", "default": "De l’énergie pour chaque moment." }
+  ],
+  "blocks": [
+    {
+      "type": "moment",
+      "name": "Moment",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Onglet", "default": "Sport" },
+        { "type": "select", "id": "icon", "label": "Icône", "options": [{ "value": "sport", "label": "Sport" }, { "value": "etudes", "label": "Études" }, { "value": "conduite", "label": "Route" }, { "value": "travail", "label": "Travail" }, { "value": "aventure", "label": "Aventure" }, { "value": "energie", "label": "Énergie" }], "default": "sport" },
+        { "type": "image_picker", "id": "image", "label": "Photo" },
+        { "type": "text", "id": "headline", "label": "Titre", "default": "Avant l’effort." },
+        { "type": "textarea", "id": "text", "label": "Texte", "default": "Un bonbon avant de partir, sans bouteille à emporter." }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [{ "name": "Voltiz 2 : moments" }]
+}
+{% endschema %}

@@ -1,0 +1,59 @@
+{%- comment -%}
+  Présentation du produit : le sachet reste visible pendant qu'on fait défiler trois étapes,
+  et il se retourne pour montrer le dos à la dernière. Sur téléphone, le sachet est en haut et les étapes en dessous.
+{%- endcomment -%}
+<div class="v2">
+  <section class="story" id="{{ section.settings.anchor }}" aria-labelledby="story-titre-{{ section.id }}" data-vz-story>
+    <div class="wrap">
+      <header class="head" data-reveal>
+        {%- if section.settings.kicker != blank -%}<p class="label">{{ section.settings.kicker }}</p>{%- endif -%}
+        <h2 id="story-titre-{{ section.id }}" class="title">{{ section.settings.heading }}</h2>
+      </header>
+      <div class="story__grid">
+        <div class="story__visual">
+          <div class="story__sticky">
+            <span class="story__disc" aria-hidden="true"></span>
+            {% render 'vz2-pouch', front: section.settings.front, back: section.settings.back, mode: 'scroll', sizes: '(min-width: 990px) 28vw, 60vw' %}
+          </div>
+        </div>
+        <ol class="story__steps" role="list">
+          {%- for block in section.blocks -%}
+            <li class="step" data-vz-step="{{ block.settings.side }}" {{ block.shopify_attributes }}>
+              <p class="step__n" aria-hidden="true">{{ forloop.index | prepend: '0' }}</p>
+              <h3 class="step__title">{{ block.settings.title }}</h3>
+              <p class="step__text">{% render 'voltiz-t', t: block.settings.text %}</p>
+              {%- if block.settings.detail != blank -%}<p class="step__detail">{{ block.settings.detail }}</p>{%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ol>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz 2 : le produit",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Ancre", "default": "produit" },
+    { "type": "text", "id": "kicker", "label": "Petit texte au-dessus", "default": "Le produit" },
+    { "type": "text", "id": "heading", "label": "Titre", "default": "Un bonbon. Pas une boisson." },
+    { "type": "image_picker", "id": "front", "label": "Sachet, face avant" },
+    { "type": "image_picker", "id": "back", "label": "Sachet, dos" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Étape",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Titre", "default": "Un vrai bonbon." },
+        { "type": "textarea", "id": "text", "label": "Texte", "default": "Un bonbon au maté, goût citron." },
+        { "type": "text", "id": "detail", "label": "Détail (facultatif)" },
+        { "type": "select", "id": "side", "label": "Face du sachet montrée", "options": [{ "value": "front", "label": "Avant" }, { "value": "back", "label": "Dos" }], "default": "front" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [{ "name": "Voltiz 2 : le produit" }]
+}
+{% endschema %}

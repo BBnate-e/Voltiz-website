@@ -1,0 +1,63 @@
+{%- comment -%}
+  Accueil, premier écran : titre, slogan, une phrase, le bouton d'achat et le sachet en 3D (on peut le faire tourner).
+{%- endcomment -%}
+{%- assign product = section.settings.product -%}
+<div class="v2">
+  <section class="hero" aria-labelledby="hero-titre-{{ section.id }}">
+    <div class="wrap hero__in">
+      <div class="hero__text">
+        {%- if section.settings.kicker != blank -%}<p class="label" data-reveal>{{ section.settings.kicker }}</p>{%- endif -%}
+        <h1 id="hero-titre-{{ section.id }}" class="hero__title" data-reveal>
+          <span>{{ section.settings.title }}</span>
+          <span class="hero__slogan">{{ section.settings.slogan }}</span>
+        </h1>
+        {%- if section.settings.lead != blank -%}<p class="hero__lead" data-reveal>{% render 'voltiz-t', t: section.settings.lead %}</p>{%- endif -%}
+        <div class="hero__cta" data-reveal>
+          <a class="btn" href="{{ section.settings.button_link }}">
+            {{ section.settings.button_label }}
+            {%- if section.settings.show_price and product != blank -%}<span class="btn__price">{{ product.price | money }}</span>{%- endif -%}
+          </a>
+          {%- if section.settings.link_label != blank -%}<a class="link" href="{{ section.settings.link_target }}">{{ section.settings.link_label }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>{%- endif -%}
+        </div>
+        {%- if section.settings.facts != blank -%}
+          {%- assign facts = section.settings.facts | split: '|' -%}
+          <ul class="hero__facts" role="list" data-reveal>
+            {%- for f in facts -%}<li>{{ f | strip }}</li>{%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+      <div class="hero__stage" data-reveal>
+        <span class="hero__disc" aria-hidden="true"></span>
+        <span class="hero__ring" aria-hidden="true"></span>
+        {% render 'vz2-pouch', front: section.settings.front, back: section.settings.back, eager: true, mode: 'drag', sizes: '(min-width: 990px) 30vw, 62vw' %}
+        <button type="button" class="hero__turn" data-vz-turn aria-pressed="false" data-front="{{ section.settings.turn_front | escape }}" data-back="{{ section.settings.turn_back | escape }}">
+          <svg aria-hidden="true"><use href="#i-arrow"/></svg><span>{{ section.settings.turn_front }}</span>
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz 2 : accueil",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Petit texte au-dessus", "default": "Energy candy · Fabriqué en Suisse" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Ton énergie." },
+    { "type": "text", "id": "slogan", "label": "Slogan", "default": "Partout, à tout moment." },
+    { "type": "textarea", "id": "lead", "label": "Phrase", "default": "Le bonbon énergisant au maté. 50 mg de caféine par bonbon, sans sucre." },
+    { "type": "product", "id": "product", "label": "Produit (pour le prix)" },
+    { "type": "checkbox", "id": "show_price", "label": "Afficher le prix dans le bouton", "default": true },
+    { "type": "text", "id": "button_label", "label": "Bouton", "default": "Acheter" },
+    { "type": "text", "id": "button_link", "label": "Lien du bouton", "default": "#acheter" },
+    { "type": "text", "id": "link_label", "label": "Lien secondaire", "default": "Découvrir le bonbon" },
+    { "type": "text", "id": "link_target", "label": "Cible du lien secondaire", "default": "#produit" },
+    { "type": "text", "id": "facts", "label": "Points clés", "info": "Séparés par le signe |.", "default": "50 mg de caféine | 0 g de sucre | Swiss made" },
+    { "type": "image_picker", "id": "front", "label": "Sachet, face avant", "info": "Image détourée (fond transparent), format portrait." },
+    { "type": "image_picker", "id": "back", "label": "Sachet, dos" },
+    { "type": "text", "id": "turn_front", "label": "Bouton pour voir le dos", "default": "Voir le dos" },
+    { "type": "text", "id": "turn_back", "label": "Bouton pour revenir", "default": "Voir la face" }
+  ],
+  "presets": [{ "name": "Voltiz 2 : accueil" }]
+}
+{% endschema %}

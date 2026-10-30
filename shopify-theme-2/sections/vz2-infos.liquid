@@ -1,0 +1,58 @@
+{%- comment -%} Composition : les ingrédients, des volets « en savoir plus » et l'encadré caféine. {%- endcomment -%}
+<div class="v2">
+  <section class="infos" id="{{ section.settings.anchor }}" aria-labelledby="infos-titre-{{ section.id }}">
+    <div class="wrap infos__in">
+      <header class="head" data-reveal>
+        {%- if section.settings.kicker != blank -%}<p class="label">{{ section.settings.kicker }}</p>{%- endif -%}
+        <h2 id="infos-titre-{{ section.id }}" class="title">{{ section.settings.heading }}</h2>
+        {%- if section.settings.intro != blank -%}<p class="intro">{% render 'voltiz-t', t: section.settings.intro %}</p>{%- endif -%}
+      </header>
+      <div data-reveal>
+        <div class="acc acc--big">
+          {%- for block in section.blocks -%}
+            <details {{ block.shopify_attributes }}{% if forloop.first %} open{% endif %}>
+              <summary>{{ block.settings.title }}<svg aria-hidden="true"><use href="#i-plus"/></svg></summary>
+              <div class="acc__body">
+                {%- assign paras = block.settings.text | newline_to_br | split: '<br />' -%}
+                {%- for p in paras -%}{%- assign p = p | strip -%}{%- if p != blank -%}<p>{% render 'voltiz-t', t: p %}</p>{%- endif -%}{%- endfor -%}
+              </div>
+            </details>
+          {%- endfor -%}
+        </div>
+        {%- if section.settings.care_text != blank -%}
+          <aside class="care" aria-labelledby="care-{{ section.id }}">
+            <h3 id="care-{{ section.id }}"><svg aria-hidden="true"><use href="#i-warning"/></svg>{{ section.settings.care_title }}</h3>
+            {%- assign paras = section.settings.care_text | newline_to_br | split: '<br />' -%}
+            {%- for p in paras -%}{%- assign p = p | strip -%}{%- if p != blank -%}<p>{% render 'voltiz-t', t: p %}</p>{%- endif -%}{%- endfor -%}
+          </aside>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz 2 : composition",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Ancre", "default": "composition" },
+    { "type": "text", "id": "kicker", "label": "Petit texte au-dessus", "default": "Composition" },
+    { "type": "text", "id": "heading", "label": "Titre", "default": "Ce qu’il y a dedans." },
+    { "type": "textarea", "id": "intro", "label": "Introduction", "default": "Peu d’ingrédients, chacun avec un rôle précis." },
+    { "type": "text", "id": "care_title", "label": "Titre de l’encadré", "default": "Contient de la caféine" },
+    { "type": "textarea", "id": "care_text", "label": "Texte de l’encadré", "default": "50 mg de caféine par bonbon. Déconseillé aux enfants, aux femmes enceintes ou allaitantes et aux personnes sensibles à la caféine." }
+  ],
+  "blocks": [
+    {
+      "type": "info",
+      "name": "Ingrédient",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Titre", "default": "La caféine" },
+        { "type": "textarea", "id": "text", "label": "Texte", "info": "Un paragraphe par ligne.", "default": "50 mg par bonbon." }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [{ "name": "Voltiz 2 : composition" }]
+}
+{% endschema %}
