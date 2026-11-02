@@ -1,0 +1,122 @@
+{
+  "sections": {
+    "main": {
+      "type": "vz5-acheter",
+      "settings": {
+        "front": "shopify://shop_images/voltiz-sachet-v2-face.webp",
+        "back": "shopify://shop_images/voltiz-sachet-v2-dos.webp",
+        "heading": "Voltiz Energy",
+        "sub": "Complément alimentaire à mâcher, au maté, goût citron. 50 mg de caféine par pièce, sans sucre.",
+        "anchor": "precommande",
+        "kicker": "Précommande",
+        "button_label": "Précommander",
+        "bar_label": "Précommander",
+        "sticky": true
+      },
+      "blocks": {
+        "b_1": {
+          "type": "panel",
+          "settings": {
+            "title": "Ingrédients et valeurs nutritionnelles",
+            "text": "Extrait de yerba maté, caféine, arôme, vitamine B12. [À COMPLÉTER : liste complète du fabricant]\nCaféine | 50 mg par pièce\nSucres | 0 g\nÉnergie | [À COMPLÉTER]\nVitamine B12 | [À COMPLÉTER]"
+          }
+        },
+        "b_2": {
+          "type": "panel",
+          "settings": {
+            "title": "Utilisation",
+            "text": "Mâche une pièce tranquillement : la caféine est absorbée directement dans la bouche et l’effet se fait sentir en 5 à 10 minutes.\n1 pièce = 50 mg de caféine, à peu près un expresso."
+          }
+        },
+        "b_3": {
+          "type": "panel",
+          "settings": {
+            "title": "Précautions",
+            "text": "Complément alimentaire. Contient de la caféine (50 mg par pièce). Déconseillé aux enfants, aux femmes enceintes ou allaitantes et aux personnes sensibles à la caféine.\nNe pas dépasser la dose journalière recommandée : [À COMPLÉTER : nombre de pièces] par jour.\nUn complément alimentaire ne remplace pas une alimentation variée et équilibrée ni un mode de vie sain.\nTenir hors de portée des jeunes enfants."
+          }
+        },
+        "b_4": {
+          "type": "panel",
+          "settings": {
+            "title": "Livraison",
+            "text": "Nous livrons partout en Suisse. Les frais de port s’affichent avant le paiement."
+          }
+        }
+      },
+      "block_order": [
+        "b_1",
+        "b_2",
+        "b_3",
+        "b_4"
+      ]
+    },
+    "faq": {
+      "type": "vz3-faq",
+      "settings": {},
+      "blocks": {
+        "b_1": {
+          "type": "question",
+          "settings": {
+            "question": "C’est quoi, Voltiz ?",
+            "answer": "Un complément alimentaire à mâcher, au maté, sans sucre, avec 50 mg de caféine et de la vitamine B12 par pièce. Fabriqué en Suisse."
+          }
+        },
+        "b_2": {
+          "type": "question",
+          "settings": {
+            "question": "En combien de temps je sens l’effet ?",
+            "answer": "La caféine est absorbée directement dans la bouche : compte 5 à 10 minutes."
+          }
+        },
+        "b_3": {
+          "type": "question",
+          "settings": {
+            "question": "Combien de pièces par jour ?",
+            "answer": "Une pièce contient 50 mg de caféine, à peu près un expresso. Ne dépasse pas [À COMPLÉTER : nombre de pièces] par jour et pense au café, au thé et aux boissons que tu bois aussi."
+          }
+        },
+        "b_4": {
+          "type": "question",
+          "settings": {
+            "question": "Ça a quel goût ?",
+            "answer": "Citron. L’arôme masque l’amertume de la caféine."
+          }
+        },
+        "b_5": {
+          "type": "question",
+          "settings": {
+            "question": "Qui ne devrait pas en prendre ?",
+            "answer": "Les enfants, les femmes enceintes ou allaitantes et les personnes sensibles à la caféine."
+          }
+        },
+        "b_6": {
+          "type": "question",
+          "settings": {
+            "question": "Vous livrez où ?",
+            "answer": "Partout en Suisse. Les frais de port s’affichent avant le paiement."
+          }
+        },
+        "b_0": {
+          "type": "question",
+          "settings": {
+            "question": "Comment marche la précommande ?",
+            "answer": "Tu réserves ton sachet maintenant et tu paies à la commande, par la caisse sécurisée Shopify. Nous expédions dès [À COMPLÉTER : date ou période d’expédition] et tu reçois une confirmation par e-mail."
+          }
+        }
+      },
+      "block_order": [
+        "b_0",
+        "b_1",
+        "b_2",
+        "b_3",
+        "b_4",
+        "b_5",
+        "b_6"
+      ]
+    }
+  },
+  "order": [
+    "main",
+    "faq"
+  ]
+}

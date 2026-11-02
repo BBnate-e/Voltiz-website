@@ -43,17 +43,17 @@
 .v3 .badge5__dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); }
 .v3 .badge5__dot::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 1px solid var(--yellow); animation: v5-ping 2s var(--ease) infinite; }
 @keyframes v5-ping { from { transform: scale(.6); opacity: 1; } to { transform: scale(1.8); opacity: 0; } }
-.v3 .badge5--light { color: var(--navy); border-color: var(--navy); }
+.v3 .badge5--light { justify-self: start; color: var(--navy); border-color: var(--navy); }
 .v3 .badge5--light .badge5__dot { background: var(--navy); }
 .v3 .badge5--light .badge5__dot::after { border-color: var(--navy); }
 
 /* ---------- En-tête ---------- */
 .v5 .nav { border-bottom-color: rgba(167,180,199,.16); }
-.v5 .nav__logo { display: block; width: auto; height: 46px; }
+.v5 .nav__logo { display: block; width: auto; height: 56px; }
 .v5 .nav__logo svg { display: block; width: auto; height: 100%; aspect-ratio: 1110 / 529; }
 .v5 .nav__links a { font-family: var(--f); font-weight: 700; font-size: .875rem; }
 .v5 .nav__cta { min-height: 40px; }
-@media (max-width: 989px) { .v5 .nav__logo { height: 38px; } }
+@media (max-width: 989px) { .v5 .nav__logo { height: 44px; } }
 @media (max-width: 420px) { .v5 .nav__cta { padding: 0 14px; font-size: .75rem; } }
 
 /* ---------- 01. Hero ---------- */
@@ -64,7 +64,7 @@
 .v5 .hero5 .hero__lead { color: var(--mist); }
 .v5 .hero5__note { color: var(--mist); font-size: .8125rem; letter-spacing: .02em; }
 /* Le grand V-éclair du logo, derrière le sachet */
-.v5 .hero5__bolt { position: absolute; z-index: 0; right: -4%; top: 50%; width: min(56vw, 760px); aspect-ratio: 436 / 532; color: var(--yellow); transform: translate3d(0, calc(-50% + var(--hs) * 60px), 0); pointer-events: none; }
+.v5 .hero5__bolt { position: absolute; z-index: 0; right: -2%; top: 44%; width: min(44vw, 520px); aspect-ratio: 436 / 532; color: var(--yellow); transform: translate3d(0, calc(-50% + var(--hs) * 60px), 0); pointer-events: none; }
 .v5 .hero5__bolt svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 30px 60px rgba(0,0,0,.25)); }
 .js .v5 .hero5__bolt svg { clip-path: polygon(100% 0, 100% 0, 100% 0, 100% 0); animation: v5-strike .7s cubic-bezier(.7,0,.2,1) .15s forwards; }
 @keyframes v5-strike { to { clip-path: polygon(-20% 0, 100% 0, 100% 120%, -20% 120%); } }
@@ -73,7 +73,10 @@
 .v5 .hero5 .pouch__float { animation: v5-sway 9s ease-in-out infinite; }
 @keyframes v5-sway { 0%, 100% { transform: translateY(0) rotateY(-6deg); } 50% { transform: translateY(-14px) rotateY(6deg); } }
 .v5 .hero5 .pouch__shadow { background: radial-gradient(closest-side, rgba(0,0,0,.45), rgba(0,0,0,0)); }
+.v5 .hero5 .specs { position: relative; z-index: 2; }
 .v5 .hero5 .specs li { font-family: var(--f); }
+/* Tranche du sachet : blanche en haut, marine en bas, comme l'emballage */
+.v5 .pouch__side { background: linear-gradient(180deg, #E9EDF1 0%, #F7F8FA 55%, #1B3357 58%, #0F2643 100%); }
 .v5 .hero5 .specs li::before { content: ""; width: 8px; height: 8px; flex: none; align-self: center; background: var(--yellow); clip-path: polygon(60% 0, 0 60%, 45% 60%, 35% 100%, 100% 40%, 55% 40%); }
 @media (min-width: 990px) {
   .v5 .hero5 .hero__in { grid-template-columns: 1.15fr 1fr; }
@@ -158,7 +161,7 @@
 .v5 .id5__in { display: grid; gap: clamp(36px, 5vw, 64px); }
 .v5 .id5__kicker { display: inline-flex; align-items: center; gap: 12px; font: 700 .75rem/1 var(--f); letter-spacing: .16em; text-transform: uppercase; }
 .v5 .id5__kicker svg { width: 22px; height: 26px; }
-.v5 .id5__statement { display: grid; margin-top: clamp(20px, 3vw, 32px); font: 400 clamp(2.6rem, 7.4vw, 6.75rem)/.98 var(--h); text-transform: uppercase; letter-spacing: -.005em; }
+.v5 .id5__statement { display: grid; margin-top: clamp(20px, 3vw, 32px); font: 400 clamp(2.1rem, 4.6vw, 4.5rem)/1 var(--h); text-transform: uppercase; letter-spacing: -.005em; }
 .v5 .id5__line { display: block; opacity: clamp(.18, calc((var(--p) - .12) * var(--n) * 2.4 - var(--i) + .18), 1); transition: opacity .2s linear; }
 .v5 .id5__side { display: grid; gap: 24px; align-content: end; justify-items: start; }
 .v5 .id5__text { font-size: 1.125rem; max-width: 44ch; color: #1A2F4E; }
