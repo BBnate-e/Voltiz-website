@@ -102,6 +102,7 @@
 .v5 .pre5__title svg { width: 18px; height: 18px; }
 .v5 .pre5 ul { display: grid; gap: 6px; padding-left: 28px; list-style: disc; color: var(--ink-2); }
 .v5 .pre5__link { padding-left: 28px; font-size: .875rem; font-weight: 700; color: var(--navy); }
+.v5 .pre5--cart { margin: 24px 0 0; }
 .v5 a.pre5__link { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--yellow); text-decoration-thickness: 2px; }
 
 /* ---------- 03. Trouve ton moment ---------- */

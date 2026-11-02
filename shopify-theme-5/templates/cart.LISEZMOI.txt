@@ -1,0 +1,5 @@
+templates/cart.json du brouillon 5 (modifié directement dans Shopify, non recopié ici en entier
+car le fichier est généré par l'éditeur Horizon) :
+- section "avis" de type vz5-avis ajoutée en premier (rappel de précommande, visible si le panier n'est pas vide) ;
+- titre du panier : "Panier" (au lieu de "Cart") ;
+- liste de produits : titre "Tu aimeras aussi".
