@@ -1,0 +1,73 @@
+{%- comment -%}
+  Accueil, premier écran « The Voltiz moment » : badge de précommande, titre, phrase, bouton Précommander avec le prix,
+  et le sachet en 3D devant le grand V-éclair jaune du logo. Pas d'écran d'introduction : tout est visible tout de suite.
+  Sachet : rendu PROVISOIRE fait à partir des images « face » et « dos » choisies ci-dessous (maquette, pas la photo finale).
+  Pour le remplacer, il suffit de choisir d'autres images dans l'éditeur ; la mise en page reste la même avec une simple photo.
+{%- endcomment -%}
+{%- assign product = section.settings.product -%}
+<div class="v3 v5">
+  <section class="hero hero5" aria-labelledby="hero-titre-{{ section.id }}" data-vz-hero>
+    <div class="hero5__bolt" aria-hidden="true"><svg viewBox="0 0 436 532" focusable="false"><use href="#mark"/></svg></div>
+    <span class="mark mark--tl" aria-hidden="true"></span>
+    <div class="wrap hero__in">
+      <div class="hero__text">
+        {%- if section.settings.badge != blank -%}<p class="badge5" data-reveal><span class="badge5__dot" aria-hidden="true"></span>{{ section.settings.badge }}</p>{%- endif -%}
+        <h1 id="hero-titre-{{ section.id }}" class="hero__title" data-reveal>
+          <span>{{ section.settings.title }}</span>
+          <span class="hero__slogan">{{ section.settings.slogan }}</span>
+        </h1>
+        {%- if section.settings.lead != blank -%}<p class="hero__lead" data-reveal>{% render 'voltiz-t', t: section.settings.lead %}</p>{%- endif -%}
+        <div class="hero__cta" data-reveal>
+          <a class="btn btn--lg" href="{{ section.settings.button_link }}">
+            {{ section.settings.button_label }}
+            {%- if section.settings.show_price and product != blank -%}<span class="btn__price">{{ product.price | money }}</span>{%- endif -%}
+          </a>
+          {%- if section.settings.link_label != blank -%}<a class="link" href="{{ section.settings.link_target }}">{{ section.settings.link_label }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>{%- endif -%}
+        </div>
+        {%- if section.settings.note != blank -%}<p class="hero5__note" data-reveal>{{ section.settings.note }}</p>{%- endif -%}
+      </div>
+      <div class="hero__stage" data-reveal>
+        {% render 'vz2-pouch', front: section.settings.front, back: section.settings.back, eager: true, mode: 'drag', sizes: '(min-width: 990px) 26vw, 42vw' %}
+        {%- if section.settings.back != blank -%}
+          <button type="button" class="hero__turn" data-vz-turn aria-pressed="false" data-front="{{ section.settings.turn_front | escape }}" data-back="{{ section.settings.turn_back | escape }}">
+            <svg aria-hidden="true"><use href="#i-arrow"/></svg><span>{{ section.settings.turn_front }}</span>
+          </button>
+        {%- endif -%}
+      </div>
+    </div>
+    {%- if section.settings.facts != blank -%}
+      {%- assign facts = section.settings.facts | split: '|' -%}
+      <div class="wrap">
+        <ul class="specs" role="list" data-reveal>
+          {%- for f in facts -%}<li>{{ f | strip }}</li>{%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz 5 : accueil",
+  "settings": [
+    { "type": "text", "id": "badge", "label": "Badge", "default": "Précommandes ouvertes" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Ton énergie." },
+    { "type": "text", "id": "slogan", "label": "Slogan", "default": "Partout, à tout moment." },
+    { "type": "textarea", "id": "lead", "label": "Phrase", "default": "Le complément alimentaire à mâcher, au maté. 50 mg de caféine par pièce, sans sucre, fabriqué en Suisse." },
+    { "type": "product", "id": "product", "label": "Produit (pour le prix)" },
+    { "type": "checkbox", "id": "show_price", "label": "Afficher le prix dans le bouton", "default": true },
+    { "type": "text", "id": "button_label", "label": "Bouton", "default": "Précommander" },
+    { "type": "text", "id": "button_link", "label": "Lien du bouton", "default": "#precommande" },
+    { "type": "text", "id": "link_label", "label": "Lien secondaire", "default": "Découvrir Voltiz" },
+    { "type": "text", "id": "link_target", "label": "Cible du lien secondaire", "default": "#moments" },
+    { "type": "text", "id": "note", "label": "Petite ligne sous le bouton", "default": "Paiement sécurisé par Shopify · Livraison en Suisse" },
+    { "type": "header", "content": "Sachet (rendu provisoire)" },
+    { "type": "image_picker", "id": "front", "label": "Face avant", "info": "Remplace par la photo définitive quand elle est prête : fond transparent conseillé." },
+    { "type": "image_picker", "id": "back", "label": "Dos" },
+    { "type": "text", "id": "turn_front", "label": "Bouton pour voir le dos", "default": "Voir le dos" },
+    { "type": "text", "id": "turn_back", "label": "Bouton pour revenir à la face", "default": "Voir la face" },
+    { "type": "text", "id": "facts", "label": "Repères en bas", "info": "Séparés par |", "default": "50 mg de caféine | Vitamine B12 | 0 g de sucre | Swiss made" }
+  ],
+  "presets": [{ "name": "Voltiz 5 : accueil" }]
+}
+{% endschema %}

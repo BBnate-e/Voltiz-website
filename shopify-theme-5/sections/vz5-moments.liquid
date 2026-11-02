@@ -1,0 +1,97 @@
+{%- comment -%}
+  « Trouve ton moment » : trois univers (Movement, Focus, Lifestyle) en onglets. Chaque univers a sa couleur de fond,
+  une grande photo, jusqu'à trois photos secondaires, un court texte et la liste de ses moments.
+  Sans JavaScript, les trois univers s'affichent les uns sous les autres.
+  Photos : Unsplash License (auteur dans le texte alternatif de chaque fichier Shopify).
+{%- endcomment -%}
+{%- assign first = section.blocks.first -%}
+<div class="v3 v5">
+  <section class="mo" id="{{ section.settings.anchor }}" data-vz-moments data-tone="{{ first.settings.tone | default: 'navy' }}" aria-labelledby="mo-titre-{{ section.id }}">
+    <div class="wrap">
+      <div class="mo__head">
+        <h2 id="mo-titre-{{ section.id }}" class="mo__title" data-reveal>{{ section.settings.heading }}</h2>
+        {%- if section.settings.intro != blank -%}<p class="mo__intro" data-reveal>{{ section.settings.intro }}</p>{%- endif -%}
+      </div>
+      <div data-vz-tabs>
+        <div class="mo__tabs" role="tablist" aria-label="{{ section.settings.heading | escape }}" data-reveal>
+          {%- for block in section.blocks -%}
+            <button type="button" class="mo__tab" role="tab" id="mo-tab-{{ block.id }}" aria-controls="mo-panel-{{ block.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}" data-tone="{{ block.settings.tone }}">
+              <span class="mo__tab-n" aria-hidden="true">{{ forloop.index | prepend: '0' }}</span>{{ block.settings.name }}
+            </button>
+          {%- endfor -%}
+        </div>
+
+        {%- for block in section.blocks -%}
+          <div class="mo__panel{% if forloop.first %} is-on{% endif %}" role="tabpanel" id="mo-panel-{{ block.id }}" aria-labelledby="mo-tab-{{ block.id }}" data-tone="{{ block.settings.tone }}" {{ block.shopify_attributes }}>
+            <figure class="mo__big">
+              {%- if block.settings.image_1 != blank -%}
+                {{ block.settings.image_1 | image_url: width: 1600 | image_tag: widths: '480, 720, 960, 1200, 1600', sizes: '(min-width: 990px) 58vw, 100vw', class: 'mo__img', loading: 'lazy' }}
+              {%- else -%}
+                {{ 'lifestyle-1' | placeholder_svg_tag: 'mo__img mo__ph' }}
+              {%- endif -%}
+              <figcaption class="mo__word" aria-hidden="true">{{ block.settings.word }}</figcaption>
+            </figure>
+            <div class="mo__side">
+              <div class="mo__text">
+                <h3 class="mo__name">{{ block.settings.title }}</h3>
+                {%- if block.settings.text != blank -%}<p class="mo__body">{{ block.settings.text }}</p>{%- endif -%}
+                {%- if block.settings.activities != blank -%}
+                  {%- assign acts = block.settings.activities | split: ',' -%}
+                  <ul class="mo__chips" role="list">
+                    {%- for a in acts -%}<li>{{ a | strip }}</li>{%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </div>
+              <div class="mo__thumbs">
+                {%- for i in (2..4) -%}
+                  {%- assign key = 'image_' | append: i -%}
+                  {%- assign pic = block.settings[key] -%}
+                  {%- if pic != blank -%}
+                    <figure class="mo__small" style="--i: {{ forloop.index }}">
+                      {{ pic | image_url: width: 700 | image_tag: widths: '300, 500, 700', sizes: '(min-width: 990px) 14vw, 33vw', class: 'mo__img', loading: 'lazy' }}
+                    </figure>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz 5 : moments",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Ancre", "default": "moments" },
+    { "type": "text", "id": "heading", "label": "Titre", "default": "Trouve ton moment." },
+    { "type": "textarea", "id": "intro", "label": "Phrase", "default": "Une pièce dans la poche, pour le sport, les longues journées ou la route." }
+  ],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Univers",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Nom de l’onglet", "default": "Movement" },
+        { "type": "text", "id": "word", "label": "Grand mot sur la photo", "default": "MOVE" },
+        { "type": "select", "id": "tone", "label": "Couleur", "options": [
+          { "value": "navy", "label": "Marine" },
+          { "value": "light", "label": "Blanc" },
+          { "value": "yellow", "label": "Jaune" }
+        ], "default": "navy" },
+        { "type": "text", "id": "title", "label": "Titre", "default": "Avant le coup d’envoi." },
+        { "type": "textarea", "id": "text", "label": "Texte" },
+        { "type": "text", "id": "activities", "label": "Moments", "info": "Séparés par des virgules." },
+        { "type": "image_picker", "id": "image_1", "label": "Grande photo" },
+        { "type": "image_picker", "id": "image_2", "label": "Photo 2" },
+        { "type": "image_picker", "id": "image_3", "label": "Photo 3" },
+        { "type": "image_picker", "id": "image_4", "label": "Photo 4" }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [{ "name": "Voltiz 5 : moments", "blocks": [{ "type": "pillar" }] }]
+}
+{% endschema %}

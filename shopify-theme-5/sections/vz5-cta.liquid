@@ -1,0 +1,57 @@
+{%- comment -%}
+  Dernier appel à l'action : le sachet, le prix et un bouton qui ajoute directement un sachet au panier Shopify
+  (avec la mention « Précommande »). Un lien renvoie vers le détail de la précommande.
+  Image du sachet : rendu PROVISOIRE, à remplacer dans l'éditeur par la photo définitive.
+{%- endcomment -%}
+{%- assign product = section.settings.product -%}
+{%- assign current = product.selected_or_first_available_variant -%}
+<div class="v3 v5">
+  <section class="cta5" aria-labelledby="cta5-titre-{{ section.id }}">
+    <div class="cta5__bolt" aria-hidden="true"><svg viewBox="0 0 436 532" focusable="false"><use href="#mark"/></svg></div>
+    <div class="wrap cta5__in">
+      <div class="cta5__media" data-reveal>
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 900 | image_tag: widths: '360, 540, 720, 900', sizes: '(min-width: 990px) 30vw, 60vw', class: 'cta5__img', loading: 'lazy' }}
+        {%- elsif product.featured_image != blank -%}
+          {{ product.featured_image | image_url: width: 900 | image_tag: widths: '360, 540, 720, 900', sizes: '(min-width: 990px) 30vw, 60vw', class: 'cta5__img', loading: 'lazy' }}
+        {%- endif -%}
+      </div>
+      <div class="cta5__text" data-reveal>
+        <h2 id="cta5-titre-{{ section.id }}" class="cta5__title">{{ section.settings.heading }}</h2>
+        {%- if section.settings.text != blank -%}<p class="cta5__lead">{% render 'voltiz-t', t: section.settings.text %}</p>{%- endif -%}
+        {%- if product != blank and product.available -%}
+          {%- form 'product', product, class: 'cta5__form' -%}
+            <input type="hidden" name="id" value="{{ current.id }}">
+            <input type="hidden" name="quantity" value="1">
+            {%- if section.settings.preorder_property != blank -%}
+              <input type="hidden" name="properties[{{ section.settings.preorder_property | escape }}]" value="{{ section.settings.preorder_value | escape }}">
+            {%- endif -%}
+            <button class="btn btn--lg" type="submit">{{ section.settings.button_label }}<span class="btn__price">{{ current.price | money }}</span></button>
+          {%- endform -%}
+        {%- else -%}
+          <button class="btn btn--lg" type="button" disabled>{{ section.settings.closed_label }}</button>
+        {%- endif -%}
+        {%- if section.settings.link_label != blank -%}<a class="link" href="{{ section.settings.link_target }}">{{ section.settings.link_label }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>{%- endif -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz 5 : appel final",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Produit" },
+    { "type": "image_picker", "id": "image", "label": "Image du sachet", "info": "Rendu provisoire : remplace-le par la photo définitive." },
+    { "type": "text", "id": "heading", "label": "Titre", "default": "Prêt quand tu l’es." },
+    { "type": "textarea", "id": "text", "label": "Texte", "default": "Réserve ton premier sachet Voltiz. Paiement sécurisé à la commande, livraison en Suisse." },
+    { "type": "text", "id": "button_label", "label": "Bouton", "default": "Précommander" },
+    { "type": "text", "id": "closed_label", "label": "Bouton si le produit n’est pas en vente", "default": "Bientôt disponible" },
+    { "type": "text", "id": "link_label", "label": "Lien", "default": "Voir les conditions de précommande" },
+    { "type": "text", "id": "link_target", "label": "Cible du lien", "default": "#precommande" },
+    { "type": "text", "id": "preorder_property", "label": "Mention ajoutée à l’article", "default": "Précommande" },
+    { "type": "text", "id": "preorder_value", "label": "Valeur de la mention", "default": "Oui" }
+  ],
+  "presets": [{ "name": "Voltiz 5 : appel final" }]
+}
+{% endschema %}

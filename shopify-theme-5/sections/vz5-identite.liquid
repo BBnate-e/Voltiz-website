@@ -1,0 +1,54 @@
+{%- comment -%}
+  « L'identité Voltiz » : fond jaune, une phrase forte qui s'allume ligne par ligne au défilement,
+  un court texte sur la marque et trois repères. Volontairement court : il ne retarde pas la commande.
+{%- endcomment -%}
+{%- assign lines = section.settings.statement | newline_to_br | split: '<br />' -%}
+<div class="v3 v5">
+  <section class="id5" id="{{ section.settings.anchor }}" data-vz-progress aria-labelledby="id5-titre-{{ section.id }}">
+    <div class="wrap id5__in">
+      <div class="id5__main">
+        <p class="id5__kicker" id="id5-titre-{{ section.id }}"><svg viewBox="0 0 436 532" aria-hidden="true"><use href="#mark"/></svg>{{ section.settings.kicker }}</p>
+        <p class="id5__statement" style="--n: {{ lines.size }}">
+          {%- for l in lines -%}<span class="id5__line" style="--i: {{ forloop.index0 }}">{{ l | strip }}</span>{%- endfor -%}
+        </p>
+      </div>
+      <div class="id5__side" data-reveal>
+        {%- if section.settings.text != blank -%}<div class="id5__text">{{ section.settings.text }}</div>{%- endif -%}
+        {%- if section.blocks.size > 0 -%}
+          <ul class="id5__values" role="list">
+            {%- for block in section.blocks -%}
+              <li {{ block.shopify_attributes }}><b>{{ block.settings.title }}</b><span>{{ block.settings.text }}</span></li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+        {%- if section.settings.link_label != blank -%}<a class="link" href="{{ section.settings.link_target }}">{{ section.settings.link_label }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>{%- endif -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz 5 : identité",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Ancre", "default": "identite" },
+    { "type": "text", "id": "kicker", "label": "Petit titre", "default": "L’identité Voltiz" },
+    { "type": "textarea", "id": "statement", "label": "Phrase forte", "info": "Une ligne par ligne affichée.", "default": "Pour ceux qui bougent.\nPour ceux qui tiennent.\nPour ceux qui vivent." },
+    { "type": "richtext", "id": "text", "label": "Texte", "default": "<p>Voltiz est une marque suisse née d’une idée simple : une énergie qui tient dans la poche, sans canette ni bouteille, pour les moments où tu en as besoin.</p>" },
+    { "type": "text", "id": "link_label", "label": "Lien", "default": "Notre histoire" },
+    { "type": "text", "id": "link_target", "label": "Cible du lien", "default": "/pages/a-propos" }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Repère",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Titre", "default": "Simple" },
+        { "type": "text", "id": "text", "label": "Texte", "default": "Une pièce, rien à préparer." }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [{ "name": "Voltiz 5 : identité" }]
+}
+{% endschema %}

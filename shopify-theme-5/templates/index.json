@@ -1,0 +1,229 @@
+{
+  "sections": {
+    "hero": {
+      "type": "vz5-hero",
+      "settings": {
+        "product": "voltiz-energy-gum",
+        "front": "shopify://shop_images/voltiz-sachet-v2-face.webp",
+        "back": "shopify://shop_images/voltiz-sachet-v2-dos.webp"
+      }
+    },
+    "precommande": {
+      "type": "vz5-acheter",
+      "settings": {
+        "product": "voltiz-energy-gum",
+        "front": "shopify://shop_images/voltiz-sachet-v2-face.webp",
+        "back": "shopify://shop_images/voltiz-sachet-v2-dos.webp",
+        "heading": "Voltiz Energy",
+        "sub": "Complément alimentaire à mâcher, au maté, goût citron. 50 mg de caféine par pièce, sans sucre.",
+        "anchor": "precommande",
+        "kicker": "Précommande",
+        "button_label": "Précommander",
+        "bar_label": "Précommander"
+      },
+      "blocks": {
+        "b_1": {
+          "type": "panel",
+          "settings": {
+            "title": "Ingrédients et valeurs nutritionnelles",
+            "text": "Extrait de yerba maté, caféine, arôme, vitamine B12. [À COMPLÉTER : liste complète du fabricant]\nCaféine | 50 mg par pièce\nSucres | 0 g\nÉnergie | [À COMPLÉTER]\nVitamine B12 | [À COMPLÉTER]"
+          }
+        },
+        "b_2": {
+          "type": "panel",
+          "settings": {
+            "title": "Utilisation",
+            "text": "Mâche une pièce tranquillement : la caféine est absorbée directement dans la bouche et l’effet se fait sentir en 5 à 10 minutes.\n1 pièce = 50 mg de caféine, à peu près un expresso."
+          }
+        },
+        "b_3": {
+          "type": "panel",
+          "settings": {
+            "title": "Précautions",
+            "text": "Complément alimentaire. Contient de la caféine (50 mg par pièce). Déconseillé aux enfants, aux femmes enceintes ou allaitantes et aux personnes sensibles à la caféine.\nNe pas dépasser la dose journalière recommandée : [À COMPLÉTER : nombre de pièces] par jour.\nUn complément alimentaire ne remplace pas une alimentation variée et équilibrée ni un mode de vie sain.\nTenir hors de portée des jeunes enfants."
+          }
+        },
+        "b_4": {
+          "type": "panel",
+          "settings": {
+            "title": "Livraison",
+            "text": "Nous livrons partout en Suisse. Les frais de port s’affichent avant le paiement."
+          }
+        }
+      },
+      "block_order": [
+        "b_1",
+        "b_2",
+        "b_3",
+        "b_4"
+      ]
+    },
+    "moments": {
+      "type": "vz5-moments",
+      "settings": {},
+      "blocks": {
+        "movement": {
+          "type": "pillar",
+          "settings": {
+            "name": "Movement",
+            "word": "MOVE",
+            "tone": "navy",
+            "title": "Avant le coup d’envoi.",
+            "text": "Une pièce dans la poche avant l’entraînement, le match ou la séance. Rien d’autre à emporter.",
+            "activities": "Musculation, Basketball, Running, Ski et snowboard, Surf",
+            "image_1": "shopify://shop_images/photo-1712513246150-816eadfc3c76.jpg",
+            "image_2": "shopify://shop_images/photo-1721750475973-4ced61c27d93.jpg",
+            "image_3": "shopify://shop_images/photo-1661439193765-392d81462003.jpg",
+            "image_4": "shopify://shop_images/photo-1776935735302-b3ff2512367b.jpg"
+          }
+        },
+        "focus": {
+          "type": "pillar",
+          "settings": {
+            "name": "Focus",
+            "word": "FOCUS",
+            "tone": "light",
+            "title": "Quand la soirée s’allonge.",
+            "text": "Révisions, dossier à rendre, longue journée : Voltiz reste à portée de main, sur le bureau ou dans le sac.",
+            "activities": "Études, Révisions, Travail, Longues journées",
+            "image_1": "shopify://shop_images/photo-1657772608811-d8d1bb1b6092.jpg",
+            "image_2": "shopify://shop_images/photo-1778735940467-1335c201966d.jpg",
+            "image_3": "shopify://shop_images/photo-1764096534662-a194a348c4a0.jpg",
+            "image_4": "shopify://shop_images/photo-1639300505533-9921527d6a50.jpg"
+          }
+        },
+        "lifestyle": {
+          "type": "pillar",
+          "settings": {
+            "name": "Lifestyle",
+            "word": "LIVE",
+            "tone": "yellow",
+            "title": "Partout, à tout moment.",
+            "text": "En ville, en voyage ou entre amis : le sachet tient dans une poche et suit tes journées.",
+            "activities": "Déplacements, Voyages, Entre amis, Sorties",
+            "image_1": "shopify://shop_images/photo-1607686868903-e081ffa849e9.jpg",
+            "image_2": "shopify://shop_images/photo-1752650143267-57c2491f5ba2.jpg",
+            "image_3": "shopify://shop_images/photo-1688263638788-fa120d93bbc3.jpg",
+            "image_4": "shopify://shop_images/photo-1747138164851-3a6848a0b01f.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "movement",
+        "focus",
+        "lifestyle"
+      ]
+    },
+    "identite": {
+      "type": "vz5-identite",
+      "settings": {},
+      "blocks": {
+        "v1": {
+          "type": "value",
+          "settings": {
+            "title": "Simple",
+            "text": "Une pièce, rien à préparer ni à boire."
+          }
+        },
+        "v2": {
+          "type": "value",
+          "settings": {
+            "title": "Précis",
+            "text": "50 mg de caféine par pièce, sans sucre."
+          }
+        },
+        "v3": {
+          "type": "value",
+          "settings": {
+            "title": "Suisse",
+            "text": "Fabriqué en Suisse."
+          }
+        }
+      },
+      "block_order": [
+        "v1",
+        "v2",
+        "v3"
+      ]
+    },
+    "faq": {
+      "type": "vz3-faq",
+      "settings": {},
+      "blocks": {
+        "b_1": {
+          "type": "question",
+          "settings": {
+            "question": "C’est quoi, Voltiz ?",
+            "answer": "Un complément alimentaire à mâcher, au maté, sans sucre, avec 50 mg de caféine et de la vitamine B12 par pièce. Fabriqué en Suisse."
+          }
+        },
+        "b_2": {
+          "type": "question",
+          "settings": {
+            "question": "En combien de temps je sens l’effet ?",
+            "answer": "La caféine est absorbée directement dans la bouche : compte 5 à 10 minutes."
+          }
+        },
+        "b_3": {
+          "type": "question",
+          "settings": {
+            "question": "Combien de pièces par jour ?",
+            "answer": "Une pièce contient 50 mg de caféine, à peu près un expresso. Ne dépasse pas [À COMPLÉTER : nombre de pièces] par jour et pense au café, au thé et aux boissons que tu bois aussi."
+          }
+        },
+        "b_4": {
+          "type": "question",
+          "settings": {
+            "question": "Ça a quel goût ?",
+            "answer": "Citron. L’arôme masque l’amertume de la caféine."
+          }
+        },
+        "b_5": {
+          "type": "question",
+          "settings": {
+            "question": "Qui ne devrait pas en prendre ?",
+            "answer": "Les enfants, les femmes enceintes ou allaitantes et les personnes sensibles à la caféine."
+          }
+        },
+        "b_6": {
+          "type": "question",
+          "settings": {
+            "question": "Vous livrez où ?",
+            "answer": "Partout en Suisse. Les frais de port s’affichent avant le paiement."
+          }
+        },
+        "b_0": {
+          "type": "question",
+          "settings": {
+            "question": "Comment marche la précommande ?",
+            "answer": "Tu réserves ton sachet maintenant et tu paies à la commande, par la caisse sécurisée Shopify. Nous expédions dès [À COMPLÉTER : date ou période d’expédition] et tu reçois une confirmation par e-mail."
+          }
+        }
+      },
+      "block_order": [
+        "b_0",
+        "b_1",
+        "b_2",
+        "b_3",
+        "b_4",
+        "b_5",
+        "b_6"
+      ]
+    },
+    "cta": {
+      "type": "vz5-cta",
+      "settings": {
+        "product": "voltiz-energy-gum",
+        "image": "shopify://shop_images/voltiz-sachet-v2-face.webp"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "precommande",
+    "moments",
+    "identite",
+    "faq",
+    "cta"
+  ]
+}

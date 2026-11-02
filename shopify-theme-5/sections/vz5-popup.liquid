@@ -1,0 +1,78 @@
+{%- comment -%}
+  Offre de bienvenue -10 % contre l'inscription à la newsletter.
+  - Inscription par le formulaire client natif de Shopify : l'adresse est enregistrée dans Clients, avec le consentement
+    marketing par e-mail et les tags ci-dessous. Désabonnement : lien présent dans chaque e-mail marketing Shopify.
+  - Case de consentement obligatoire, jamais cochée d'avance. Lien vers la politique de confidentialité.
+  - Le code affiché doit exister dans Shopify (Réductions). Il s'affiche à l'écran juste après l'inscription.
+  - Apparition : après un délai ou un défilement d'environ la moitié de la page, jamais au chargement.
+    Fenêtre non bloquante, posée en bas de l'écran ; elle ne revient pas pendant 14 jours après fermeture.
+  - Jamais sur le panier.
+{%- endcomment -%}
+{%- unless template.name == 'cart' or section.settings.enabled == false -%}
+<div class="v3 v5">
+  <div class="pop5" data-vz-popup data-delay="{{ section.settings.delay }}" data-days="{{ section.settings.days }}" hidden>
+    <div class="pop5__card" role="dialog" aria-modal="false" aria-labelledby="pop5-titre-{{ section.id }}">
+      <button type="button" class="pop5__x" data-vz-popup-close aria-label="Fermer"><svg aria-hidden="true"><use href="#i-plus"/></svg></button>
+      {%- form 'customer', id: 'vz-popup-form', class: 'pop5__form' -%}
+        {%- if form.posted_successfully? -%}
+          <div class="pop5__done" data-vz-popup-state="success">
+            <p class="pop5__kicker">{{ section.settings.success_kicker }}</p>
+            <p id="pop5-titre-{{ section.id }}" class="pop5__title">{{ section.settings.success_title }}</p>
+            <div class="pop5__code">
+              <code>{{ section.settings.code }}</code>
+              <button type="button" class="pop5__copy" data-vz-copy="{{ section.settings.code | escape }}" data-done="Copié">Copier</button>
+            </div>
+            <a class="btn" href="/discount/{{ section.settings.code | url_encode }}?redirect={{ section.settings.redirect | url_encode }}">{{ section.settings.apply_label }}</a>
+            <p class="pop5__fine">{{ section.settings.success_text }}</p>
+          </div>
+        {%- else -%}
+          <div{% if form.errors %} data-vz-popup-state="error"{% endif %}>
+            <p class="pop5__kicker">{{ section.settings.kicker }}</p>
+            <p id="pop5-titre-{{ section.id }}" class="pop5__title">{{ section.settings.title }}</p>
+            <p class="pop5__text">{{ section.settings.text }}</p>
+            <input type="hidden" name="contact[tags]" value="{{ section.settings.tags | escape }}">
+            <label class="sr-only" for="pop5-mail-{{ section.id }}">Adresse e-mail</label>
+            <div class="pop5__row">
+              <input id="pop5-mail-{{ section.id }}" type="email" name="contact[email]" required autocomplete="email" placeholder="ton@email.ch" value="{{ form.email }}"{% if form.errors %} aria-invalid="true" aria-describedby="pop5-err-{{ section.id }}"{% endif %}>
+            </div>
+            <label class="pop5__consent">
+              <input type="checkbox" required>
+              <span>{{ section.settings.consent }}{% if shop.privacy_policy.body != blank %} <a href="{{ shop.privacy_policy.url }}" target="_blank" rel="noopener">{{ section.settings.privacy_label }}</a>{% endif %}</span>
+            </label>
+            {%- if form.errors -%}<p class="pop5__err" id="pop5-err-{{ section.id }}" role="alert">{{ form.errors | default_errors }}</p>{%- endif -%}
+            <button class="btn pop5__submit" type="submit">{{ section.settings.button }}</button>
+            <button type="button" class="pop5__skip" data-vz-popup-close>{{ section.settings.skip }}</button>
+          </div>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+  </div>
+</div>
+{%- endunless -%}
+
+{% schema %}
+{
+  "name": "Voltiz 5 : offre -10 %",
+  "settings": [
+    { "type": "checkbox", "id": "enabled", "label": "Afficher l’offre", "default": true },
+    { "type": "range", "id": "delay", "label": "Délai avant apparition", "min": 5, "max": 60, "step": 5, "unit": "s", "default": 20 },
+    { "type": "range", "id": "days", "label": "Ne revient pas avant", "min": 1, "max": 60, "step": 1, "unit": "j", "default": 14 },
+    { "type": "text", "id": "kicker", "label": "Petit titre", "default": "Ta première commande Voltiz" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "-10 % pour toi." },
+    { "type": "textarea", "id": "text", "label": "Texte", "default": "Rejoins la communauté Voltiz et reçois 10 % de réduction sur ta première commande." },
+    { "type": "textarea", "id": "consent", "label": "Texte du consentement", "default": "J’accepte de recevoir la newsletter Voltiz par e-mail (nouveautés et offres). Désabonnement possible à tout moment." },
+    { "type": "text", "id": "privacy_label", "label": "Lien confidentialité", "default": "Politique de confidentialité" },
+    { "type": "text", "id": "button", "label": "Bouton", "default": "Obtenir mes -10 %" },
+    { "type": "text", "id": "skip", "label": "Lien pour fermer", "default": "Non merci" },
+    { "type": "text", "id": "tags", "label": "Tags ajoutés au client", "default": "newsletter, bienvenue-10" },
+    { "type": "header", "content": "Après l’inscription" },
+    { "type": "text", "id": "code", "label": "Code de réduction", "info": "Doit exister dans Shopify > Réductions.", "default": "BIENVENUE10" },
+    { "type": "text", "id": "success_kicker", "label": "Petit titre", "default": "Bienvenue chez Voltiz" },
+    { "type": "text", "id": "success_title", "label": "Titre", "default": "Voici ton code -10 %" },
+    { "type": "text", "id": "apply_label", "label": "Bouton", "default": "Appliquer à mon panier" },
+    { "type": "text", "id": "redirect", "label": "Page après le bouton", "default": "/#precommande" },
+    { "type": "textarea", "id": "success_text", "label": "Texte", "default": "Valable une fois par client, sur ta première commande. Le code s’applique aussi à la caisse." }
+  ],
+  "enabled_on": { "groups": ["footer"] }
+}
+{% endschema %}
