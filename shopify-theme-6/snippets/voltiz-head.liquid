@@ -1,0 +1,42 @@
+{%- comment -%}
+  Brouillon 6 : mise en page du brouillon 4, identité définitive et précommande du brouillon 5.
+  Ordre : voltiz3.css/js (composants du brouillon 4), voltiz5.css/js (identité, précommande, offre -10 %),
+  puis voltiz6.css/js (premier écran en profondeur et ligne d'énergie).
+  L'animation d'ouverture du brouillon 4 n'est plus chargée : le produit et le bouton sont visibles tout de suite.
+  Russo One et Manrope : licence SIL Open Font License 1.1, fichiers hébergés dans le thème.
+{%- endcomment -%}
+<link rel="preload" href="{{ 'voltiz-russo.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ 'voltiz-manrope.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+<style>
+  @font-face {
+    font-family: "Russo One";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("{{ 'voltiz-russo.woff2' | asset_url }}") format("woff2");
+  }
+  @font-face {
+    font-family: "Manrope";
+    font-style: normal;
+    font-weight: 200 800;
+    font-display: swap;
+    src: url("{{ 'voltiz-manrope.woff2' | asset_url }}") format("woff2");
+  }
+  :root {
+    --font-body--family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-subheading--family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-heading--family: "Russo One", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-heading--style: normal;
+    --font-heading--weight: 400;
+    --font-accent--family: "Russo One", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-accent--style: normal;
+    --font-accent--weight: 400;
+  }
+</style>
+{{ 'voltiz3.css' | asset_url | stylesheet_tag }}
+{{ 'voltiz5.css' | asset_url | stylesheet_tag }}
+{{ 'voltiz6.css' | asset_url | stylesheet_tag }}
+<script>document.documentElement.classList.add('js')</script>
+<script src="{{ 'voltiz3.js' | asset_url }}" defer></script>
+<script src="{{ 'voltiz5.js' | asset_url }}" defer></script>
+<script src="{{ 'voltiz6.js' | asset_url }}" defer></script>
