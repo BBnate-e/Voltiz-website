@@ -5,23 +5,23 @@
       "settings": {
         "kicker": "Composition",
         "heading": "Ce qu’il y a dedans.",
-        "intro": "Peu d’ingrédients, chacun avec un rôle précis.",
+        "intro": "Les ingrédients du sachet, et le rôle des principaux.",
         "care_title": "Contient de la caféine",
-        "care_text": "50 mg de caféine par pièce. Déconseillé aux enfants, aux femmes enceintes ou allaitantes et aux personnes sensibles à la caféine."
+        "care_text": "40 mg de caféine par gomme, 5 gommes par jour au maximum. Déconseillé aux enfants, aux femmes enceintes ou allaitantes et aux personnes sensibles à la caféine. Une consommation excessive peut avoir des effets laxatifs."
       },
       "blocks": {
         "b_1": {
           "type": "info",
           "settings": {
             "title": "La caféine",
-            "text": "Pendant la journée, une molécule appelée adénosine s’accumule dans le cerveau et ralentit l’activité nerveuse : c’est elle qui prépare au sommeil.\nLa caféine rejoint le cerveau par la circulation sanguine et prend la place de l’adénosine sur ses récepteurs, sans les activer.\nChaque pièce Voltiz en contient 50 mg, à peu près autant qu’un expresso."
+            "text": "Pendant la journée, une molécule appelée adénosine s’accumule dans le cerveau et ralentit l’activité nerveuse : c’est elle qui prépare au sommeil.\nLa caféine rejoint le cerveau par la circulation sanguine et prend la place de l’adénosine sur ses récepteurs, sans les activer.\nChaque gomme Voltiz en contient 40 mg. Une dose de 2 gommes en apporte 80 mg."
           }
         },
         "b_2": {
           "type": "info",
           "settings": {
             "title": "Le maté",
-            "text": "Le maté est une infusion des feuilles de yerba maté (Ilex paraguariensis). Son goût est amer, terreux et herbacé, entre le café et le thé vert.\nLa teneur en caféine varie d’une feuille à l’autre. Nous utilisons donc un extrait en poudre standardisé, pour une dose de caféine précise dans chaque pièce."
+            "text": "Le maté est une infusion des feuilles de yerba maté (Ilex paraguariensis). Son goût est amer, terreux et herbacé, entre le café et le thé vert.\nLa teneur en caféine varie d’une feuille à l’autre. Voltiz associe donc un extrait de maté (3,8 % de la recette) à de la caféine (1,3 %), pour une dose précise dans chaque gomme."
           }
         },
         "b_3": {
@@ -34,8 +34,22 @@
         "b_4": {
           "type": "info",
           "settings": {
-            "title": "L’arôme",
-            "text": "Il donne à Voltiz son goût citron et masque l’amertume de la caféine."
+            "title": "Les arômes",
+            "text": "Les arômes et l’huile essentielle de citron donnent à Voltiz son goût et masquent l’amertume de la caféine."
+          }
+        },
+        "b_5": {
+          "type": "info",
+          "settings": {
+            "title": "Les édulcorants",
+            "text": "Le sirop de sorbitol, le sirop de maltitol et les glycosides de stéviol remplacent le sucre : 0 g de sucres.\nUne consommation excessive peut avoir des effets laxatifs."
+          }
+        },
+        "b_6": {
+          "type": "info",
+          "settings": {
+            "title": "La liste complète",
+            "text": "Gélifiant (gomme arabique), édulcorants (sirop de sorbitol, sirop de maltitol), eau, extrait de maté (3,8 %), caféine (1,3 %), acidifiant (acide citrique), arômes, huile essentielle de citron, édulcorant (glycosides de stéviol), huile de coco, agent d’enrobage (cire de carnauba), vitamine B12."
           }
         }
       },
@@ -43,7 +57,9 @@
         "b_1",
         "b_2",
         "b_3",
-        "b_4"
+        "b_5",
+        "b_4",
+        "b_6"
       ]
     },
     "pourquoi": {
@@ -58,8 +74,8 @@
         "b_1": {
           "type": "item",
           "settings": {
-            "value": "50 mg",
-            "text": "de caféine par pièce, dosée précisément."
+            "value": "40 mg",
+            "text": "de caféine par gomme, dosée précisément."
           }
         },
         "b_2": {
@@ -73,7 +89,7 @@
           "type": "item",
           "settings": {
             "value": "0 g",
-            "text": "de sucre."
+            "text": "de sucre. Vegan."
           }
         },
         "b_4": {

@@ -154,7 +154,11 @@
                   {%- if p == blank -%}{%- continue -%}{%- endif -%}
                   {%- if p contains ' | ' -%}
                     {%- assign cells = p | split: ' | ' -%}
+                    {%- if cells.size > 2 -%}
+                      <p class="acc__row acc__row--3{% if cells[0] contains ':' %} acc__row--head{% endif %}{% assign c0 = cells[0] | downcase %}{% if c0 contains 'dont ' or c0 contains 'of which' %} acc__row--sub{% endif %}"><span>{{ cells[0] | remove: ':' | strip }}</span><b>{{ cells[1] }}</b><b>{{ cells[2] }}</b></p>
+                    {%- else -%}
                     <p class="acc__row"><span>{{ cells[0] }}</span><b>{% render 'voltiz-t', t: cells[1] %}</b></p>
+                    {%- endif -%}
                   {%- else -%}
                     <p>{% render 'voltiz-t', t: p %}</p>
                   {%- endif -%}
@@ -190,7 +194,7 @@
     { "type": "image_picker", "id": "back", "label": "Sachet, dos" },
     { "type": "text", "id": "kicker", "label": "Badge au-dessus du nom", "default": "Précommande" },
     { "type": "text", "id": "heading", "label": "Nom affiché", "default": "Voltiz Energy" },
-    { "type": "textarea", "id": "sub", "label": "Description courte", "default": "Complément alimentaire à mâcher, au maté, goût citron. 50 mg de caféine par pièce, sans sucre." },
+    { "type": "textarea", "id": "sub", "label": "Description courte", "default": "Complément alimentaire à base de maté et de caféine, avec édulcorants. 40 mg de caféine par gomme, sans sucre, vegan." },
     { "type": "text", "id": "unit_label", "label": "Unité du prix", "default": "le sachet" },
     { "type": "text", "id": "fallback_price", "label": "Prix affiché si le produit n’est pas choisi", "default": "CHF 5.00" },
     { "type": "range", "id": "max_qty", "label": "Quantité maximum", "min": 1, "max": 20, "step": 1, "default": 20 },
@@ -213,7 +217,7 @@
       "name": "Volet",
       "settings": [
         { "type": "text", "id": "title", "label": "Titre", "default": "Utilisation" },
-        { "type": "textarea", "id": "text", "label": "Texte", "info": "Un paragraphe par ligne. « Nom | valeur » fait une ligne de tableau.", "default": "Mâche une pièce tranquillement." }
+        { "type": "textarea", "id": "text", "label": "Texte", "info": "Un paragraphe par ligne. « Nom | valeur » fait une ligne de tableau.", "default": "1 dose = 2 gommes (80 mg de caféine), à mâcher au besoin." }
       ]
     }
   ],

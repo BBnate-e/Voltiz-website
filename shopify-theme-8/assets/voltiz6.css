@@ -46,7 +46,7 @@
 }
 
 /* Plan 3 : le sol */
-.v6 .hero6__floor { position: absolute; z-index: 1; left: 0; right: 0; top: calc(var(--cy) + var(--pw) * .7); height: 1px; pointer-events: none;
+.v6 .hero6__floor { position: absolute; z-index: 1; left: 0; right: 0; top: calc(var(--cy) + var(--pw) * .8); height: 1px; pointer-events: none;
   background: linear-gradient(90deg, rgba(167,180,199,0), rgba(167,180,199,.38) 30%, rgba(255,255,255,.55) 50%, rgba(167,180,199,.38) 70%, rgba(167,180,199,0));
   transform: translate3d(0, calc(var(--hs) * 40px), 0); }
 .v6 .hero6__floor::after { content: ""; position: absolute; left: 50%; top: 0; width: min(900px, 90vw); height: 120px; transform: translate(-50%, -50%);
@@ -88,15 +88,15 @@
 @keyframes v6-fade { from { opacity: 0; } to { opacity: 1; } }
 
 @media (max-width: 989px) {
-  .v6 .hero6 { --pw: min(46vw, 230px); --cy: calc(var(--pw) * .74 + 128px); min-height: 0; grid-template-rows: auto auto auto; }
+  .v6 .hero6 { --pw: min(46vw, 230px); --cy: calc(var(--pw) * .83 + 128px); min-height: 0; grid-template-rows: auto auto auto; }
   .v6 .hero6__bg::before { background:
       radial-gradient(ellipse 70% 40% at 50% var(--cy), rgba(255,255,255,0) 0%, rgba(15,38,67,.3) 100%),
       linear-gradient(180deg, rgba(15,38,67,.5) 0%, rgba(15,38,67,.15) 25%, rgba(15,38,67,.6) 48%, rgba(15,38,67,.97) 62%); }
-  .v6 .hero6__title { transform: translate(-50%, calc(-50% - var(--pw) * .74 - 30px)) translate3d(0, calc(var(--hs) * 60px), 0); }
+  .v6 .hero6__title { transform: translate(-50%, calc(-50% - var(--pw) * .83 - 30px)) translate3d(0, calc(var(--hs) * 60px), 0); }
   .v6 .hero6__word { font-size: clamp(3.2rem, 16.4vw, 9rem); }
   .v6 .hero6__pre { font-size: .95rem; }
   .v6 .hero6__beam { height: 220px; }
-  .v6 .hero6__ui { grid-row: 1; flex-direction: column; align-items: stretch; gap: 22px; padding-top: calc(var(--cy) + var(--pw) * .74 + 58px); padding-bottom: 22px; opacity: 1; }
+  .v6 .hero6__ui { grid-row: 1; flex-direction: column; align-items: stretch; gap: 22px; padding-top: calc(var(--cy) + var(--pw) * .83 + 58px); padding-bottom: 22px; opacity: 1; }
   .v6 .hero6__intro { max-width: none; gap: 10px; }
   .v6 .hero6__buy { justify-items: stretch; gap: 12px; }
   .v6 .hero6__buy .badge5 { justify-self: start; }
@@ -147,7 +147,7 @@
   .v6 .hero6 .pouch__float { animation: none; }
 }
 @media (prefers-reduced-motion: reduce) and (max-width: 989px) {
-  .v6 .hero6__title { transform: translate(-50%, calc(-50% - var(--pw) * .74 - 30px)); }
+  .v6 .hero6__title { transform: translate(-50%, calc(-50% - var(--pw) * .83 - 30px)); }
 }
 
 /* ---------- 4. Brouillon 7 : clarté pour un premier visiteur ---------- */
@@ -209,3 +209,14 @@
 .v3 .buy__row--packs { grid-template-columns: 1fr; }
 .v3 .buy__row--packs .btn { width: 100%; }
 @media (max-width: 479px) { .v3 .pack__card { gap: 12px; padding: 14px 16px 14px 14px; } .v3 .pack__name { font-size: 1rem; } }
+
+/* 7. Tableau nutritionnel à 3 colonnes (paquet final) */
+.v3 .acc__row--3 { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 4px 14px; align-items: baseline; }
+.v3 .acc__row--3 b { min-width: 6.5em; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.v3 .acc__row--sub span { padding-left: 12px; }
+.v3 .acc__row--head { border-bottom-style: solid; font-size: .82em; letter-spacing: .06em; text-transform: uppercase; }
+.v3 .acc__row--head b { font-weight: 700; }
+@media (max-width: 420px) { .v3 .acc__row--3 { font-size: .9em; } .v3 .acc__row--3 b { min-width: 4.6em; } .v3 .acc__row--3 { gap: 4px 10px; } }
+
+/* 8. Sachet final : proportions réelles du paquet */
+.v3 .pouch { aspect-ratio: 600 / 990; }

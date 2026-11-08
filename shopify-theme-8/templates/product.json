@@ -3,10 +3,10 @@
     "main": {
       "type": "vz5-acheter",
       "settings": {
-        "front": "shopify://shop_images/voltiz-sachet-v2-face.webp",
-        "back": "shopify://shop_images/voltiz-sachet-v2-dos.webp",
+        "front": "shopify://shop_images/voltiz-sachet-final-face.webp",
+        "back": "shopify://shop_images/voltiz-sachet-final-dos.webp",
         "heading": "Voltiz Maté Citron",
-        "sub": "Complément alimentaire à mâcher. 50 mg de caféine par pièce, sans sucre. [À COMPLÉTER : nombre] pièces par sachet.",
+        "sub": "Complément alimentaire à base de maté et de caféine, avec édulcorants. 40 mg de caféine par gomme, sans sucre, vegan. 20 gommes par sachet (40 g).",
         "anchor": "precommande",
         "kicker": "Précommande",
         "button_label": "Précommander",
@@ -29,21 +29,21 @@
           "type": "panel",
           "settings": {
             "title": "Ingrédients et valeurs nutritionnelles",
-            "text": "Extrait de yerba maté, caféine, arôme, vitamine B12. [À COMPLÉTER : liste complète du fabricant]\nCaféine | 50 mg par pièce\nSucres | 0 g\nÉnergie | [À COMPLÉTER]\nVitamine B12 | [À COMPLÉTER]"
+            "text": "Gélifiant (gomme arabique), édulcorants (sirop de sorbitol, sirop de maltitol), eau, extrait de maté (3,8 %), caféine (1,3 %), acidifiant (acide citrique), arômes, huile essentielle de citron, édulcorant (glycosides de stéviol), huile de coco, agent d’enrobage (cire de carnauba), vitamine B12.\nValeurs nutritives : | 100 g | 5 gommes\nÉnergie | 803 kJ / 195 kcal | 100 kJ / 24 kcal\nMatières grasses | 0,1 g | < 0,1 g\ndont acides gras saturés | 0,1 g | < 0,1 g\nGlucides | 48,6 g | 6,1 g\ndont sucres | 0 g | 0 g\ndont polyols | 45,4 g | 5,7 g\nFibres alimentaires | 33,1 g | 4,1 g\nProtéines | 1,0 g | 0,1 g\nSel | 0,7 g | 0,09 g\nCaféine | 1600 mg | 200 mg\nVitamine B12 | 12,4 µg (496 %*) | 1,55 µg (62 %*)\n* VNR : valeur nutritionnelle de référence. 5 gommes = 12,5 g."
           }
         },
         "b_2": {
           "type": "panel",
           "settings": {
             "title": "Utilisation",
-            "text": "Mâche une pièce tranquillement : la caféine est absorbée directement dans la bouche et l’effet se fait sentir en 5 à 10 minutes.\n1 pièce = 50 mg de caféine, à peu près un expresso."
+            "text": "1 dose = 2 gommes (80 mg de caféine). Mâche 1 dose au besoin : la caféine est absorbée directement dans la bouche et l’effet se fait sentir en 5 à 10 minutes.\nDose journalière recommandée : 5 gommes au maximum (200 mg de caféine)."
           }
         },
         "b_3": {
           "type": "panel",
           "settings": {
             "title": "Précautions",
-            "text": "Complément alimentaire. Contient de la caféine (50 mg par pièce). Déconseillé aux enfants, aux femmes enceintes ou allaitantes et aux personnes sensibles à la caféine.\nNe pas dépasser la dose journalière recommandée : [À COMPLÉTER : nombre de pièces] par jour.\nUn complément alimentaire ne remplace pas une alimentation variée et équilibrée ni un mode de vie sain.\nTenir hors de portée des jeunes enfants."
+            "text": "Complément alimentaire. Contient de la caféine (40 mg par gomme). Déconseillé aux enfants et aux femmes enceintes ou allaitantes (200 mg de caféine par dose journalière de 5 gommes), ainsi qu’aux personnes sensibles à la caféine.\nNe pas dépasser la dose journalière recommandée. Ne pas associer à d’autres produits contenant de la caféine.\nUne consommation excessive peut avoir des effets laxatifs.\nUn complément alimentaire ne remplace pas une alimentation variée et équilibrée.\nTenir hors de portée des jeunes enfants."
           }
         },
         "b_4": {
@@ -71,29 +71,29 @@
         "b_1": {
           "type": "question",
           "settings": {
-            "question": "C’est quoi, Voltiz ?",
-            "answer": "Un complément alimentaire à mâcher, au maté, goût citron. Chaque pièce contient 50 mg de caféine et de la vitamine B12, sans sucre. Fabriqué en Suisse."
+            "question": "C’est quoi, Voltiz ?",
+            "answer": "Un complément alimentaire à mâcher, à base de maté et de caféine, avec édulcorants, goût citron. Chaque gomme contient 40 mg de caféine et de la vitamine B12, sans sucre. Vegan, fabriqué en Suisse."
           }
         },
         "b_2": {
           "type": "question",
           "settings": {
-            "question": "Qu’est-ce qu’il y a dans un sachet ?",
-            "answer": "[À COMPLÉTER : nombre] pièces par sachet. 1 sachet : CHF 7.50, 2 sachets : CHF 15.–, 3 sachets : CHF 20.–, 5 sachets : CHF 30.– (4 achetés + 1 offert)."
+            "question": "Qu’est-ce qu’il y a dans un sachet ?",
+            "answer": "20 gommes, soit 40 g. 1 sachet : CHF 7.50, 2 sachets : CHF 15.–, 3 sachets : CHF 20.–, 5 sachets : CHF 30.– (4 achetés + 1 offert)."
           }
         },
         "b_3": {
           "type": "question",
           "settings": {
-            "question": "Quels sont les ingrédients ?",
-            "answer": "Extrait de yerba maté, caféine, arôme, vitamine B12. Liste complète du fabricant : [À COMPLÉTER]."
+            "question": "Quels sont les ingrédients ?",
+            "answer": "Gélifiant (gomme arabique), édulcorants (sirop de sorbitol, sirop de maltitol), eau, extrait de maté (3,8 %), caféine (1,3 %), acidifiant (acide citrique), arômes, huile essentielle de citron, édulcorant (glycosides de stéviol), huile de coco, agent d’enrobage (cire de carnauba), vitamine B12."
           }
         },
         "b_4": {
           "type": "question",
           "settings": {
-            "question": "Ça a quel goût ?",
-            "answer": "Citron. L’arôme masque l’amertume de la caféine."
+            "question": "Ça a quel goût ?",
+            "answer": "Citron, avec de l’huile essentielle de citron. Les arômes masquent l’amertume de la caféine."
           }
         },
         "b_5": {
@@ -106,15 +106,15 @@
         "b_6": {
           "type": "question",
           "settings": {
-            "question": "Combien de pièces par jour ?",
-            "answer": "Une pièce contient 50 mg de caféine, à peu près un expresso. Ne dépasse pas [À COMPLÉTER : nombre de pièces] par jour et pense au café, au thé et aux boissons que tu bois aussi."
+            "question": "Combien de gommes par jour ?",
+            "answer": "1 dose = 2 gommes (80 mg de caféine), à mâcher au besoin. Ne dépasse pas 5 gommes par jour (200 mg de caféine) et pense au café, au thé et aux boissons que tu bois aussi."
           }
         },
         "b_7": {
           "type": "question",
           "settings": {
-            "question": "Qui ne devrait pas en prendre ?",
-            "answer": "Les enfants, les femmes enceintes ou allaitantes et les personnes sensibles à la caféine."
+            "question": "Qui ne devrait pas en prendre ?",
+            "answer": "Les enfants, les femmes enceintes ou allaitantes et les personnes sensibles à la caféine. Ne l’associe pas à d’autres produits contenant de la caféine."
           }
         },
         "b_8": {
