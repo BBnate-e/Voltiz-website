@@ -12,14 +12,17 @@
         "button_label": "Précommander",
         "bar_label": "Précommander",
         "sticky": true,
-        "unit_label": "le sachet",
-        "fallback_price": "CHF 5.00",
+        "unit_label": "",
+        "fallback_price": "CHF 7.50",
         "closed_label": "Bientôt disponible",
         "infos": "Livraison partout en Suisse\nFrais de port affichés avant le paiement\nPaiement sécurisé",
         "preorder_title": "Comment marche la précommande",
         "preorder_text": "Tu réserves ton sachet maintenant, avant la sortie officielle.\nLe paiement se fait à la commande, par la caisse sécurisée Shopify.\nExpédition prévue : [À COMPLÉTER : date ou période d’expédition].\nTu reçois une confirmation de commande par e-mail.",
         "terms_label": "Conditions de précommande, d’annulation et de retour",
-        "terms_missing": "[À COMPLÉTER : politique d’annulation et de retour dans Shopify]"
+        "terms_missing": "[À COMPLÉTER : politique d’annulation et de retour dans Shopify]",
+        "packs": true,
+        "best_label": "Meilleure offre",
+        "best_note": "4 achetés + 1 offert"
       },
       "blocks": {
         "b_1": {
@@ -76,7 +79,7 @@
           "type": "question",
           "settings": {
             "question": "Qu’est-ce qu’il y a dans un sachet ?",
-            "answer": "[À COMPLÉTER : nombre] pièces par sachet, pour CHF 5.00."
+            "answer": "[À COMPLÉTER : nombre] pièces par sachet. 1 sachet : CHF 7.50, 2 sachets : CHF 15.–, 3 sachets : CHF 20.–, 5 sachets : CHF 30.– (4 achetés + 1 offert)."
           }
         },
         "b_3": {

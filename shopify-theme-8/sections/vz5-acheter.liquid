@@ -45,7 +45,29 @@
         </p>
 
         {%- capture buy_fields -%}
-          {%- if product != blank and product.has_only_default_variant == false -%}
+          {%- if section.settings.packs and product != blank and product.has_only_default_variant == false -%}
+            {%- comment -%} Brouillon 8 : choix limité aux formats du produit (1, 2, 3 ou 5 paquets), sans quantité libre. {%- endcomment -%}
+            <fieldset class="packs" data-vz-packs>
+              <legend class="label">{{ product.options.first }}</legend>
+              {%- for v in product.variants -%}
+                {%- assign n = v.title | split: ' ' | first | plus: 0 -%}
+                {%- assign best = false -%}
+          {%- assign per = v.price | times: 1.0 | divided_by: n | round -%}
+                {%- if forloop.last and product.variants.size > 2 -%}{%- assign best = true -%}{%- endif -%}
+                <label class="pack{% if best %} pack--best{% endif %}">
+                  <input type="radio" name="id" value="{{ v.id }}" data-price="{{ v.price }}"{% if v.id == current.id %} checked{% endif %}{% unless v.available %} disabled{% endunless %}>
+                  <span class="pack__card">
+                    {%- if best and section.settings.best_label != blank -%}<span class="pack__tag">{{ section.settings.best_label }}</span>{%- endif -%}
+                    <span class="pack__name">{{ v.title }}
+                      {%- if best and section.settings.best_note != blank -%}<small>{{ section.settings.best_note }}</small>
+                      {%- elsif n > 1 and per < product.variants.first.price -%}<small>{% render 'vz-tr', k: 'each_a' %} {{ per | money }} {% render 'vz-tr', k: 'each_b' %}</small>{%- endif -%}
+                    </span>
+                    <span class="pack__price">{{ v.price | money }}</span>
+                  </span>
+                </label>
+              {%- endfor -%}
+            </fieldset>
+          {%- elsif product != blank and product.has_only_default_variant == false -%}
             <fieldset class="variants">
               <legend class="label">{{ product.options.first }}</legend>
               {%- for v in product.variants -%}
@@ -61,13 +83,15 @@
           {%- if section.settings.preorder_property != blank -%}
             <input type="hidden" name="properties[{{ section.settings.preorder_property | escape }}]" value="{{ section.settings.preorder_value | escape }}">
           {%- endif -%}
-          <div class="buy__row">
+          <div class="buy__row{% if section.settings.packs %} buy__row--packs{% endif %}">
+            {%- unless section.settings.packs -%}
             <div class="qty">
               <button type="button" class="qty__btn" data-step="-1" aria-label="{% render 'vz-tr', k: 'less' %}"><svg aria-hidden="true"><use href="#i-minus"/></svg></button>
               <label class="sr-only" for="qty-{{ section.id }}">{% render 'vz-tr', k: 'qty' %}</label>
               <input id="qty-{{ section.id }}" name="quantity" type="number" inputmode="numeric" min="1" max="{{ section.settings.max_qty }}" value="1">
               <button type="button" class="qty__btn" data-step="1" aria-label="{% render 'vz-tr', k: 'more' %}"><svg aria-hidden="true"><use href="#i-plus"/></svg></button>
             </div>
+            {%- endunless -%}
             {%- if on_sale -%}
               <button class="btn btn--wide" type="submit">{{ section.settings.button_label }}<svg aria-hidden="true"><use href="#i-bag"/></svg></button>
             {%- else -%}
@@ -77,6 +101,18 @@
         {%- endcapture -%}
         {%- if product != blank -%}
           {%- form 'product', product, id: 'vz-buy', class: 'buy__form', data-money-format: shop.money_format, data-max: section.settings.max_qty, novalidate: 'novalidate' -%}{{ buy_fields }}{%- endform -%}
+          {%- if section.settings.packs -%}
+            <script>{%- raw -%}
+              (function () {
+                var f = document.getElementById('vz-buy'); if (!f) return;
+                var fmt = f.dataset.moneyFormat || '';
+                var fmtMoney = function (c) { var a = (c / 100).toFixed(2); return fmt.indexOf('{{') > -1 ? fmt.replace(/\{\{\s*\w+\s*\}\}/, a) : 'CHF ' + a; };
+                f.querySelectorAll('[data-vz-packs] input').forEach(function (r) { r.addEventListener('change', function () {
+                  document.querySelectorAll('[data-vz-total]').forEach(function (el) { el.textContent = fmtMoney(parseInt(r.dataset.price, 10) || 0); });
+                }); });
+              })();
+            {%- endraw -%}</script>
+          {%- endif -%}
         {%- else -%}
           <div class="buy__form">{{ buy_fields }}</div>
         {%- endif -%}
@@ -134,7 +170,7 @@
   {%- if section.settings.sticky -%}
     <div class="bar" data-vz-bar aria-hidden="true">
       <div class="bar__in">
-        <p class="bar__name"><b>{{ section.settings.heading }}</b>{%- if product != blank -%}<span>{{ current.price | money }}</span>{%- endif -%}</p>
+        <p class="bar__name"><b>{{ section.settings.heading }}</b>{%- if product != blank -%}<span data-vz-total>{{ current.price | money }}</span>{%- endif -%}</p>
         <a class="btn btn--sm" href="#{{ section.settings.anchor }}" tabindex="-1">{{ section.settings.bar_label }}</a>
       </div>
     </div>
@@ -145,6 +181,9 @@
 {
   "name": "Voltiz 5 : précommande",
   "settings": [
+    { "type": "checkbox", "id": "packs", "label": "Formats fixes (tableau de paquets, sans quantité libre)", "default": false },
+    { "type": "text", "id": "best_label", "label": "Étiquette du dernier format", "default": "Meilleure offre" },
+    { "type": "text", "id": "best_note", "label": "Précision du dernier format", "default": "4 achetés + 1 offert" },
     { "type": "text", "id": "anchor", "label": "Ancre", "default": "precommande" },
     { "type": "product", "id": "product", "label": "Produit" },
     { "type": "image_picker", "id": "front", "label": "Sachet, face avant" },

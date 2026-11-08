@@ -152,7 +152,7 @@
           "type": "question",
           "settings": {
             "question": "Qu’est-ce qu’il y a dans un sachet ?",
-            "answer": "[À COMPLÉTER : nombre] pièces par sachet, pour CHF 5.00."
+            "answer": "[À COMPLÉTER : nombre] pièces par sachet. 1 sachet : CHF 7.50, 2 sachets : CHF 15.–, 3 sachets : CHF 20.–, 5 sachets : CHF 30.– (4 achetés + 1 offert)."
           }
         },
         "b_3": {
