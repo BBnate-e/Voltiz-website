@@ -1,0 +1,87 @@
+{%- comment -%}
+  Brouillon 8 : ajout du sélecteur de langue (formulaire « localization » de Shopify ; un petit script ferme la liste au clic extérieur ou avec Échap).
+  En-tête du brouillon 5 : logo officiel, liens courts, panier et bouton Précommander.
+  Sur téléphone, les liens passent dans un menu ; le panier et le bouton restent visibles.
+{%- endcomment -%}
+{%- capture vz_links -%}
+  {%- for block in section.blocks -%}
+    {%- liquid
+      assign current = false
+      if block.settings.target == request.path
+        assign current = true
+      endif
+    -%}
+    <a href="{{ block.settings.target }}"{% if current %} aria-current="page"{% endif %} {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+  {%- endfor -%}
+{%- endcapture -%}
+<div class="v3 v5 v3-header">
+  {% render 'voltiz-sprite' %}
+  <a class="skip" href="#MainContent">{% render 'vz-tr', k: 'skip' %}</a>
+  <header class="nav" data-vz-nav>
+    <div class="wrap nav__in">
+      <a class="nav__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}, {% render 'vz-tr', k: 'home' %}">
+        <svg viewBox="0 0 1110 529" aria-hidden="true"><use href="#logo"/></svg>
+      </a>
+      <nav class="nav__links" aria-label="{% render 'vz-tr', k: 'nav' %}">{{ vz_links }}</nav>
+      <div class="nav__end">
+        {%- if localization.available_languages.size > 1 -%}
+          {%- form 'localization', id: 'vz-lang-form', class: 'lang' -%}
+            <details class="lang__menu" data-vz-lang>
+              <summary class="lang__btn" aria-label="{% render 'vz-tr', k: 'lang' %} : {{ localization.language.endonym_name | escape }}">
+                <span>{{ localization.language.iso_code | upcase }}</span>
+                <svg class="lang__chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </summary>
+              <ul class="lang__list" role="list">
+                {%- for l in localization.available_languages -%}
+                  <li><button type="submit" name="language_code" value="{{ l.iso_code }}" lang="{{ l.iso_code }}"{% if l.iso_code == localization.language.iso_code %} aria-current="true"{% endif %}><span class="lang__code">{{ l.iso_code | upcase }}</span>{{ l.endonym_name | capitalize }}</button></li>
+                {%- endfor -%}
+              </ul>
+            </details>
+          {%- endform -%}
+        {%- endif -%}
+        <a class="nav__cart" href="{{ routes.cart_url }}" aria-label="{% render 'vz-tr', k: 'cart' %}, {{ cart.item_count }} {% if cart.item_count > 1 %}{% render 'vz-tr', k: 'items' %}{% else %}{% render 'vz-tr', k: 'item' %}{% endif %}">
+          <svg aria-hidden="true"><use href="#i-bag"/></svg>
+          {%- if cart.item_count > 0 -%}<span class="nav__count" aria-hidden="true">{{ cart.item_count }}</span>{%- endif -%}
+        </a>
+        {%- if section.settings.cta_label != blank -%}
+          <a class="btn btn--sm nav__cta" href="{{ section.settings.cta_link }}">{{ section.settings.cta_label }}</a>
+        {%- endif -%}
+        <details class="menu">
+          <summary aria-label="{% render 'vz-tr', k: 'menu' %}"><span></span><span></span></summary>
+          <nav class="menu__panel" aria-label="{% render 'vz-tr', k: 'menu' %}">{{ vz_links }}</nav>
+        </details>
+      </div>
+    </div>
+  </header>
+  <script>
+    (function () {
+      var m = document.querySelector('[data-vz-lang]');
+      if (!m) return;
+      document.addEventListener('click', function (e) { if (m.open && !m.contains(e.target)) m.open = false; });
+      m.addEventListener('keydown', function (e) { if (e.key === 'Escape' && m.open) { m.open = false; m.querySelector('summary').focus(); } });
+    })();
+  </script>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz 5 : en-tête",
+  "class": "v3-header-section",
+  "settings": [
+    { "type": "text", "id": "cta_label", "label": "Texte du bouton", "default": "Précommander" },
+    { "type": "text", "id": "cta_link", "label": "Lien du bouton", "default": "/#precommande" }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Lien",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Texte", "default": "Le produit" },
+        { "type": "text", "id": "target", "label": "Lien", "default": "/#precommande" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "enabled_on": { "groups": ["header"] }
+}
+{% endschema %}

@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "apropos": {
+      "type": "vz3-texte",
+      "settings": {
+        "kicker": "À propos",
+        "heading": "L’histoire de Voltiz.",
+        "text": "[À COMPLÉTER : texte de Cloé]"
+      }
+    }
+  },
+  "order": [
+    "apropos"
+  ]
+}

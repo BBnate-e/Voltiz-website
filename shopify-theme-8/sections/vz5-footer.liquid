@@ -1,0 +1,94 @@
+{%- comment -%}
+  Pied de page du brouillon 5 : logo officiel et slogan, boutique, aide, légal, réseaux s'ils sont remplis.
+  Les politiques Shopify (livraison, retours, CGV, confidentialité, mentions légales) n'apparaissent que si elles existent ;
+  dans l'éditeur, celles qui manquent sont signalées pour ne pas les oublier.
+{%- endcomment -%}
+{%- liquid
+  assign lp = ''
+  if routes.root_url != '/'
+    assign lp = routes.root_url
+  endif
+-%}
+<div class="v3 v5">
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot__grid">
+        <div class="foot__brand">
+          <svg class="foot__logo" viewBox="0 0 1110 529" role="img" aria-label="{{ shop.name | escape }}"><use href="#logo"/></svg>
+          <p class="foot__slogan">{{ section.settings.slogan }}</p>
+        </div>
+        <div class="foot__col">
+          <p class="label">{% render 'vz-tr', k: 'shop' %}</p>
+          <ul role="list">
+            <li><a href="{{ section.settings.shop_link }}">{% render 'vz-tr', k: 'preorder' %}</a></li>
+            <li><a href="{{ lp }}/pages/composition">{% render 'vz-tr', k: 'composition' %}</a></li>
+            <li><a href="{{ lp }}/pages/a-propos">{% render 'vz-tr', k: 'about' %}</a></li>
+          </ul>
+        </div>
+        <div class="foot__col">
+          <p class="label">Contact</p>
+          <ul role="list">
+            {%- if shop.email != blank -%}<li><a href="mailto:{{ shop.email }}">{{ shop.email }}</a></li>{%- endif -%}
+            <li><a href="{{ lp }}/pages/contact">{% render 'vz-tr', k: 'write' %}</a></li>
+          </ul>
+        </div>
+        <div class="foot__col">
+          <p class="label">{% render 'vz-tr', k: 'help' %}</p>
+          <ul role="list">
+            <li><a href="{{ section.settings.faq_link }}">FAQ</a></li>
+            {%- if shop.shipping_policy.body != blank -%}<li><a href="{{ shop.shipping_policy.url }}">{{ section.settings.shipping_label }}</a></li>{%- endif -%}
+            {%- if shop.refund_policy.body != blank -%}<li><a href="{{ shop.refund_policy.url }}">{{ section.settings.refund_label }}</a></li>{%- endif -%}
+            {%- if request.design_mode -%}
+              {%- if shop.shipping_policy.body == blank -%}<li><mark class="todo">{% render 'vz-tr', k: 'todo_shipping' %}</mark></li>{%- endif -%}
+              {%- if shop.refund_policy.body == blank -%}<li><mark class="todo">{% render 'vz-tr', k: 'todo_refund' %}</mark></li>{%- endif -%}
+            {%- endif -%}
+          </ul>
+        </div>
+        <div class="foot__col">
+          <p class="label">{% render 'vz-tr', k: 'legal' %}</p>
+          <ul role="list">
+            {%- if shop.terms_of_service.body != blank -%}<li><a href="{{ shop.terms_of_service.url }}">{{ shop.terms_of_service.title }}</a></li>{%- endif -%}
+            {%- if shop.privacy_policy.body != blank -%}<li><a href="{{ shop.privacy_policy.url }}">{{ shop.privacy_policy.title }}</a></li>{%- endif -%}
+            {%- if shop.legal_notice.body != blank -%}<li><a href="{{ shop.legal_notice.url }}">{{ shop.legal_notice.title }}</a></li>{%- endif -%}
+            {%- if request.design_mode -%}
+              {%- if shop.terms_of_service.body == blank -%}<li><mark class="todo">{% render 'vz-tr', k: 'todo_terms' %}</mark></li>{%- endif -%}
+              {%- if shop.legal_notice.body == blank -%}<li><mark class="todo">{% render 'vz-tr', k: 'todo_legal' %}</mark></li>{%- endif -%}
+            {%- endif -%}
+          </ul>
+        </div>
+        {%- if section.settings.instagram != blank or section.settings.tiktok != blank -%}
+          <div class="foot__col">
+            <p class="label">{% render 'vz-tr', k: 'social' %}</p>
+            <ul role="list">
+              {%- if section.settings.instagram != blank -%}<li><a href="{{ section.settings.instagram }}" target="_blank" rel="noopener">Instagram</a></li>{%- endif -%}
+              {%- if section.settings.tiktok != blank -%}<li><a href="{{ section.settings.tiktok }}" target="_blank" rel="noopener">TikTok</a></li>{%- endif -%}
+            </ul>
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="foot__bottom">
+        <p>{% render 'voltiz-t', t: section.settings.caffeine_text %}</p>
+        <p>{% render 'voltiz-t', t: section.settings.legal_text %}</p>
+        <p class="foot__copy"><svg class="ch" aria-hidden="true"><use href="#ch"/></svg>© {{ 'now' | date: '%Y' }} {{ shop.name | escape }}. {% render 'vz-tr', k: 'copy' %}</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz 5 : pied de page",
+  "settings": [
+    { "type": "text", "id": "slogan", "label": "Slogan", "default": "Partout, à tout moment." },
+    { "type": "text", "id": "faq_link", "label": "Lien FAQ", "default": "/#faq" },
+    { "type": "text", "id": "shop_link", "label": "Lien Précommander", "default": "/#precommande" },
+    { "type": "text", "id": "refund_label", "label": "Texte du lien retours", "default": "Retours et annulation" },
+    { "type": "text", "id": "shipping_label", "label": "Texte du lien livraison", "default": "Livraison" },
+    { "type": "url", "id": "instagram", "label": "Lien Instagram" },
+    { "type": "url", "id": "tiktok", "label": "Lien TikTok" },
+    { "type": "text", "id": "caffeine_text", "label": "Texte caféine", "default": "Contient de la caféine (50 mg par pièce). Déconseillé aux enfants, aux femmes enceintes ou allaitantes et aux personnes sensibles à la caféine." },
+    { "type": "text", "id": "legal_text", "label": "Mentions légales", "default": "[À COMPLÉTER : nom et adresse du responsable de la boutique]" }
+  ],
+  "enabled_on": { "groups": ["footer"] }
+}
+{% endschema %}

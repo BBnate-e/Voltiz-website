@@ -5,7 +5,8 @@
     "vz5_header": {
       "type": "vz5-header",
       "settings": {
-        "cta_link": "/products/voltiz-energy-gum"
+        "cta_link": "/products/voltiz-energy-gum",
+        "cta_label": "Précommander"
       },
       "blocks": {
         "l1": {

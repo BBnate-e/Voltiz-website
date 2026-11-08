@@ -5,14 +5,31 @@
     "vz5_footer": {
       "type": "vz5-footer",
       "settings": {
-        "shop_link": "/products/voltiz-energy-gum"
+        "shop_link": "/products/voltiz-energy-gum",
+        "slogan": "Partout, à tout moment.",
+        "faq_link": "/#faq",
+        "refund_label": "Retours et annulation",
+        "shipping_label": "Livraison",
+        "caffeine_text": "Contient de la caféine (50 mg par pièce). Déconseillé aux enfants, aux femmes enceintes ou allaitantes et aux personnes sensibles à la caféine.",
+        "legal_text": "[À COMPLÉTER : nom et adresse du responsable de la boutique]"
       }
     },
     "vz5_popup": {
       "type": "vz5-popup",
       "settings": {
         "delay": 40,
-        "redirect": "/products/voltiz-energy-gum"
+        "redirect": "/products/voltiz-energy-gum",
+        "kicker": "Ta première commande Voltiz",
+        "title": "-10 % pour toi.",
+        "text": "Rejoins la communauté Voltiz et reçois 10 % de réduction sur ta première commande.",
+        "consent": "J’accepte de recevoir la newsletter Voltiz par e-mail (nouveautés et offres). Désabonnement possible à tout moment.",
+        "privacy_label": "Politique de confidentialité",
+        "button": "Obtenir mes -10 %",
+        "skip": "Non merci",
+        "success_kicker": "Bienvenue chez Voltiz",
+        "success_title": "Voici ton code -10 %",
+        "apply_label": "Appliquer à mon panier",
+        "success_text": "Valable une fois par client, sur ta première commande. Le code s’applique aussi à la caisse."
       }
     }
   },

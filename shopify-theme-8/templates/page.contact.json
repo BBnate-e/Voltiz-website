@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "contact": {
+      "type": "vz3-texte",
+      "settings": {
+        "kicker": "Contact",
+        "heading": "Une question ? Écris-nous.",
+        "text": "Sur le produit, ta commande ou la livraison : on te répond par e-mail.",
+        "show_email": true
+      }
+    }
+  },
+  "order": [
+    "contact"
+  ]
+}

@@ -1,0 +1,79 @@
+{%- comment -%}
+  Brouillon 8 : petits textes fixes du thème en français et en anglais (boutons, libellés pour lecteurs d'écran, pied de page).
+  Utilisation : {% render 'vz-tr', k: 'cle' %}. Les textes modifiables dans l'éditeur se traduisent dans Paramètres > Langues.
+{%- endcomment -%}
+{%- if request.locale.iso_code == 'en' -%}
+  {%- case k -%}
+    {%- when 'skip' -%}Skip to content
+    {%- when 'home' -%}home page
+    {%- when 'nav' -%}Main navigation
+    {%- when 'menu' -%}Menu
+    {%- when 'cart' -%}Cart
+    {%- when 'item' -%}item
+    {%- when 'items' -%}items
+    {%- when 'lang' -%}Language
+    {%- when 'photos' -%}Pouch photos
+    {%- when 'front' -%}Front
+    {%- when 'back' -%}Back
+    {%- when 'qty' -%}Quantity
+    {%- when 'less' -%}One less
+    {%- when 'more' -%}One more
+    {%- when 'shop' -%}Shop
+    {%- when 'preorder' -%}Pre-order
+    {%- when 'composition' -%}Ingredients
+    {%- when 'about' -%}About
+    {%- when 'write' -%}Write to us
+    {%- when 'help' -%}Help
+    {%- when 'legal' -%}Legal
+    {%- when 'social' -%}Social
+    {%- when 'todo_shipping' -%}[TO CREATE: shipping policy]
+    {%- when 'todo_refund' -%}[TO CREATE: returns and cancellation]
+    {%- when 'todo_terms' -%}[TO CREATE: terms of sale]
+    {%- when 'todo_legal' -%}[TO CREATE: legal notice]
+    {%- when 'copy' -%}Swiss made. Secure payment by Shopify.
+    {%- when 'close' -%}Close
+    {%- when 'copy_btn' -%}Copy
+    {%- when 'copied' -%}Copied
+    {%- when 'email' -%}Email address
+    {%- when 'email_ph' -%}you@email.com
+    {%- when 'pouch' -%}Voltiz pouch
+    {%- when 'drag' -%}Drag to turn it.
+  {%- endcase -%}
+{%- else -%}
+  {%- case k -%}
+    {%- when 'skip' -%}Aller au contenu
+    {%- when 'home' -%}page d’accueil
+    {%- when 'nav' -%}Navigation principale
+    {%- when 'menu' -%}Menu
+    {%- when 'cart' -%}Panier
+    {%- when 'item' -%}article
+    {%- when 'items' -%}articles
+    {%- when 'lang' -%}Langue
+    {%- when 'photos' -%}Photos du sachet
+    {%- when 'front' -%}Face avant
+    {%- when 'back' -%}Dos
+    {%- when 'qty' -%}Quantité
+    {%- when 'less' -%}Un de moins
+    {%- when 'more' -%}Un de plus
+    {%- when 'shop' -%}Boutique
+    {%- when 'preorder' -%}Précommander
+    {%- when 'composition' -%}Composition
+    {%- when 'about' -%}À propos
+    {%- when 'write' -%}Nous écrire
+    {%- when 'help' -%}Aide
+    {%- when 'legal' -%}Légal
+    {%- when 'social' -%}Réseaux
+    {%- when 'todo_shipping' -%}[À CRÉER : politique d’expédition]
+    {%- when 'todo_refund' -%}[À CRÉER : retours et annulation]
+    {%- when 'todo_terms' -%}[À CRÉER : conditions générales de vente]
+    {%- when 'todo_legal' -%}[À CRÉER : mentions légales]
+    {%- when 'copy' -%}Swiss made. Paiement sécurisé par Shopify.
+    {%- when 'close' -%}Fermer
+    {%- when 'copy_btn' -%}Copier
+    {%- when 'copied' -%}Copié
+    {%- when 'email' -%}Adresse e-mail
+    {%- when 'email_ph' -%}ton@email.ch
+    {%- when 'pouch' -%}Sachet Voltiz
+    {%- when 'drag' -%}Glisse pour le faire tourner.
+  {%- endcase -%}
+{%- endif -%}
