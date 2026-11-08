@@ -1,0 +1,23 @@
+{
+  "type": "footer",
+  "name": "Pied de page",
+  "sections": {
+    "vz5_footer": {
+      "type": "vz5-footer",
+      "settings": {
+        "shop_link": "/products/voltiz-energy-gum"
+      }
+    },
+    "vz5_popup": {
+      "type": "vz5-popup",
+      "settings": {
+        "delay": 40,
+        "redirect": "/products/voltiz-energy-gum"
+      }
+    }
+  },
+  "order": [
+    "vz5_footer",
+    "vz5_popup"
+  ]
+}
