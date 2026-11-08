@@ -1,0 +1,284 @@
+{
+  "sections": {
+    "hero": {
+      "type": "vz6-hero",
+      "settings": {
+        "product": "voltiz-energy-gum",
+        "front": "shopify://shop_images/voltiz-sachet-v2-face.webp",
+        "back": "shopify://shop_images/voltiz-sachet-v2-dos.webp",
+        "background": "shopify://shop_images/photo-1697555678219-150263ca9037.jpg",
+        "background_position": "object-position: 50% 50%",
+        "lead": "Une pièce à mâcher au maté, goût citron : 50 mg de caféine, à peu près un expresso. Sans sucre, fabriqué en Suisse.",
+        "facts": "50 mg de caféine par pièce | Effet en 5 à 10 min | 0 g de sucre | Fabriqué en Suisse",
+        "link_label": "C’est quoi, Voltiz ?",
+        "link_target": "#produit"
+      }
+    },
+    "produit": {
+      "type": "vz3-produit",
+      "settings": {
+        "kicker": "C’est quoi, Voltiz ?",
+        "heading": "Un complément alimentaire, à mâcher.",
+        "front": "shopify://shop_images/voltiz-sachet-v2-face.webp",
+        "back": "shopify://shop_images/voltiz-sachet-v2-dos.webp"
+      },
+      "blocks": {
+        "b_1": {
+          "type": "step",
+          "settings": {
+            "title": "Une pièce à mâcher.",
+            "text": "Un complément alimentaire au maté, goût citron. Tu la mâches, c’est tout : rien à préparer, rien à boire.",
+            "detail": "Goût citron",
+            "side": "front"
+          }
+        },
+        "b_2": {
+          "type": "step",
+          "settings": {
+            "title": "50 mg de caféine.",
+            "text": "À peu près autant qu’un expresso, sans sucre. Avec de la vitamine B12, qui contribue à réduire la fatigue.",
+            "detail": "≈ 1 expresso",
+            "side": "front"
+          }
+        },
+        "b_3": {
+          "type": "step",
+          "settings": {
+            "title": "Effet en 5 à 10 minutes.",
+            "text": "La caféine est absorbée directement dans la bouche.",
+            "detail": "5 à 10 min",
+            "side": "front"
+          }
+        },
+        "b_4": {
+          "type": "step",
+          "settings": {
+            "title": "Toujours sur toi.",
+            "text": "Le sachet plat se glisse dans une poche, un sac de sport ou la boîte à gants. Fabriqué en Suisse.",
+            "detail": "Swiss made",
+            "side": "back"
+          }
+        }
+      },
+      "block_order": [
+        "b_1",
+        "b_2",
+        "b_3",
+        "b_4"
+      ]
+    },
+    "movement": {
+      "type": "vz3-pilier",
+      "settings": {
+        "style": "movement",
+        "anchor": "movement",
+        "number": "01",
+        "name": "Movement",
+        "word": "MOVE",
+        "marker": "Sport et plein air",
+        "image": "shopify://shop_images/photo-1721750475973-4ced61c27d93.jpg",
+        "headline": "Avant le coup d’envoi.",
+        "text": "Une pièce dans la poche avant l’entraînement, le match ou la séance. Rien d’autre à emporter.",
+        "link_label": "Pour ta prochaine sortie",
+        "link_target": "#precommande"
+      }
+    },
+    "focus": {
+      "type": "vz3-pilier",
+      "settings": {
+        "style": "focus",
+        "anchor": "focus",
+        "number": "02",
+        "name": "Focus",
+        "word": "FOCUS",
+        "marker": "Études et travail",
+        "image": "shopify://shop_images/photo-1657772608811-d8d1bb1b6092.jpg",
+        "headline": "Quand la soirée s’allonge.",
+        "text": "Révisions, dossier à rendre, longue route : Voltiz reste à portée de main sur le bureau ou dans la boîte à gants. Pour un long trajet, les pauses restent indispensables.",
+        "link_label": "Voir la composition",
+        "link_target": "/pages/composition"
+      }
+    },
+    "lifestyle": {
+      "type": "vz3-pilier",
+      "settings": {
+        "style": "lifestyle",
+        "anchor": "lifestyle",
+        "number": "03",
+        "name": "Lifestyle",
+        "word": "LIVE",
+        "marker": "Le quotidien, les voyages",
+        "image": "shopify://shop_images/photo-1712513246150-816eadfc3c76.jpg",
+        "front": "shopify://shop_images/voltiz-sachet-v2-face.webp",
+        "back": "shopify://shop_images/voltiz-sachet-v2-dos.webp",
+        "headline": "Partout, à tout moment.",
+        "text": "Sur les pistes, en ville ou en voyage : le sachet tient dans une poche et suit tes journées.",
+        "link_label": "Précommander",
+        "link_target": "#precommande"
+      }
+    },
+    "precommande": {
+      "type": "vz5-acheter",
+      "settings": {
+        "product": "voltiz-energy-gum",
+        "front": "shopify://shop_images/voltiz-sachet-v2-face.webp",
+        "back": "shopify://shop_images/voltiz-sachet-v2-dos.webp",
+        "heading": "Voltiz Maté Citron",
+        "sub": "Complément alimentaire à mâcher. 50 mg de caféine par pièce, sans sucre. [À COMPLÉTER : nombre] pièces par sachet.",
+        "anchor": "precommande",
+        "kicker": "Précommande",
+        "button_label": "Précommander",
+        "bar_label": "Précommander"
+      },
+      "blocks": {
+        "b_1": {
+          "type": "panel",
+          "settings": {
+            "title": "Ingrédients et valeurs nutritionnelles",
+            "text": "Extrait de yerba maté, caféine, arôme, vitamine B12. [À COMPLÉTER : liste complète du fabricant]\nCaféine | 50 mg par pièce\nSucres | 0 g\nÉnergie | [À COMPLÉTER]\nVitamine B12 | [À COMPLÉTER]"
+          }
+        },
+        "b_2": {
+          "type": "panel",
+          "settings": {
+            "title": "Utilisation",
+            "text": "Mâche une pièce tranquillement : la caféine est absorbée directement dans la bouche et l’effet se fait sentir en 5 à 10 minutes.\n1 pièce = 50 mg de caféine, à peu près un expresso."
+          }
+        },
+        "b_3": {
+          "type": "panel",
+          "settings": {
+            "title": "Précautions",
+            "text": "Complément alimentaire. Contient de la caféine (50 mg par pièce). Déconseillé aux enfants, aux femmes enceintes ou allaitantes et aux personnes sensibles à la caféine.\nNe pas dépasser la dose journalière recommandée : [À COMPLÉTER : nombre de pièces] par jour.\nUn complément alimentaire ne remplace pas une alimentation variée et équilibrée ni un mode de vie sain.\nTenir hors de portée des jeunes enfants."
+          }
+        },
+        "b_4": {
+          "type": "panel",
+          "settings": {
+            "title": "Livraison",
+            "text": "Nous livrons partout en Suisse. Les frais de port s’affichent avant le paiement."
+          }
+        }
+      },
+      "block_order": [
+        "b_1",
+        "b_2",
+        "b_3",
+        "b_4"
+      ]
+    },
+    "manifeste": {
+      "type": "vz3-manifeste",
+      "settings": {
+        "kicker": "L’esprit Voltiz",
+        "note": "Partout, à tout moment, c’est l’idée de départ : une énergie qui tient dans la poche, sans canette ni bouteille. Avant l’entraînement, pendant les révisions ou quand la journée s’allonge. Une marque suisse, faite pour suivre tes journées."
+      }
+    },
+    "faq": {
+      "type": "vz3-faq",
+      "settings": {},
+      "blocks": {
+        "b_1": {
+          "type": "question",
+          "settings": {
+            "question": "C’est quoi, Voltiz ?",
+            "answer": "Un complément alimentaire à mâcher, au maté, goût citron. Chaque pièce contient 50 mg de caféine et de la vitamine B12, sans sucre. Fabriqué en Suisse."
+          }
+        },
+        "b_2": {
+          "type": "question",
+          "settings": {
+            "question": "Qu’est-ce qu’il y a dans un sachet ?",
+            "answer": "[À COMPLÉTER : nombre] pièces par sachet, pour CHF 5.00."
+          }
+        },
+        "b_3": {
+          "type": "question",
+          "settings": {
+            "question": "Quels sont les ingrédients ?",
+            "answer": "Extrait de yerba maté, caféine, arôme, vitamine B12. Liste complète du fabricant : [À COMPLÉTER]."
+          }
+        },
+        "b_4": {
+          "type": "question",
+          "settings": {
+            "question": "Ça a quel goût ?",
+            "answer": "Citron. L’arôme masque l’amertume de la caféine."
+          }
+        },
+        "b_5": {
+          "type": "question",
+          "settings": {
+            "question": "En combien de temps je sens l’effet ?",
+            "answer": "La caféine est absorbée directement dans la bouche : compte 5 à 10 minutes."
+          }
+        },
+        "b_6": {
+          "type": "question",
+          "settings": {
+            "question": "Combien de pièces par jour ?",
+            "answer": "Une pièce contient 50 mg de caféine, à peu près un expresso. Ne dépasse pas [À COMPLÉTER : nombre de pièces] par jour et pense au café, au thé et aux boissons que tu bois aussi."
+          }
+        },
+        "b_7": {
+          "type": "question",
+          "settings": {
+            "question": "Qui ne devrait pas en prendre ?",
+            "answer": "Les enfants, les femmes enceintes ou allaitantes et les personnes sensibles à la caféine."
+          }
+        },
+        "b_8": {
+          "type": "question",
+          "settings": {
+            "question": "Comment marche la précommande ?",
+            "answer": "Tu réserves ton sachet maintenant et tu paies à la commande, par la caisse sécurisée Shopify. Nous expédions dès [À COMPLÉTER : date ou période d’expédition] et tu reçois une confirmation par e-mail."
+          }
+        },
+        "b_9": {
+          "type": "question",
+          "settings": {
+            "question": "Comment se passe la livraison ?",
+            "answer": "Nous livrons partout en Suisse. Les frais de port s’affichent avant le paiement, à la caisse Shopify."
+          }
+        },
+        "b_10": {
+          "type": "question",
+          "settings": {
+            "question": "Le paiement est-il sécurisé ?",
+            "answer": "Oui : le paiement passe par la caisse de Shopify. Voltiz ne voit jamais les données de ta carte."
+          }
+        }
+      },
+      "block_order": [
+        "b_1",
+        "b_2",
+        "b_3",
+        "b_4",
+        "b_5",
+        "b_6",
+        "b_7",
+        "b_8",
+        "b_9",
+        "b_10"
+      ]
+    },
+    "cta": {
+      "type": "vz5-cta",
+      "settings": {
+        "product": "voltiz-energy-gum",
+        "image": "shopify://shop_images/voltiz-sachet-v2-face.webp"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "produit",
+    "movement",
+    "focus",
+    "lifestyle",
+    "precommande",
+    "manifeste",
+    "faq",
+    "cta"
+  ]
+}

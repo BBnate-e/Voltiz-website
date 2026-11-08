@@ -1,0 +1,107 @@
+{%- comment -%}
+  Brouillon 6 (repris au brouillon 7 avec un lien secondaire « C'est quoi, Voltiz ? ») : premier écran en scène, sur plusieurs plans de profondeur.
+  Du fond vers l'avant :
+    1. le fond (marine, photo d'ambiance en bichromie facultative, halo de lumière, faisceau jaune) ;
+    2. le grand titre « ÉNERGIE. », derrière le produit ;
+    3. le sol (ligne d'horizon lumineuse et ombre portée) ;
+    4. le sachet en 3D, au premier plan (on peut le faire tourner, comme dans le brouillon 4) ;
+    5. les informations commerciales (slogan, bouton Précommander avec le prix, repères).
+  La souris déplace légèrement chaque plan à une vitesse différente ; au défilement, les plans se séparent.
+  Tout est immobile si l'appareil demande moins d'animations.
+  Sachet : rendu PROVISOIRE (images « face » et « dos » ci-dessous). Une photo détourée en PNG peut les remplacer
+  dans l'éditeur sans toucher au code.
+  La case « Ligne d'énergie » active le tracé jaune qui accompagne le défilement de la page (voltiz6.js).
+{%- endcomment -%}
+{%- assign product = section.settings.product -%}
+<div class="v3 v5 v6">
+  <section class="hero6" aria-labelledby="hero-titre-{{ section.id }}" data-vz-hero data-vz6-hero{% if section.settings.energy_line %} data-vz6-line-start{% endif %}>
+    <div class="hero6__bg" aria-hidden="true">
+      {%- if section.settings.background != blank -%}
+        {{ section.settings.background | image_url: width: 2400 | image_tag: widths: '900, 1400, 1900, 2400', sizes: '100vw', class: 'hero6__photo', alt: '', loading: 'eager', fetchpriority: 'low', style: section.settings.background_position }}
+      {%- endif -%}
+      <span class="hero6__halo"></span>
+      <span class="hero6__beam"></span>
+      <span class="hero6__grain"></span>
+    </div>
+
+    <h1 id="hero-titre-{{ section.id }}" class="hero6__title">
+      <span class="hero6__pre">{{ section.settings.title_small }}</span>
+      <span class="hero6__word" data-text="{{ section.settings.title_big | escape }}">{{ section.settings.title_big }}</span>
+    </h1>
+
+    <div class="hero6__floor" aria-hidden="true"></div>
+
+    <div class="hero__stage hero6__stage">
+      <div class="hero6__product">
+        {% render 'vz2-pouch', front: section.settings.front, back: section.settings.back, eager: true, mode: 'drag', sizes: '(min-width: 990px) 24vw, 52vw' %}
+      </div>
+      {%- if section.settings.back != blank -%}
+        <button type="button" class="hero__turn hero6__turn" data-vz-turn aria-pressed="false" data-front="{{ section.settings.turn_front | escape }}" data-back="{{ section.settings.turn_back | escape }}">
+          <svg aria-hidden="true"><use href="#i-arrow"/></svg><span>{{ section.settings.turn_front }}</span>
+        </button>
+      {%- endif -%}
+    </div>
+
+    <div class="wrap hero6__ui">
+      <div class="hero6__intro">
+        {%- if section.settings.slogan != blank -%}<p class="hero6__slogan">{{ section.settings.slogan }}</p>{%- endif -%}
+        {%- if section.settings.lead != blank -%}<p class="hero6__lead">{% render 'voltiz-t', t: section.settings.lead %}</p>{%- endif -%}
+      </div>
+      <div class="hero6__buy">
+        {%- if section.settings.badge != blank -%}<p class="badge5"><span class="badge5__dot" aria-hidden="true"></span>{{ section.settings.badge }}</p>{%- endif -%}
+        <a class="btn btn--lg" href="{{ section.settings.button_link }}">
+          {{ section.settings.button_label }}
+          {%- if section.settings.show_price and product != blank -%}<span class="btn__price">{{ product.price | money }}</span>{%- endif -%}
+        </a>
+        {%- if section.settings.link_label != blank -%}<a class="link hero6__more" href="{{ section.settings.link_target }}">{{ section.settings.link_label }}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>{%- endif -%}
+        {%- if section.settings.note != blank -%}<p class="hero6__note">{{ section.settings.note }}</p>{%- endif -%}
+      </div>
+    </div>
+
+    {%- if section.settings.facts != blank -%}
+      {%- assign facts = section.settings.facts | split: '|' -%}
+      <div class="wrap hero6__specs">
+        <ul class="specs" role="list">
+          {%- for f in facts -%}<li><span aria-hidden="true">{{ forloop.index | prepend: '0' }}</span>{{ f | strip }}</li>{%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz 6 : accueil",
+  "settings": [
+    { "type": "text", "id": "title_small", "label": "Titre, petite ligne", "default": "Ton" },
+    { "type": "text", "id": "title_big", "label": "Titre, grand mot derrière le sachet", "default": "énergie." },
+    { "type": "text", "id": "slogan", "label": "Slogan", "default": "Partout, à tout moment." },
+    { "type": "textarea", "id": "lead", "label": "Phrase", "default": "Le complément alimentaire à mâcher, au maté. 50 mg de caféine par pièce, sans sucre, fabriqué en Suisse." },
+    { "type": "text", "id": "badge", "label": "Badge", "default": "Précommandes ouvertes" },
+    { "type": "product", "id": "product", "label": "Produit (pour le prix)" },
+    { "type": "checkbox", "id": "show_price", "label": "Afficher le prix dans le bouton", "default": true },
+    { "type": "text", "id": "button_label", "label": "Bouton", "default": "Précommander" },
+    { "type": "text", "id": "button_link", "label": "Lien du bouton", "default": "#precommande" },
+    { "type": "text", "id": "link_label", "label": "Lien secondaire", "default": "C’est quoi, Voltiz ?" },
+    { "type": "text", "id": "link_target", "label": "Cible du lien secondaire", "default": "#produit" },
+    { "type": "text", "id": "note", "label": "Petite ligne sous le bouton", "default": "Paiement sécurisé par Shopify · Livraison en Suisse" },
+    { "type": "text", "id": "facts", "label": "Repères en bas", "info": "Séparés par |", "default": "50 mg de caféine | Vitamine B12 | 0 g de sucre | Swiss made" },
+    { "type": "header", "content": "Arrière-plan" },
+    { "type": "image_picker", "id": "background", "label": "Photo d’ambiance", "info": "Facultative. Elle est passée en bichromie marine pour laisser le sachet au premier plan." },
+    { "type": "select", "id": "background_position", "label": "Cadrage de la photo", "default": "object-position: 50% 50%", "options": [
+      { "value": "object-position: 50% 50%", "label": "Centre" },
+      { "value": "object-position: 50% 25%", "label": "Haut" },
+      { "value": "object-position: 50% 75%", "label": "Bas" },
+      { "value": "object-position: 25% 50%", "label": "Gauche" },
+      { "value": "object-position: 75% 50%", "label": "Droite" }
+    ] },
+    { "type": "checkbox", "id": "energy_line", "label": "Ligne d’énergie au défilement", "info": "Tracé jaune qui accompagne la descente dans la page d’accueil.", "default": true },
+    { "type": "header", "content": "Sachet (rendu provisoire)" },
+    { "type": "image_picker", "id": "front", "label": "Face avant", "info": "Remplace par la photo définitive quand elle est prête : fond transparent conseillé." },
+    { "type": "image_picker", "id": "back", "label": "Dos" },
+    { "type": "text", "id": "turn_front", "label": "Bouton pour voir le dos", "default": "Voir le dos" },
+    { "type": "text", "id": "turn_back", "label": "Bouton pour revenir à la face", "default": "Voir la face" }
+  ],
+  "presets": [{ "name": "Voltiz 6 : accueil" }]
+}
+{% endschema %}
