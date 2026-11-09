@@ -36,7 +36,7 @@
 
       <div class="buy__body" data-reveal>
         {%- if section.settings.kicker != blank -%}<p class="badge5 badge5--light"><span class="badge5__dot" aria-hidden="true"></span>{{ section.settings.kicker }}</p>{%- endif -%}
-        <h2 id="buy-titre-{{ section.id }}" class="buy__title">{{ section.settings.heading }}</h2>
+        {%- if template.name == 'product' -%}<h1 id="buy-titre-{{ section.id }}" class="buy__title">{{ section.settings.heading }}</h1>{%- else -%}<h2 id="buy-titre-{{ section.id }}" class="buy__title">{{ section.settings.heading }}</h2>{%- endif -%}
         {%- if section.settings.sub != blank -%}<p class="buy__sub">{% render 'voltiz-t', t: section.settings.sub %}</p>{%- endif -%}
 
         <p class="buy__price">

@@ -257,3 +257,9 @@
   .v3 .cmp__mark svg { width: 14px; height: 14px; }
   .v3 .cmp__txt { font-size: .75rem; }
 }
+
+/* 10. Pied de page : zones de clic d'au moins 32 px sur téléphone (liens à 19 px de haut auparavant). */
+@media (max-width: 989px) {
+  .v3 .foot__col ul { gap: 2px; }
+  .v3 .foot__col a { display: inline-block; padding-block: 7px; }
+}

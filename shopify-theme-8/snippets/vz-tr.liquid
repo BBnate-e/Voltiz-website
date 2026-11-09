@@ -1,5 +1,5 @@
 {%- comment -%}
-  Brouillon 8 : petits textes fixes du thème en français et en anglais (boutons, libellés pour lecteurs d'écran, pied de page).
+  Brouillon 8 : petits textes fixes du thème en français, en anglais et en allemand (boutons, libellés pour lecteurs d'écran, pied de page).
   Utilisation : {% render 'vz-tr', k: 'cle' %}. Les textes modifiables dans l'éditeur se traduisent dans Paramètres > Langues.
 {%- endcomment -%}
 {%- if request.locale.iso_code == 'en' -%}
@@ -43,6 +43,48 @@
     {%- when 'cmp_mid' -%}Partly
     {%- when 'each_a' -%}i.e.
     {%- when 'each_b' -%}per pack
+  {%- endcase -%}
+{%- elsif request.locale.iso_code == 'de' -%}
+  {%- case k -%}
+    {%- when 'skip' -%}Zum Inhalt springen
+    {%- when 'home' -%}Startseite
+    {%- when 'nav' -%}Hauptnavigation
+    {%- when 'menu' -%}Menü
+    {%- when 'cart' -%}Warenkorb
+    {%- when 'item' -%}Artikel
+    {%- when 'items' -%}Artikel
+    {%- when 'lang' -%}Sprache
+    {%- when 'photos' -%}Fotos des Beutels
+    {%- when 'front' -%}Vorderseite
+    {%- when 'back' -%}Rückseite
+    {%- when 'qty' -%}Menge
+    {%- when 'less' -%}Eins weniger
+    {%- when 'more' -%}Eins mehr
+    {%- when 'shop' -%}Shop
+    {%- when 'preorder' -%}Vorbestellen
+    {%- when 'composition' -%}Zusammensetzung
+    {%- when 'about' -%}Über uns
+    {%- when 'write' -%}Schreib uns
+    {%- when 'help' -%}Hilfe
+    {%- when 'legal' -%}Rechtliches
+    {%- when 'social' -%}Social Media
+    {%- when 'todo_shipping' -%}[ZU ERSTELLEN: Versandrichtlinie]
+    {%- when 'todo_refund' -%}[ZU ERSTELLEN: Rückgabe und Stornierung]
+    {%- when 'todo_terms' -%}[ZU ERSTELLEN: AGB]
+    {%- when 'todo_legal' -%}[ZU ERSTELLEN: Impressum]
+    {%- when 'copy' -%}Swiss made. Sichere Zahlung über Shopify.
+    {%- when 'close' -%}Schliessen
+    {%- when 'copy_btn' -%}Kopieren
+    {%- when 'copied' -%}Kopiert
+    {%- when 'email' -%}E-Mail-Adresse
+    {%- when 'email_ph' -%}du@email.ch
+    {%- when 'pouch' -%}Voltiz-Beutel
+    {%- when 'drag' -%}Zum Drehen ziehen.
+    {%- when 'cmp_yes' -%}Ja
+    {%- when 'cmp_no' -%}Nein
+    {%- when 'cmp_mid' -%}Teilweise
+    {%- when 'each_a' -%}also
+    {%- when 'each_b' -%}pro Packung
   {%- endcase -%}
 {%- else -%}
   {%- case k -%}
