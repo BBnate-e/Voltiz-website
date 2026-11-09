@@ -1,0 +1,177 @@
+{
+  "sections": {
+    "hero": {
+      "type": "vz6-hero",
+      "settings": {
+        "product": "voltiz-energy-gum",
+        "front": "shopify://shop_images/voltiz-sachet-final-face.webp",
+        "back": "shopify://shop_images/voltiz-sachet-final-dos.webp",
+        "background": "shopify://shop_images/photo-1697555678219-150263ca9037.jpg",
+        "background_position": "object-position: 50% 50%",
+        "lead": "Une gomme à mâcher au maté, goût citron : 40 mg de caféine par gomme. Sans sucre, vegan, fabriquée en Suisse.",
+        "facts": "40 mg de caféine par gomme | Effet en 5 à 10 min | Sans sucre, vegan | Fabriqué en Suisse",
+        "link_label": "C’est quoi, Voltiz ?",
+        "link_target": "#produit",
+        "button_link": "/products/voltiz-energy-gum",
+        "title_small": "Ton",
+        "title_big": "énergie.",
+        "slogan": "Partout, à tout moment.",
+        "badge": "Précommandes ouvertes",
+        "button_label": "Précommander",
+        "note": "Paiement sécurisé par Shopify · Livraison en Suisse",
+        "turn_front": "Voir le dos",
+        "turn_back": "Voir la face"
+      }
+    },
+    "produit": {
+      "type": "vz3-produit",
+      "settings": {
+        "kicker": "C’est quoi, Voltiz ?",
+        "heading": "Un complément alimentaire, à mâcher.",
+        "front": "shopify://shop_images/voltiz-sachet-final-face.webp",
+        "back": "shopify://shop_images/voltiz-sachet-final-dos.webp"
+      },
+      "blocks": {
+        "b_1": {
+          "type": "step",
+          "settings": {
+            "title": "Une gomme à mâcher.",
+            "text": "Un complément alimentaire à base de maté et de caféine, avec édulcorants, goût citron. Tu la mâches, c’est tout : rien à préparer, rien à boire.",
+            "detail": "Goût citron",
+            "side": "front"
+          }
+        },
+        "b_2": {
+          "type": "step",
+          "settings": {
+            "title": "40 mg de caféine.",
+            "text": "Par gomme, sans sucre. 1 dose = 2 gommes, soit 80 mg de caféine. Avec de la vitamine B12, qui contribue à réduire la fatigue.",
+            "detail": "1 gomme = 1 espresso",
+            "side": "front"
+          }
+        },
+        "b_3": {
+          "type": "step",
+          "settings": {
+            "title": "Effet en 5 à 10 minutes.",
+            "text": "La caféine est absorbée directement dans la bouche.",
+            "detail": "5 à 10 min",
+            "side": "front"
+          }
+        },
+        "b_4": {
+          "type": "step",
+          "settings": {
+            "title": "Toujours sur toi.",
+            "text": "Le sachet de 20 gommes (40 g) se glisse dans une poche, un sac de sport ou la boîte à gants. Vegan, fabriqué en Suisse.",
+            "detail": "Swiss made",
+            "side": "back"
+          }
+        }
+      },
+      "block_order": [
+        "b_1",
+        "b_2",
+        "b_3",
+        "b_4"
+      ]
+    },
+    "comparatif": {
+      "type": "vz8-comparatif",
+      "settings": {
+        "anchor": "comparatif",
+        "kicker": "Comparatif",
+        "heading": "Une gomme plutôt qu’un café ?",
+        "col1": "Voltiz",
+        "col2": "Café",
+        "col3": "Boisson énergisante",
+        "note": "Une prise Voltiz = 2 gommes, soit 80 mg de caféine : CHF 0.60 avec l’offre 5 paquets, CHF 0.75 avec 1 paquet. Prix du café et des boissons énergisantes : ordres de grandeur en Suisse, au café et en magasin.",
+        "button_label": "Voir les paquets",
+        "button_link": "/products/voltiz-energy-gum"
+      },
+      "blocks": {
+        "r1": {
+          "type": "row",
+          "settings": {
+            "label": "Absorbée directement dans la bouche",
+            "v1": "oui",
+            "v2": "non",
+            "v3": "non"
+          }
+        },
+        "r2": {
+          "type": "row",
+          "settings": {
+            "label": "Rien à boire, rien à préparer",
+            "v1": "oui",
+            "v2": "non",
+            "v3": "non"
+          }
+        },
+        "r3": {
+          "type": "row",
+          "settings": {
+            "label": "Tient dans une poche",
+            "v1": "oui",
+            "v2": "non",
+            "v3": "non"
+          }
+        },
+        "r4": {
+          "type": "row",
+          "settings": {
+            "label": "Sans sucre",
+            "v1": "oui",
+            "v2": "oui",
+            "v3": "~"
+          }
+        },
+        "r5": {
+          "type": "row",
+          "settings": {
+            "label": "Caféine par prise",
+            "v1": "80 mg",
+            "v2": "Variable",
+            "v3": "≈ 80 mg"
+          }
+        },
+        "r6": {
+          "type": "row",
+          "settings": {
+            "label": "Prix par prise",
+            "v1": "dès CHF 0.60",
+            "v2": "≈ CHF 4–5",
+            "v3": "≈ CHF 2–3"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6"
+      ]
+    },
+    "cta": {
+      "type": "vz5-cta",
+      "settings": {
+        "product": "voltiz-energy-gum",
+        "image": "shopify://shop_images/voltiz-sachet-final-face.webp",
+        "link_label": "Voir le produit et la précommande",
+        "link_target": "/products/voltiz-energy-gum",
+        "heading": "Prêt quand tu l’es.",
+        "text": "Réserve ton premier sachet Voltiz. Paiement sécurisé à la commande, livraison en Suisse.",
+        "button_label": "Précommander",
+        "closed_label": "Bientôt disponible"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "produit",
+    "comparatif",
+    "cta"
+  ]
+}

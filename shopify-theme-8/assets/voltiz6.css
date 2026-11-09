@@ -220,3 +220,40 @@
 
 /* 8. Sachet final : proportions réelles du paquet */
 .v3 .pouch { aspect-ratio: 600 / 990; }
+
+/* 9. Tableau comparatif (vz8-comparatif) */
+.v3 .cmp { padding-block: clamp(80px, 10vw, 140px); background: var(--white); }
+.v3 .cmp .head { margin-inline: auto; text-align: center; justify-items: center; }
+.v3 .cmp__scroll { max-width: 980px; margin-inline: auto; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.v3 .cmp__table { width: 100%; min-width: 560px; border-collapse: separate; border-spacing: 0; font-size: 1rem; }
+.v3 .cmp__table th, .v3 .cmp__table td { padding: 18px 16px; text-align: center; vertical-align: middle; border-bottom: 1px solid var(--g2); }
+.v3 .cmp__table tbody th { text-align: left; font-weight: 600; color: var(--ink); padding-left: 0; }
+.v3 .cmp__table thead th { font: 400 1rem/1.2 var(--h); text-transform: uppercase; letter-spacing: .02em; color: var(--ink-2); border-bottom: 2px solid var(--ink); padding-block: 22px; }
+.v3 .cmp__table tbody tr:last-child > * { border-bottom: 0; }
+.v3 .cmp__table .cmp__us { background: var(--navy); color: var(--white); border-bottom-color: rgba(255,255,255,.14); width: 23%; }
+.v3 .cmp__table thead .cmp__us { color: var(--white); border-radius: 14px 14px 0 0; border-bottom: 2px solid var(--yellow); }
+.v3 .cmp__table tbody tr:last-child .cmp__us { border-radius: 0 0 14px 14px; }
+.v3 .cmp__brand { display: inline-flex; align-items: center; gap: 8px; font-size: 1.25rem; }
+.v3 .cmp__brand svg { width: 16px; height: 16px; fill: var(--yellow); color: var(--yellow); }
+.v3 .cmp__mark { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; }
+.v3 .cmp__mark svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.v3 .cmp__mark--yes { background: var(--yellow); color: var(--navy); }
+.v3 .cmp__mark--no { background: var(--g1); color: #8593A0; }
+.v3 .cmp__mark--mid { background: var(--g1); color: var(--ink-2); }
+.v3 .cmp__txt { font-weight: 600; font-variant-numeric: tabular-nums; color: var(--ink); }
+.v3 .cmp__us .cmp__txt { color: var(--yellow); }
+.v3 .cmp__note { max-width: 980px; margin: 22px auto 0; color: var(--ink-2); font-size: .875rem; }
+.v3 .cmp__cta { margin-top: 32px; text-align: center; }
+@media (max-width: 749px) {
+  .v3 .cmp__scroll { overflow: visible; }
+  .v3 .cmp__table { font-size: .8125rem; min-width: 0; table-layout: fixed; }
+  .v3 .cmp__table th, .v3 .cmp__table td { padding: 12px 4px; }
+  .v3 .cmp__table tbody th { width: 36%; padding-right: 8px; line-height: 1.3; }
+  .v3 .cmp__table thead th { font-size: .6875rem; padding-block: 16px; hyphens: auto; }
+  .v3 .cmp__table .cmp__us { width: 22%; }
+  .v3 .cmp__brand { font-size: .8125rem; gap: 4px; }
+  .v3 .cmp__brand svg { width: 11px; height: 11px; }
+  .v3 .cmp__mark { width: 24px; height: 24px; }
+  .v3 .cmp__mark svg { width: 14px; height: 14px; }
+  .v3 .cmp__txt { font-size: .75rem; }
+}
