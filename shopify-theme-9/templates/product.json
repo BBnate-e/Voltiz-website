@@ -12,8 +12,8 @@
     "main": {
       "type": "vz5-acheter",
       "settings": {
-        "front": "shopify://shop_images/voltiz-sachet-v3-face.webp",
-        "back": "shopify://shop_images/voltiz-sachet-v3-dos.webp",
+        "front": "shopify://shop_images/voltiz-sachet-3d-face.webp",
+        "back": "shopify://shop_images/voltiz-sachet-3d-dos.webp",
         "heading": "Voltiz Maté Citron",
         "sub": "Complément alimentaire à base de maté et de caféine, avec édulcorants. Une gomme à mâcher et à avaler, goût citron. 40 mg de caféine par gomme, sans sucres, vegan. 20 gommes par sachet (50 g).",
         "anchor": "precommande",
