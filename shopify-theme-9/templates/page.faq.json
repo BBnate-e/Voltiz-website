@@ -69,14 +69,14 @@
           "type": "question",
           "settings": {
             "question": "Comment marche la précommande ?",
-            "answer": "Tu réserves ton sachet maintenant et tu paies à la commande, par la caisse sécurisée Shopify. La livraison prend 6 à 7 jours ouvrés et tu reçois une confirmation par e-mail."
+            "answer": "Tu réserves ton sachet maintenant et tu paies à la commande, par la caisse sécurisée Shopify. L’expédition est prévue pour la mi-décembre 2026 et tu reçois une confirmation par e-mail."
           }
         },
         "b_9": {
           "type": "question",
           "settings": {
             "question": "Comment se passe la livraison ?",
-            "answer": "Nous livrons partout en Suisse, en 6 à 7 jours ouvrés. Frais de port : CHF 5.– pour 1 à 2 paquets, CHF 11.– pour 3 à 6 paquets."
+            "answer": "Nous livrons partout en Suisse. Expédition prévue pour la mi-décembre 2026. Frais de port : CHF 5.– pour 1 à 2 paquets, CHF 11.– pour 3 à 6 paquets."
           }
         },
         "b_10": {
