@@ -1,21 +1,30 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "vz6-hero",
       "settings": {
         "product": "voltiz-energy-gum",
-        "front": "shopify://shop_images/voltiz-sachet-final-face.webp",
-        "back": "shopify://shop_images/voltiz-sachet-final-dos.webp",
+        "front": "shopify://shop_images/voltiz-sachet-v3-face.webp",
+        "back": "shopify://shop_images/voltiz-sachet-v3-dos.webp",
         "background": "shopify://shop_images/photo-1697555678219-150263ca9037.jpg",
         "background_position": "object-position: 50% 50%",
         "lead": "Une gomme à mâcher au maté, goût citron : 40 mg de caféine par gomme. Sans sucre, vegan, fabriquée en Suisse.",
-        "facts": "40 mg de caféine par gomme | Effet en 5 à 10 min | Sans sucre, vegan | Fabriqué en Suisse",
+        "facts": "40 mg de caféine par gomme | Effet en 5 à 10 min | Sans sucres, vegan | Fabriqué en Suisse",
         "link_label": "C’est quoi, Voltiz ?",
         "link_target": "#produit",
         "button_link": "/products/voltiz-energy-gum",
         "title_small": "Ton",
         "title_big": "énergie.",
-        "slogan": "Partout, à tout moment.",
+        "slogan": "Partout. À tout moment.",
         "badge": "Précommandes ouvertes",
         "button_label": "Précommander",
         "note": "Paiement sécurisé par Shopify · Livraison en Suisse",
@@ -27,16 +36,16 @@
       "type": "vz3-produit",
       "settings": {
         "kicker": "C’est quoi, Voltiz ?",
-        "heading": "Un complément alimentaire, à mâcher.",
-        "front": "shopify://shop_images/voltiz-sachet-final-face.webp",
-        "back": "shopify://shop_images/voltiz-sachet-final-dos.webp"
+        "heading": "Un complément alimentaire en gomme.",
+        "front": "shopify://shop_images/voltiz-sachet-v3-face.webp",
+        "back": "shopify://shop_images/voltiz-sachet-v3-dos.webp"
       },
       "blocks": {
         "b_1": {
           "type": "step",
           "settings": {
-            "title": "Une gomme à mâcher.",
-            "text": "Un complément alimentaire à base de maté et de caféine, avec édulcorants, goût citron. Tu la mâches, c’est tout : rien à préparer, rien à boire.",
+            "title": "Une gomme à mâcher et à avaler.",
+            "text": "Un complément alimentaire à base de maté et de caféine, avec édulcorants, goût citron. Tu la mâches, puis tu l’avales : rien à préparer, rien à boire. Ce n’est pas un chewing-gum.",
             "detail": "Goût citron",
             "side": "front"
           }
@@ -45,7 +54,7 @@
           "type": "step",
           "settings": {
             "title": "40 mg de caféine.",
-            "text": "Par gomme, sans sucre. 1 dose = 2 gommes, soit 80 mg de caféine. Avec de la vitamine B12, qui contribue à réduire la fatigue.",
+            "text": "Par gomme, sans sucres. 1 dose = 2 gommes, soit 80 mg de caféine. Avec de la vitamine B12, qui contribue à réduire la fatigue.",
             "detail": "1 gomme = 1 espresso",
             "side": "front"
           }
@@ -63,7 +72,7 @@
           "type": "step",
           "settings": {
             "title": "Toujours sur toi.",
-            "text": "Le sachet de 20 gommes (40 g) se glisse dans une poche, un sac de sport ou la boîte à gants. Vegan, fabriqué en Suisse.",
+            "text": "Le sachet de 20 gommes (50 g) se glisse dans une poche, un sac de sport ou la boîte à gants. Vegan, fabriqué en Suisse.",
             "detail": "Swiss made",
             "side": "back"
           }
@@ -85,7 +94,7 @@
         "col1": "Voltiz",
         "col2": "Café",
         "col3": "Boisson énergisante",
-        "note": "Une prise Voltiz = 2 gommes, soit 80 mg de caféine : CHF 0.60 avec l’offre 5 paquets, CHF 0.75 avec 1 paquet. Prix du café et des boissons énergisantes : ordres de grandeur en Suisse, au café et en magasin.",
+        "note": "Voltiz : CHF 7.50 le sachet de 20 gommes, soit CHF 0.375 la gomme (1 gomme = 1 espresso). Prix du café et des boissons énergisantes : ordres de grandeur en Suisse, au café et en magasin.",
         "button_label": "Voir les paquets",
         "button_link": "/products/voltiz-energy-gum"
       },
@@ -120,7 +129,7 @@
         "r4": {
           "type": "row",
           "settings": {
-            "label": "Sans sucre",
+            "label": "Sans sucres",
             "v1": "oui",
             "v2": "oui",
             "v3": "~"
@@ -129,19 +138,19 @@
         "r5": {
           "type": "row",
           "settings": {
-            "label": "Caféine par prise",
-            "v1": "80 mg",
+            "label": "Caféine",
+            "v1": "40 mg par gomme",
             "v2": "Variable",
-            "v3": "≈ 80 mg"
+            "v3": "≈ 80 mg par canette"
           }
         },
         "r6": {
           "type": "row",
           "settings": {
-            "label": "Prix par prise",
-            "v1": "dès CHF 0.60",
-            "v2": "≈ CHF 4–5",
-            "v3": "≈ CHF 2–3"
+            "label": "Prix",
+            "v1": "CHF 0.375 par gomme",
+            "v2": "≈ CHF 4–5 par café",
+            "v3": "≈ CHF 2–3 par canette"
           }
         }
       },
@@ -158,7 +167,7 @@
       "type": "vz5-cta",
       "settings": {
         "product": "voltiz-energy-gum",
-        "image": "shopify://shop_images/voltiz-sachet-final-face.webp",
+        "image": "shopify://shop_images/voltiz-sachet-v3-face.webp",
         "link_label": "Voir le produit et la précommande",
         "link_target": "/products/voltiz-energy-gum",
         "heading": "Prêt quand tu l’es.",

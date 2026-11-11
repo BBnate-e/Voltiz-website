@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "faq": {
@@ -11,28 +20,28 @@
           "type": "question",
           "settings": {
             "question": "C’est quoi, Voltiz ?",
-            "answer": "Un complément alimentaire à mâcher, à base de maté et de caféine, avec édulcorants, goût citron. Chaque gomme contient 40 mg de caféine et de la vitamine B12, sans sucre. Vegan, fabriqué en Suisse."
+            "answer": "Un complément alimentaire à base de maté et de caféine, avec édulcorants, goût citron, sous forme de gomme à mâcher et à avaler (ce n’est pas un chewing-gum). Chaque gomme contient 40 mg de caféine et de la vitamine B12, sans sucres. Vegan, fabriqué en Suisse."
           }
         },
         "b_2": {
           "type": "question",
           "settings": {
             "question": "Qu’est-ce qu’il y a dans un sachet ?",
-            "answer": "20 gommes, soit 40 g. 1 sachet : CHF 7.50, 2 sachets : CHF 15.–, 3 sachets : CHF 20.–, 5 sachets : CHF 30.– (4 achetés + 1 offert)."
+            "answer": "20 gommes, soit 50 g. 1 sachet : CHF 7.50, 2 sachets : CHF 15.–, 3 sachets : CHF 20.–, 5 sachets : CHF 30.– (4 achetés + 1 offert)."
           }
         },
         "b_3": {
           "type": "question",
           "settings": {
             "question": "Quels sont les ingrédients ?",
-            "answer": "Gélifiant (gomme arabique), édulcorants (sirop de sorbitol, sirop de maltitol), eau, extrait de maté (3,8 %), caféine (1,3 %), acidifiant (acide citrique), arômes, huile essentielle de citron, édulcorant (glycosides de stéviol), huile de coco, agent d’enrobage (cire de carnauba), vitamine B12."
+            "answer": "Gélifiant (gomme arabique), édulcorants (sirop de sorbitol, sirop de maltitol), eau, extrait de maté (3,8 %), caféine (1,3 %), acidifiant (acide citrique), arômes naturels, édulcorant (glycosides de stéviol issus de la stévia), huile de coco, agent d’enrobage (cire de carnauba), vitamine B12 (cyanocobalamine)."
           }
         },
         "b_4": {
           "type": "question",
           "settings": {
             "question": "Ça a quel goût ?",
-            "answer": "Citron, avec de l’huile essentielle de citron. Les arômes masquent l’amertume de la caféine."
+            "answer": "Citron. Les arômes naturels masquent l’amertume de la caféine."
           }
         },
         "b_5": {
@@ -46,7 +55,7 @@
           "type": "question",
           "settings": {
             "question": "Combien de gommes par jour ?",
-            "answer": "1 dose = 2 gommes (80 mg de caféine), à mâcher au besoin. Ne dépasse pas 5 gommes par jour (200 mg de caféine) et pense au café, au thé et aux boissons que tu bois aussi."
+            "answer": "1 dose = 2 gommes (80 mg de caféine), à mâcher puis à avaler, au besoin. Ne dépasse pas 5 gommes par jour (200 mg de caféine) et pense au café, au thé et aux boissons que tu bois aussi."
           }
         },
         "b_7": {
@@ -95,7 +104,7 @@
       "type": "vz5-cta",
       "settings": {
         "product": "voltiz-energy-gum",
-        "image": "shopify://shop_images/voltiz-sachet-final-face.webp",
+        "image": "shopify://shop_images/voltiz-sachet-v3-face.webp",
         "link_label": "Voir le produit et la précommande",
         "link_target": "/products/voltiz-energy-gum",
         "heading": "Prêt quand tu l’es.",

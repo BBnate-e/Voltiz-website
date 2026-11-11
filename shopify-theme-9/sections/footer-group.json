@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "footer",
   "name": "Pied de page",
@@ -6,12 +15,12 @@
       "type": "vz5-footer",
       "settings": {
         "shop_link": "/products/voltiz-energy-gum",
-        "slogan": "Partout, à tout moment.",
+        "slogan": "Partout. À tout moment.",
         "faq_link": "/pages/faq",
         "refund_label": "Retours et annulation",
         "shipping_label": "Livraison",
         "caffeine_text": "Contient de la caféine (40 mg par gomme). Déconseillé aux enfants, aux femmes enceintes ou allaitantes et aux personnes sensibles à la caféine.",
-        "legal_text": "[À COMPLÉTER : nom et adresse du responsable de la boutique]"
+        "legal_text": "Voltiz, Pérolles d’En Haut 13, 1752 Villars-sur-Glâne, Suisse · voltiz.e@outlook.com · Produit par Dehly SA, 1723 Marly"
       }
     },
     "vz5_popup": {

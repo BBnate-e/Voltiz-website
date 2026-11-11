@@ -1,0 +1,169 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "vz5-acheter",
+      "settings": {
+        "front": "shopify://shop_images/voltiz-sachet-v3-face.webp",
+        "back": "shopify://shop_images/voltiz-sachet-v3-dos.webp",
+        "heading": "Voltiz Maté Citron",
+        "sub": "Complément alimentaire à base de maté et de caféine, avec édulcorants. Une gomme à mâcher et à avaler, goût citron. 40 mg de caféine par gomme, sans sucres, vegan. 20 gommes par sachet (50 g).",
+        "anchor": "precommande",
+        "kicker": "Précommande",
+        "button_label": "Précommander",
+        "bar_label": "Précommander",
+        "sticky": true,
+        "unit_label": "",
+        "fallback_price": "CHF 7.50",
+        "closed_label": "Bientôt disponible",
+        "infos": "Livraison en Suisse en 6 à 7 jours ouvrés\nFrais de port : CHF 5.– (1 à 2 paquets), CHF 11.– (3 à 6 paquets)\nPaiement sécurisé",
+        "preorder_title": "Comment marche la précommande",
+        "preorder_text": "Tu réserves ton sachet maintenant, avant la sortie officielle.\nLe paiement se fait à la commande, par la caisse sécurisée Shopify.\nLivraison en 6 à 7 jours ouvrés.\nTu reçois une confirmation de commande par e-mail.",
+        "terms_label": "Conditions de précommande, d’annulation et de retour",
+        "terms_missing": "[À COMPLÉTER : politique d’annulation et de retour dans Shopify]",
+        "packs": true,
+        "best_label": "Meilleure offre",
+        "best_note": "4 achetés + 1 offert"
+      },
+      "blocks": {
+        "b_1": {
+          "type": "panel",
+          "settings": {
+            "title": "Ingrédients et valeurs nutritionnelles",
+            "text": "Gélifiant (gomme arabique), édulcorants (sirop de sorbitol, sirop de maltitol), eau, extrait de maté (3,8 %), caféine (1,3 %), acidifiant (acide citrique), arômes naturels, édulcorant (glycosides de stéviol issus de la stévia), huile de coco, agent d’enrobage (cire de carnauba), vitamine B12 (cyanocobalamine).\nValeurs nutritives : | 100 g | 5 gommes\nÉnergie | 803 kJ / 195 kcal | 100 kJ / 24 kcal\nMatières grasses | 0,1 g | < 0,1 g\ndont acides gras saturés | 0,1 g | < 0,1 g\nGlucides | 48,6 g | 6,1 g\ndont sucres | 0 g | 0 g\ndont polyols | 45,4 g | 5,7 g\nFibres alimentaires | 33,1 g | 4,1 g\nProtéines | 1,0 g | 0,1 g\nSel | 0,7 g | 0,09 g\nCaféine | 1600 mg | 200 mg\nVitamine B12 | 12,4 µg (496 %*) | 1,55 µg (62 %*)\n* VNR : valeur nutritionnelle de référence. 5 gommes = 12,5 g."
+          }
+        },
+        "b_2": {
+          "type": "panel",
+          "settings": {
+            "title": "Utilisation",
+            "text": "1 dose = 2 gommes (80 mg de caféine). Mâche 1 dose au besoin, puis avale les gommes : la caféine est absorbée directement dans la bouche et l’effet se fait sentir en 5 à 10 minutes.\nDose journalière recommandée : 5 gommes au maximum (200 mg de caféine)."
+          }
+        },
+        "b_3": {
+          "type": "panel",
+          "settings": {
+            "title": "Précautions",
+            "text": "Complément alimentaire. Contient de la caféine (40 mg par gomme). Déconseillé aux enfants et aux femmes enceintes ou allaitantes (200 mg de caféine par dose journalière de 5 gommes), ainsi qu’aux personnes sensibles à la caféine.\nNe pas dépasser la dose journalière recommandée. Ne pas associer à d’autres produits contenant de la caféine.\nUne consommation excessive peut avoir des effets laxatifs.\nUn complément alimentaire ne remplace pas une alimentation variée et équilibrée.\nTenir hors de portée des jeunes enfants.\nConserver au sec, à l’abri de la lumière et de la chaleur.\nProduit par Dehly SA, Route de Chésalles 46, 1723 Marly, Suisse. Produit en Suisse."
+          }
+        },
+        "b_4": {
+          "type": "panel",
+          "settings": {
+            "title": "Livraison",
+            "text": "Nous livrons partout en Suisse, en 6 à 7 jours ouvrés. Frais de port : CHF 5.– pour 1 à 2 paquets, CHF 11.– pour 3 à 6 paquets.\nLes frais de port s’affichent aussi avant le paiement."
+          }
+        }
+      },
+      "block_order": [
+        "b_1",
+        "b_2",
+        "b_3",
+        "b_4"
+      ]
+    },
+    "faq": {
+      "type": "vz3-faq",
+      "settings": {
+        "kicker": "FAQ",
+        "heading": "Questions fréquentes."
+      },
+      "blocks": {
+        "b_1": {
+          "type": "question",
+          "settings": {
+            "question": "C’est quoi, Voltiz ?",
+            "answer": "Un complément alimentaire à base de maté et de caféine, avec édulcorants, goût citron, sous forme de gomme à mâcher et à avaler (ce n’est pas un chewing-gum). Chaque gomme contient 40 mg de caféine et de la vitamine B12, sans sucres. Vegan, fabriqué en Suisse."
+          }
+        },
+        "b_2": {
+          "type": "question",
+          "settings": {
+            "question": "Qu’est-ce qu’il y a dans un sachet ?",
+            "answer": "20 gommes, soit 50 g. 1 sachet : CHF 7.50, 2 sachets : CHF 15.–, 3 sachets : CHF 20.–, 5 sachets : CHF 30.– (4 achetés + 1 offert)."
+          }
+        },
+        "b_3": {
+          "type": "question",
+          "settings": {
+            "question": "Quels sont les ingrédients ?",
+            "answer": "Gélifiant (gomme arabique), édulcorants (sirop de sorbitol, sirop de maltitol), eau, extrait de maté (3,8 %), caféine (1,3 %), acidifiant (acide citrique), arômes naturels, édulcorant (glycosides de stéviol issus de la stévia), huile de coco, agent d’enrobage (cire de carnauba), vitamine B12 (cyanocobalamine)."
+          }
+        },
+        "b_4": {
+          "type": "question",
+          "settings": {
+            "question": "Ça a quel goût ?",
+            "answer": "Citron. Les arômes naturels masquent l’amertume de la caféine."
+          }
+        },
+        "b_5": {
+          "type": "question",
+          "settings": {
+            "question": "En combien de temps je sens l’effet ?",
+            "answer": "La caféine est absorbée directement dans la bouche : compte 5 à 10 minutes."
+          }
+        },
+        "b_6": {
+          "type": "question",
+          "settings": {
+            "question": "Combien de gommes par jour ?",
+            "answer": "1 dose = 2 gommes (80 mg de caféine), à mâcher puis à avaler, au besoin. Ne dépasse pas 5 gommes par jour (200 mg de caféine) et pense au café, au thé et aux boissons que tu bois aussi."
+          }
+        },
+        "b_7": {
+          "type": "question",
+          "settings": {
+            "question": "Qui ne devrait pas en prendre ?",
+            "answer": "Les enfants, les femmes enceintes ou allaitantes et les personnes sensibles à la caféine. Ne l’associe pas à d’autres produits contenant de la caféine."
+          }
+        },
+        "b_8": {
+          "type": "question",
+          "settings": {
+            "question": "Comment marche la précommande ?",
+            "answer": "Tu réserves ton sachet maintenant et tu paies à la commande, par la caisse sécurisée Shopify. La livraison prend 6 à 7 jours ouvrés et tu reçois une confirmation par e-mail."
+          }
+        },
+        "b_9": {
+          "type": "question",
+          "settings": {
+            "question": "Comment se passe la livraison ?",
+            "answer": "Nous livrons partout en Suisse, en 6 à 7 jours ouvrés. Frais de port : CHF 5.– pour 1 à 2 paquets, CHF 11.– pour 3 à 6 paquets."
+          }
+        },
+        "b_10": {
+          "type": "question",
+          "settings": {
+            "question": "Le paiement est-il sécurisé ?",
+            "answer": "Oui : le paiement passe par la caisse de Shopify. Voltiz ne voit jamais les données de ta carte."
+          }
+        }
+      },
+      "block_order": [
+        "b_1",
+        "b_2",
+        "b_3",
+        "b_4",
+        "b_5",
+        "b_6",
+        "b_7",
+        "b_8",
+        "b_9",
+        "b_10"
+      ]
+    }
+  },
+  "order": [
+    "main",
+    "faq"
+  ]
+}

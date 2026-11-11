@@ -1,11 +1,20 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "manifeste": {
       "type": "vz3-manifeste",
       "settings": {
         "kicker": "L’esprit Voltiz",
-        "note": "Partout, à tout moment, c’est l’idée de départ : une énergie qui tient dans la poche, sans canette ni bouteille. Avant l’entraînement, pendant les révisions ou quand la journée s’allonge. Une marque suisse, faite pour suivre tes journées.",
-        "text": "Pour ceux qui bougent.\nPour ceux qui tiennent.\nPour ceux qui vivent.\nPartout, à tout moment."
+        "note": "Partout. À tout moment. C’est l’idée de départ : une énergie qui tient dans la poche, sans canette ni bouteille. Avant l’entraînement, pendant les révisions ou quand la journée s’allonge. Une marque suisse, faite pour suivre tes journées.",
+        "text": "Pour ceux qui bougent.\nPour ceux qui tiennent.\nPour ceux qui vivent.\nPartout. À tout moment."
       }
     },
     "movement": {
@@ -50,9 +59,9 @@
         "word": "LIVE",
         "marker": "Le quotidien, les voyages",
         "image": "shopify://shop_images/photo-1712513246150-816eadfc3c76.jpg",
-        "front": "shopify://shop_images/voltiz-sachet-final-face.webp",
-        "back": "shopify://shop_images/voltiz-sachet-final-dos.webp",
-        "headline": "Partout, à tout moment.",
+        "front": "shopify://shop_images/voltiz-sachet-v3-face.webp",
+        "back": "shopify://shop_images/voltiz-sachet-v3-dos.webp",
+        "headline": "Partout. À tout moment.",
         "text": "Sur les pistes, en ville ou en voyage : le sachet tient dans une poche et suit tes journées.",
         "link_label": "Voir le produit",
         "link_target": "/products/voltiz-energy-gum"
@@ -62,7 +71,7 @@
       "type": "vz5-cta",
       "settings": {
         "product": "voltiz-energy-gum",
-        "image": "shopify://shop_images/voltiz-sachet-final-face.webp",
+        "image": "shopify://shop_images/voltiz-sachet-v3-face.webp",
         "link_label": "Voir le produit et la précommande",
         "link_target": "/products/voltiz-energy-gum",
         "heading": "Prêt quand tu l’es.",
