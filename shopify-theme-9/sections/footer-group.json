@@ -25,6 +25,7 @@
     },
     "vz5_popup": {
       "type": "vz5-popup",
+      "disabled": true,
       "settings": {
         "delay": 40,
         "redirect": "/products/voltiz-energy-gum",

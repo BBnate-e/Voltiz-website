@@ -267,3 +267,7 @@
 /* 9. Le bloc texte du hero passe au-dessus du sachet : il laisse passer les clics vers « Voir le dos » et le glisser du sachet */
 .v6 .hero6__ui { pointer-events: none; }
 .v6 .hero6__ui > * { pointer-events: auto; }
+
+/* Précommande : quantité fixe dans le panier (page et tiroir). Une offre = une ligne, on peut seulement la retirer. */
+.cart-items__quantity .quantity-selector,
+.cart-items__quantity .volume-pricing-info { display: none !important; }

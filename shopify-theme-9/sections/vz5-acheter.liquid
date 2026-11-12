@@ -1,0 +1,238 @@
+{%- comment -%}
+  Précommande (brouillon 5) : photos du sachet, nom, prix, quantité, conditions de précommande et ajout au panier Shopify.
+  Le panier et la caisse restent ceux de Shopify (aucune simulation). Chaque article ajouté porte la mention
+  « Précommande » (propriété de ligne), visible dans le panier, à la caisse et dans la commande.
+  Sur la fiche produit, la section prend le produit de la page si aucun produit n'est choisi.
+  Si le produit n'est pas en vente, le bouton est désactivé.
+{%- endcomment -%}
+{%- assign page_product = product -%}
+{%- assign product = section.settings.product -%}
+{%- if product == blank -%}{%- assign product = page_product -%}{%- endif -%}
+{%- assign on_sale = false -%}
+{%- if product != blank and product.available -%}{%- assign on_sale = true -%}{%- endif -%}
+{%- assign current = product.selected_or_first_available_variant -%}
+<div class="v3 v5">
+  <section class="buy buy5" id="{{ section.settings.anchor }}" aria-labelledby="buy-titre-{{ section.id }}">
+    <div class="wrap buy__in">
+      <div class="buy__gallery" data-vz-gallery data-reveal>
+        <div class="buy__main">
+          {%- for img in (1..2) -%}
+            {%- if img == 1 -%}{%- assign pic = section.settings.front -%}{%- else -%}{%- assign pic = section.settings.back -%}{%- endif -%}
+            {%- if pic == blank and img == 1 -%}{%- assign pic = product.featured_image -%}{%- endif -%}
+            {%- if pic != blank -%}
+              <figure class="buy__shot{% if img == 1 %} is-on{% endif %}" data-shot="{{ img }}">
+                {{ pic | image_url: width: 1000 | image_tag: widths: '400, 600, 800, 1000', sizes: '(min-width: 990px) 40vw, 80vw', class: 'buy__img', alt: pic.alt, loading: 'lazy' }}
+              </figure>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+        {%- if section.settings.front != blank and section.settings.back != blank -%}
+          <div class="buy__thumbs" role="group" aria-label="{% render 'vz-tr', k: 'photos' %}">
+            <button type="button" class="buy__thumb" data-show="1" aria-pressed="true">{{ section.settings.front | image_url: width: 160 | image_tag: alt: '', loading: 'lazy' }}<span class="sr-only">{% render 'vz-tr', k: 'front' %}</span></button>
+            <button type="button" class="buy__thumb" data-show="2" aria-pressed="false">{{ section.settings.back | image_url: width: 160 | image_tag: alt: '', loading: 'lazy' }}<span class="sr-only">{% render 'vz-tr', k: 'back' %}</span></button>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="buy__body" data-reveal>
+        {%- if section.settings.kicker != blank -%}<p class="badge5 badge5--light"><span class="badge5__dot" aria-hidden="true"></span>{{ section.settings.kicker }}</p>{%- endif -%}
+        {%- if template.name == 'product' -%}<h1 id="buy-titre-{{ section.id }}" class="buy__title">{{ section.settings.heading }}</h1>{%- else -%}<h2 id="buy-titre-{{ section.id }}" class="buy__title">{{ section.settings.heading }}</h2>{%- endif -%}
+        {%- if section.settings.sub != blank -%}<p class="buy__sub">{% render 'voltiz-t', t: section.settings.sub %}</p>{%- endif -%}
+
+        <p class="buy__price">
+          {%- if product != blank -%}<span data-vz-total aria-live="polite">{{ current.price | money }}</span>{%- else -%}<span>{{ section.settings.fallback_price }}</span>{%- endif -%}
+          {%- if section.settings.unit_label != blank -%}<small>{{ section.settings.unit_label }}</small>{%- endif -%}
+        </p>
+
+        {%- capture buy_fields -%}
+          {%- if section.settings.packs and product != blank and product.has_only_default_variant == false -%}
+            {%- comment -%} Brouillon 8 : choix limité aux formats du produit (1, 2, 3 ou 5 paquets), sans quantité libre. {%- endcomment -%}
+            <fieldset class="packs" data-vz-packs>
+              <legend class="label">{{ product.options.first }}</legend>
+              {%- for v in product.variants -%}
+                {%- assign n = v.title | split: ' ' | first | plus: 0 -%}
+                {%- assign best = false -%}
+          {%- assign per = v.price | times: 1.0 | divided_by: n | round -%}
+                {%- if forloop.last and product.variants.size > 2 -%}{%- assign best = true -%}{%- endif -%}
+                <label class="pack{% if best %} pack--best{% endif %}">
+                  <input type="radio" name="id" value="{{ v.id }}" data-price="{{ v.price }}"{% if v.id == current.id %} checked{% endif %}{% unless v.available %} disabled{% endunless %}>
+                  <span class="pack__card">
+                    {%- if best and section.settings.best_label != blank -%}<span class="pack__tag">{{ section.settings.best_label }}</span>{%- endif -%}
+                    <span class="pack__name">{{ v.title }}
+                      {%- if best and section.settings.best_note != blank -%}<small>{{ section.settings.best_note }}</small>
+                      {%- elsif n > 1 and per < product.variants.first.price -%}<small>{% render 'vz-tr', k: 'each_a' %} {{ per | money }} {% render 'vz-tr', k: 'each_b' %}</small>{%- endif -%}
+                    </span>
+                    <span class="pack__price">{{ v.price | money }}</span>
+                  </span>
+                </label>
+              {%- endfor -%}
+            </fieldset>
+          {%- elsif product != blank and product.has_only_default_variant == false -%}
+            <fieldset class="variants">
+              <legend class="label">{{ product.options.first }}</legend>
+              {%- for v in product.variants -%}
+                <label class="variant">
+                  <input type="radio" name="id" value="{{ v.id }}" data-price="{{ v.price }}"{% if v.id == current.id %} checked{% endif %}{% unless v.available %} disabled{% endunless %}>
+                  <span>{{ v.title }}</span>
+                </label>
+              {%- endfor -%}
+            </fieldset>
+          {%- else -%}
+            <input type="hidden" name="id" value="{{ current.id }}" data-price="{{ current.price }}">
+          {%- endif -%}
+          {%- if section.settings.preorder_property != blank -%}
+            <input type="hidden" name="properties[{{ section.settings.preorder_property | escape }}]" value="{{ section.settings.preorder_value | escape }}">
+          {%- endif -%}
+          <div class="buy__row{% if section.settings.packs %} buy__row--packs{% endif %}">
+            {%- unless section.settings.packs -%}
+            <div class="qty">
+              <button type="button" class="qty__btn" data-step="-1" aria-label="{% render 'vz-tr', k: 'less' %}"><svg aria-hidden="true"><use href="#i-minus"/></svg></button>
+              <label class="sr-only" for="qty-{{ section.id }}">{% render 'vz-tr', k: 'qty' %}</label>
+              <input id="qty-{{ section.id }}" name="quantity" type="number" inputmode="numeric" min="1" max="{{ section.settings.max_qty }}" value="1">
+              <button type="button" class="qty__btn" data-step="1" aria-label="{% render 'vz-tr', k: 'more' %}"><svg aria-hidden="true"><use href="#i-plus"/></svg></button>
+            </div>
+            {%- endunless -%}
+            {%- if on_sale -%}
+              <button class="btn btn--wide" type="submit">{{ section.settings.button_label }}<svg aria-hidden="true"><use href="#i-bag"/></svg></button>
+            {%- else -%}
+              <button class="btn btn--wide" type="button" disabled>{{ section.settings.closed_label }}</button>
+            {%- endif -%}
+          </div>
+        {%- endcapture -%}
+        {%- if product != blank -%}
+          {%- form 'product', product, id: 'vz-buy', class: 'buy__form', data-money-format: shop.money_format, data-max: section.settings.max_qty, novalidate: 'novalidate' -%}{{ buy_fields }}{%- endform -%}
+          {%- if section.settings.packs -%}
+            <script>{%- raw -%}
+              (function () {
+                var f = document.getElementById('vz-buy'); if (!f) return;
+                var fmt = f.dataset.moneyFormat || '';
+                var fmtMoney = function (c) { var a = (c / 100).toFixed(2); return fmt.indexOf('{{') > -1 ? fmt.replace(/\{\{\s*\w+\s*\}\}/, a) : 'CHF ' + a; };
+                f.querySelectorAll('[data-vz-packs] input').forEach(function (r) { r.addEventListener('change', function () {
+                  document.querySelectorAll('[data-vz-total]').forEach(function (el) { el.textContent = fmtMoney(parseInt(r.dataset.price, 10) || 0); });
+                }); });
+                /* Précommande : une seule offre par commande. Le panier est vidé puis l'offre choisie y est mise (quantité 1). */
+                f.addEventListener('submit', function (e) {
+                  if (!window.fetch || !window.FormData) return;
+                  e.preventDefault();
+                  var root = (window.Shopify && Shopify.routes && Shopify.routes.root) || '/';
+                  var data = new FormData(f); data.set('quantity', '1');
+                  fetch(root + 'cart/clear.js', { method: 'POST', headers: { 'Accept': 'application/json' } })
+                    .then(function () { return fetch(root + 'cart/add.js', { method: 'POST', body: data, headers: { 'Accept': 'application/json' } }); })
+                    .then(function (r) { if (!r.ok) throw new Error('add'); window.location.href = root + 'cart'; })
+                    .catch(function () { f.submit(); });
+                });
+              })();
+            {%- endraw -%}</script>
+          {%- endif -%}
+        {%- else -%}
+          <div class="buy__form">{{ buy_fields }}</div>
+        {%- endif -%}
+
+        {%- if section.settings.preorder_title != blank -%}
+          <div class="pre5" role="note">
+            <p class="pre5__title"><svg aria-hidden="true"><use href="#i-timer"/></svg>{{ section.settings.preorder_title }}</p>
+            {%- assign lines = section.settings.preorder_text | newline_to_br | split: '<br />' -%}
+            <ul role="list">
+              {%- for l in lines -%}{%- assign l = l | strip -%}{%- if l != blank -%}<li>{% render 'voltiz-t', t: l %}</li>{%- endif -%}{%- endfor -%}
+            </ul>
+            {%- liquid
+              assign terms = shop.refund_policy
+              if terms == blank
+                assign terms = shop.terms_of_service
+              endif
+            -%}
+            {%- if terms != blank -%}
+              <a class="pre5__link" href="{{ terms.url }}">{{ section.settings.terms_label }}</a>
+            {%- else -%}
+              <p class="pre5__link">{% render 'voltiz-t', t: section.settings.terms_missing %}</p>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- assign infos = section.settings.infos | newline_to_br | split: '<br />' -%}
+        <ul class="buy__infos" role="list">
+          {%- for i in infos -%}{%- assign i = i | strip -%}{%- if i != blank -%}<li><svg aria-hidden="true"><use href="#i-check"/></svg>{% render 'voltiz-t', t: i %}</li>{%- endif -%}{%- endfor -%}
+        </ul>
+
+        <div class="acc">
+          {%- for block in section.blocks -%}
+            <details {{ block.shopify_attributes }}>
+              <summary>{{ block.settings.title }}<svg aria-hidden="true"><use href="#i-plus"/></svg></summary>
+              <div class="acc__body">
+                {%- assign paras = block.settings.text | newline_to_br | split: '<br />' -%}
+                {%- for p in paras -%}
+                  {%- assign p = p | strip -%}
+                  {%- if p == blank -%}{%- continue -%}{%- endif -%}
+                  {%- if p contains ' | ' -%}
+                    {%- assign cells = p | split: ' | ' -%}
+                    {%- if cells.size > 2 -%}
+                      <p class="acc__row acc__row--3{% if cells[0] contains ':' %} acc__row--head{% endif %}{% assign c0 = cells[0] | downcase %}{% if c0 contains 'dont ' or c0 contains 'of which' %} acc__row--sub{% endif %}"><span>{{ cells[0] | remove: ':' | strip }}</span><b>{{ cells[1] }}</b><b>{{ cells[2] }}</b></p>
+                    {%- else -%}
+                    <p class="acc__row"><span>{{ cells[0] }}</span><b>{% render 'voltiz-t', t: cells[1] %}</b></p>
+                    {%- endif -%}
+                  {%- else -%}
+                    <p>{% render 'voltiz-t', t: p %}</p>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            </details>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- if section.settings.sticky -%}
+    <div class="bar" data-vz-bar aria-hidden="true">
+      <div class="bar__in">
+        <p class="bar__name"><b>{{ section.settings.heading }}</b>{%- if product != blank -%}<span data-vz-total>{{ current.price | money }}</span>{%- endif -%}</p>
+        <a class="btn btn--sm" href="#{{ section.settings.anchor }}" tabindex="-1">{{ section.settings.bar_label }}</a>
+      </div>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Voltiz 5 : précommande",
+  "settings": [
+    { "type": "checkbox", "id": "packs", "label": "Formats fixes (tableau de paquets, sans quantité libre)", "default": false },
+    { "type": "text", "id": "best_label", "label": "Étiquette du dernier format", "default": "Meilleure offre" },
+    { "type": "text", "id": "best_note", "label": "Précision du dernier format", "default": "4 achetés + 1 offert" },
+    { "type": "text", "id": "anchor", "label": "Ancre", "default": "precommande" },
+    { "type": "product", "id": "product", "label": "Produit" },
+    { "type": "image_picker", "id": "front", "label": "Sachet, face avant" },
+    { "type": "image_picker", "id": "back", "label": "Sachet, dos" },
+    { "type": "text", "id": "kicker", "label": "Badge au-dessus du nom", "default": "Précommande" },
+    { "type": "text", "id": "heading", "label": "Nom affiché", "default": "Voltiz Energy" },
+    { "type": "textarea", "id": "sub", "label": "Description courte", "default": "Complément alimentaire à base de maté et de caféine, avec édulcorants. 40 mg de caféine par gomme, sans sucre, vegan." },
+    { "type": "text", "id": "unit_label", "label": "Unité du prix", "default": "le sachet" },
+    { "type": "text", "id": "fallback_price", "label": "Prix affiché si le produit n’est pas choisi", "default": "CHF 5.00" },
+    { "type": "range", "id": "max_qty", "label": "Quantité maximum", "min": 1, "max": 20, "step": 1, "default": 20 },
+    { "type": "text", "id": "button_label", "label": "Bouton", "default": "Précommander" },
+    { "type": "text", "id": "closed_label", "label": "Bouton si le produit n’est pas en vente", "default": "Bientôt disponible" },
+    { "type": "textarea", "id": "infos", "label": "Infos d’achat", "info": "Une ligne par info.", "default": "Livraison partout en Suisse\nFrais de port affichés avant le paiement\nPaiement sécurisé" },
+    { "type": "checkbox", "id": "sticky", "label": "Barre d’achat sur téléphone", "default": true },
+    { "type": "text", "id": "bar_label", "label": "Bouton de la barre", "default": "Précommander" },
+    { "type": "header", "content": "Précommande" },
+    { "type": "text", "id": "preorder_title", "label": "Titre de l’encadré", "default": "Comment marche la précommande" },
+    { "type": "textarea", "id": "preorder_text", "label": "Conditions", "info": "Une ligne par point. Le texte entre crochets s’affiche surligné tant qu’il reste à compléter.", "default": "Tu réserves ton sachet maintenant, avant la sortie officielle.\nLe paiement se fait à la commande, par la caisse sécurisée Shopify.\nExpédition prévue : [À COMPLÉTER : date ou période d’expédition].\nTu reçois une confirmation de commande par e-mail." },
+    { "type": "text", "id": "terms_label", "label": "Lien vers les conditions", "default": "Conditions de précommande, d’annulation et de retour" },
+    { "type": "text", "id": "terms_missing", "label": "Texte si les conditions n’existent pas encore", "default": "[À COMPLÉTER : politique d’annulation et de retour dans Shopify]" },
+    { "type": "text", "id": "preorder_property", "label": "Mention ajoutée à chaque article", "info": "Visible dans le panier, à la caisse et dans la commande. Laisse vide pour la retirer.", "default": "Précommande" },
+    { "type": "text", "id": "preorder_value", "label": "Valeur de la mention", "default": "Oui" }
+  ],
+  "blocks": [
+    {
+      "type": "panel",
+      "name": "Volet",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Titre", "default": "Utilisation" },
+        { "type": "textarea", "id": "text", "label": "Texte", "info": "Un paragraphe par ligne. « Nom | valeur » fait une ligne de tableau.", "default": "1 dose = 2 gommes (80 mg de caféine), à mâcher au besoin." }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [{ "name": "Voltiz 5 : précommande" }]
+}
+{% endschema %}
