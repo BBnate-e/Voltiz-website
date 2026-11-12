@@ -13,8 +13,8 @@
       "type": "vz6-hero",
       "settings": {
         "product": "voltiz-energy-gum",
-        "front": "shopify://shop_images/voltiz-sachet-3d-face.webp",
-        "back": "shopify://shop_images/voltiz-sachet-3d-dos.webp",
+        "front": "shopify://shop_images/voltiz-sachet-3d-v2-face.webp",
+        "back": "shopify://shop_images/voltiz-sachet-3d-v2-dos.webp",
         "background": "shopify://shop_images/photo-1697555678219-150263ca9037.jpg",
         "background_position": "object-position: 50% 50%",
         "lead": "Une gomme à mâcher et à avaler, au maté et au goût citron : 40 mg de caféine par gomme. Sans sucres, vegan, fabriquée en Suisse.",
@@ -37,8 +37,8 @@
       "settings": {
         "kicker": "C’est quoi, Voltiz ?",
         "heading": "Un complément alimentaire en gomme.",
-        "front": "shopify://shop_images/voltiz-sachet-3d-face.webp",
-        "back": "shopify://shop_images/voltiz-sachet-3d-dos.webp"
+        "front": "shopify://shop_images/voltiz-sachet-3d-v2-face.webp",
+        "back": "shopify://shop_images/voltiz-sachet-3d-v2-dos.webp"
       },
       "blocks": {
         "b_1": {
@@ -167,7 +167,7 @@
       "type": "vz5-cta",
       "settings": {
         "product": "voltiz-energy-gum",
-        "image": "shopify://shop_images/voltiz-sachet-3d-face.webp",
+        "image": "shopify://shop_images/voltiz-sachet-3d-v2-face.webp",
         "link_label": "Voir le produit et la précommande",
         "link_target": "/products/voltiz-energy-gum",
         "heading": "Prêt quand tu l’es.",

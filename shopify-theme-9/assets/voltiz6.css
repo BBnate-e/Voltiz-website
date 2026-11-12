@@ -219,7 +219,7 @@
 @media (max-width: 420px) { .v3 .acc__row--3 { font-size: .9em; } .v3 .acc__row--3 b { min-width: 4.6em; } .v3 .acc__row--3 { gap: 4px 10px; } }
 
 /* 8. Sachet final (11.11.2026) : rendu 3D du paquet final, 900 x 1526 ; demi-hauteur = 0,86 x largeur */
-.v3 .pouch { aspect-ratio: 900 / 1526; }
+.v3 .pouch { aspect-ratio: 900 / 1552; }
 
 /* 9. Tableau comparatif (vz8-comparatif) */
 .v3 .cmp { padding-block: clamp(80px, 10vw, 140px); background: var(--white); }
