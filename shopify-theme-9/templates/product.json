@@ -24,7 +24,7 @@
         "unit_label": "",
         "fallback_price": "CHF 7.50",
         "closed_label": "Bientôt disponible",
-        "infos": "Livraison en Suisse, expédition prévue mi-décembre 2026\nFrais de port : CHF 5.– (1 à 2 paquets), CHF 11.– (3 à 6 paquets)\nPaiement sécurisé",
+        "infos": "Livraison en Suisse, expédition prévue mi-décembre 2026\nFrais de port : CHF 4.50 (1 ou 2 paquets), CHF 11.– (3 ou 5 paquets)\nPaiement sécurisé",
         "preorder_title": "Comment marche la précommande",
         "preorder_text": "Tu réserves ton sachet maintenant, avant la sortie officielle.\nLe paiement se fait à la commande, par la caisse sécurisée Shopify.\nExpédition prévue pour la mi-décembre 2026.\nTu reçois une confirmation de commande par e-mail.",
         "terms_label": "Conditions de précommande, d’annulation et de retour",
@@ -59,7 +59,7 @@
           "type": "panel",
           "settings": {
             "title": "Livraison",
-            "text": "Nous livrons partout en Suisse. Expédition prévue pour la mi-décembre 2026. Frais de port : CHF 5.– pour 1 à 2 paquets, CHF 11.– pour 3 à 6 paquets.\nLes frais de port s’affichent aussi avant le paiement."
+            "text": "Nous livrons partout en Suisse. Expédition prévue pour la mi-décembre 2026. Frais de port : CHF 4.50 pour 1 ou 2 paquets, CHF 11.– pour 3 ou 5 paquets.\nLes frais de port s’affichent aussi avant le paiement."
           }
         }
       },
@@ -137,7 +137,7 @@
           "type": "question",
           "settings": {
             "question": "Comment se passe la livraison ?",
-            "answer": "Nous livrons partout en Suisse. Expédition prévue pour la mi-décembre 2026. Frais de port : CHF 5.– pour 1 à 2 paquets, CHF 11.– pour 3 à 6 paquets."
+            "answer": "Nous livrons partout en Suisse. Expédition prévue pour la mi-décembre 2026. Frais de port : CHF 4.50 pour 1 ou 2 paquets, CHF 11.– pour 3 ou 5 paquets."
           }
         },
         "b_10": {
