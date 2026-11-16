@@ -1,0 +1,84 @@
+{%- comment -%}
+  Panier : « Ajoute une autre offre ». Les 4 offres du produit, chacune avec un bouton qui l'ajoute au panier
+  (formulaire Shopify classique, retour sur la page panier). Les offres se combinent, aucune n'en remplace une autre.
+  Affiché seulement quand le panier contient déjà quelque chose.
+{%- endcomment -%}
+{%- assign p = section.settings.product -%}
+{%- assign show = false -%}
+{%- if cart.item_count > 0 or request.design_mode -%}{%- assign show = true -%}{%- endif -%}
+{%- if p == blank -%}{%- assign show = false -%}{%- endif -%}
+{%- if show -%}
+<div class="v3 v5">
+  <div class="wrap">
+    <section class="off9" aria-labelledby="off9-t-{{ section.id }}">
+      <div class="off9__head">
+        <h2 id="off9-t-{{ section.id }}" class="off9__title">{{ section.settings.heading }}</h2>
+        {%- if section.settings.text != blank -%}<p class="off9__text">{{ section.settings.text }}</p>{%- endif -%}
+      </div>
+      <ul class="off9__list" role="list">
+        {%- for v in p.variants -%}
+          {%- assign in_cart = 0 -%}
+          {%- for item in cart.items -%}{%- if item.variant_id == v.id -%}{%- assign in_cart = in_cart | plus: item.quantity -%}{%- endif -%}{%- endfor -%}
+          {%- assign best = false -%}
+          {%- if forloop.last and p.variants.size > 2 -%}{%- assign best = true -%}{%- endif -%}
+          <li class="off9__item{% if best %} off9__item--best{% endif %}">
+            <form action="{{ routes.cart_add_url }}" method="post" class="off9__form">
+              <input type="hidden" name="id" value="{{ v.id }}">
+              <input type="hidden" name="quantity" value="1">
+              <input type="hidden" name="return_to" value="{{ routes.cart_url }}">
+              <span class="off9__name">{{ v.title }}</span>
+              <span class="off9__price">{{ v.price | money }}</span>
+              {%- if best and section.settings.best_note != blank -%}<span class="off9__note">{{ section.settings.best_note }}</span>{%- endif -%}
+              {%- if in_cart > 0 -%}<span class="off9__in">{{ in_cart }}× {{ section.settings.in_cart_label }}</span>{%- endif -%}
+              <button class="off9__btn" type="submit"{% unless v.available %} disabled{% endunless %} aria-label="{{ section.settings.button_label }} : {{ v.title }}">
+                <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg>{{ section.settings.button_label }}
+              </button>
+            </form>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </section>
+  </div>
+</div>
+<style>
+  .v5 .off9 { margin: 20px 0 4px; padding: 18px 18px 20px; border: 1px solid var(--g2, #E3E6EA); border-radius: var(--r, 14px); background: var(--white, #fff); }
+  .v5 .off9__head { display: grid; gap: 4px; margin-bottom: 14px; }
+  .v5 .off9__title { margin: 0; font: 400 1.25rem/1.1 var(--h, inherit); text-transform: uppercase; color: var(--navy, #0F2643); letter-spacing: .01em; }
+  .v5 .off9__text { margin: 0; font-size: .9375rem; color: #5A6B80; }
+  .v5 .off9__list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+  .v5 .off9__item { display: flex; }
+  .v5 .off9__form { position: relative; display: flex; flex-direction: column; gap: 4px; width: 100%; padding: 14px 14px 12px; border: 1px solid var(--g3, #C9CFD6); border-radius: 12px; background: var(--white, #fff); }
+  .v5 .off9__item--best .off9__form { border-color: var(--yellow, #FECD06); background: linear-gradient(180deg, rgba(254,205,6,.16), rgba(254,205,6,.04)); }
+  .v5 .off9__name { font: 400 1rem/1.15 var(--h, inherit); text-transform: uppercase; color: var(--navy, #0F2643); }
+  .v5 .off9__price { font: 400 1.125rem/1 var(--h, inherit); color: var(--navy, #0F2643); font-variant-numeric: tabular-nums; }
+  .v5 .off9__note { font-size: .8125rem; font-weight: 700; color: var(--navy, #0F2643); }
+  .v5 .off9__in { font-size: .8125rem; color: #5A6B80; }
+  .v5 .off9__btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; margin-top: auto; min-height: 44px; padding: 0 12px; border: 0; border-radius: 999px; background: var(--navy, #0F2643); color: var(--white, #fff); font: 700 .9375rem/1 var(--font-body--family, inherit); cursor: pointer; transition: background-color .2s, color .2s; }
+  .v5 .off9__form .off9__btn { margin-top: 10px; }
+  .v5 .off9__btn:hover { background: var(--yellow, #FECD06); color: var(--navy, #0F2643); }
+  .v5 .off9__btn:focus-visible { outline: 2px solid var(--navy, #0F2643); outline-offset: 3px; }
+  .v5 .off9__btn:disabled { opacity: .45; cursor: not-allowed; }
+  .v5 .off9__btn[aria-busy="true"] { opacity: .6; pointer-events: none; }
+  @media (max-width: 749px) { .v5 .off9__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } .v5 .off9 { padding: 16px 14px 16px; } }
+</style>
+<script>
+  document.querySelectorAll('.off9__form').forEach(function (f) {
+    f.addEventListener('submit', function () { var b = f.querySelector('.off9__btn'); if (b) b.setAttribute('aria-busy', 'true'); });
+  });
+</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Voltiz 9 : autres offres",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Produit" },
+    { "type": "text", "id": "heading", "label": "Titre", "default": "Ajoute une autre offre" },
+    { "type": "text", "id": "text", "label": "Texte", "default": "Les offres se combinent : chaque clic ajoute l’offre à ton panier." },
+    { "type": "text", "id": "button_label", "label": "Bouton", "default": "Ajouter" },
+    { "type": "text", "id": "in_cart_label", "label": "Déjà au panier", "default": "dans le panier" },
+    { "type": "text", "id": "best_note", "label": "Note meilleure offre", "default": "4 achetés + 1 offert" }
+  ],
+  "presets": [{ "name": "Voltiz 9 : autres offres" }]
+}
+{% endschema %}

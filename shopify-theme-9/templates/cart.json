@@ -16,6 +16,17 @@
         "text": "Le paiement se fait maintenant, à la caisse sécurisée Shopify. Les commandes passées pendant la précommande sont livrées entre fin janvier et mi-février 2027, car notre premier stock est parti très vite. Tu reçois une confirmation par e-mail (pense à regarder dans tes courriers indésirables)."
       }
     },
+    "offres": {
+      "type": "vz9-offres",
+      "settings": {
+        "product": "voltiz-energy-gum",
+        "heading": "Ajoute une autre offre",
+        "text": "Les offres se combinent : chaque clic ajoute l’offre à ton panier.",
+        "button_label": "Ajouter",
+        "in_cart_label": "dans le panier",
+        "best_note": "4 achetés + 1 offert"
+      }
+    },
     "cart-section": {
       "type": "main-cart",
       "blocks": {
@@ -72,6 +83,7 @@
     },
     "product_list_NNFgcy": {
       "type": "product-list",
+      "disabled": true,
       "blocks": {
         "static-header": {
           "type": "_product-list-content",
@@ -258,6 +270,7 @@
   },
   "order": [
     "avis",
+    "offres",
     "cart-section",
     "product_list_NNFgcy"
   ]
