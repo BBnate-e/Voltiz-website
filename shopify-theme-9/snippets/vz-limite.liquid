@@ -7,6 +7,11 @@
   Limite côté site uniquement : Shopify n'a pas de plafond natif par commande sur ce plan.
 {%- endcomment -%}
 {%- assign vz_lim_product = all_products['voltiz-energy-gum'] -%}
+{%- assign vz_lim_total = 0 -%}
+{%- for item in cart.items -%}
+  {%- assign vz_n = item.variant.title | split: ' ' | first | plus: 0 -%}{%- if vz_n < 1 -%}{%- assign vz_n = 1 -%}{%- endif -%}
+  {%- assign vz_lim_total = vz_n | times: item.quantity | plus: vz_lim_total -%}
+{%- endfor -%}
 {%- case request.locale.iso_code -%}
   {%- when 'en' -%}
     {%- capture vz_lim_over -%}Maximum 10 packs per order. Remove some packs to continue, or email us at <a href="mailto:orders@voltiz.ch">orders@voltiz.ch</a> to order more.{%- endcapture -%}
@@ -18,6 +23,7 @@
     {%- capture vz_lim_over -%}Maximum 10 paquets par commande. Retire des paquets pour continuer, ou écris-nous à <a href="mailto:orders@voltiz.ch">orders@voltiz.ch</a> pour en commander plus.{%- endcapture -%}
     {%- capture vz_lim_add -%}Avec cet ajout, ton panier dépasserait 10 paquets, le maximum par commande. Pour en commander plus, écris-nous à <a href="mailto:orders@voltiz.ch">orders@voltiz.ch</a>.{%- endcapture -%}
 {%- endcase -%}
+{%- if vz_lim_total > 10 -%}<script>document.documentElement.classList.add('vz-over')</script>{%- endif -%}
 <style>
   html.vz-over .cart__ctas { display: none !important; }
   .vz-limit { margin: 12px 0; padding: 12px 14px; border-left: 3px solid #FECD06; border-radius: 0 10px 10px 0; background: #FFF8D6; color: #0F2643; font-size: .9375rem; line-height: 1.45; }
@@ -37,7 +43,7 @@
     var MSG_OVER = {{ vz_lim_over | json }};
     var MSG_ADD = {{ vz_lim_add | json }};
     var root = (window.Shopify && Shopify.routes && Shopify.routes.root) || '/';
-    var total = 0;
+    var total = {{ vz_lim_total }};
 
     function packsOf(id, qty) { return (PACKS[String(id)] || 1) * (parseInt(qty, 10) || 0); }
 
@@ -102,6 +108,7 @@
     document.addEventListener('cart:update', soon);
     document.addEventListener('shopify:cart:lines-update', soon);
     document.addEventListener('DOMContentLoaded', function () {
+      paint();
       refresh();
       new MutationObserver(function (list) {
         for (var i = 0; i < list.length; i++) {
