@@ -1,0 +1,118 @@
+{%- comment -%}
+  Limite de 10 paquets par commande (demande de Nathan, 2026-11-17, logistique).
+  Compte les paquets du panier (1, 2, 3 ou 5 par offre) sur toutes les pages.
+  - Au-delà de 10 : le bouton Payer et les paiements express du panier (page et tiroir) sont cachés
+    et un message invite à retirer des paquets ou à écrire à orders@voltiz.ch.
+  - Un ajout qui ferait dépasser 10 est bloqué avant l'envoi, avec le même message.
+  Limite côté site uniquement : Shopify n'a pas de plafond natif par commande sur ce plan.
+{%- endcomment -%}
+{%- assign vz_lim_product = all_products['voltiz-energy-gum'] -%}
+{%- case request.locale.iso_code -%}
+  {%- when 'en' -%}
+    {%- capture vz_lim_over -%}Maximum 10 packs per order. Remove some packs to continue, or email us at <a href="mailto:orders@voltiz.ch">orders@voltiz.ch</a> to order more.{%- endcapture -%}
+    {%- capture vz_lim_add -%}This would take your cart over 10 packs, the maximum per order. To order more, email us at <a href="mailto:orders@voltiz.ch">orders@voltiz.ch</a>.{%- endcapture -%}
+  {%- when 'de' -%}
+    {%- capture vz_lim_over -%}Maximal 10 Beutel pro Bestellung. Entferne Beutel, um fortzufahren, oder schreib uns an <a href="mailto:orders@voltiz.ch">orders@voltiz.ch</a>, wenn du mehr bestellen möchtest.{%- endcapture -%}
+    {%- capture vz_lim_add -%}Damit hättest du mehr als 10 Beutel im Warenkorb, das Maximum pro Bestellung. Für grössere Mengen schreib uns an <a href="mailto:orders@voltiz.ch">orders@voltiz.ch</a>.{%- endcapture -%}
+  {%- else -%}
+    {%- capture vz_lim_over -%}Maximum 10 paquets par commande. Retire des paquets pour continuer, ou écris-nous à <a href="mailto:orders@voltiz.ch">orders@voltiz.ch</a> pour en commander plus.{%- endcapture -%}
+    {%- capture vz_lim_add -%}Avec cet ajout, ton panier dépasserait 10 paquets, le maximum par commande. Pour en commander plus, écris-nous à <a href="mailto:orders@voltiz.ch">orders@voltiz.ch</a>.{%- endcapture -%}
+{%- endcase -%}
+<style>
+  html.vz-over .cart__ctas { display: none !important; }
+  .vz-limit { margin: 12px 0; padding: 12px 14px; border-left: 3px solid #FECD06; border-radius: 0 10px 10px 0; background: #FFF8D6; color: #0F2643; font-size: .9375rem; line-height: 1.45; }
+  .vz-limit a { color: inherit; font-weight: 700; text-decoration: underline; }
+</style>
+<script>
+  (function () {
+    var MAX = 10;
+    var PACKS = {
+      {%- if vz_lim_product -%}
+        {%- for v in vz_lim_product.variants -%}
+          {%- assign n = v.title | split: ' ' | first | plus: 0 -%}{%- if n < 1 -%}{%- assign n = 1 -%}{%- endif -%}
+          "{{ v.id }}": {{ n }}{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      {%- endif -%}
+    };
+    var MSG_OVER = {{ vz_lim_over | json }};
+    var MSG_ADD = {{ vz_lim_add | json }};
+    var root = (window.Shopify && Shopify.routes && Shopify.routes.root) || '/';
+    var total = 0;
+
+    function packsOf(id, qty) { return (PACKS[String(id)] || 1) * (parseInt(qty, 10) || 0); }
+
+    function paint() {
+      var over = total > MAX;
+      document.documentElement.classList.toggle('vz-over', over);
+      document.querySelectorAll('.cart__ctas').forEach(function (ctas) {
+        var box = ctas.previousElementSibling;
+        var has = box && box.classList && box.classList.contains('vz-limit--cart');
+        if (over && !has) {
+          box = document.createElement('p');
+          box.className = 'vz-limit vz-limit--cart';
+          box.setAttribute('role', 'alert');
+          box.innerHTML = MSG_OVER;
+          ctas.parentNode.insertBefore(box, ctas);
+        } else if (!over && has) {
+          box.remove();
+        }
+      });
+    }
+
+    var busy = null;
+    function refresh() {
+      if (busy) return busy;
+      busy = fetch(root + 'cart.js', { headers: { 'Accept': 'application/json' }, credentials: 'same-origin' })
+        .then(function (r) { return r.json(); })
+        .then(function (c) {
+          total = 0;
+          (c.items || []).forEach(function (it) { total += packsOf(it.variant_id, it.quantity); });
+          paint();
+        })
+        .catch(function () {})
+        .then(function () { busy = null; });
+      return busy;
+    }
+
+    /* Bloque un ajout qui ferait dépasser la limite (fiche produit, bloc « autre offre » du panier). */
+    document.addEventListener('submit', function (e) {
+      var f = e.target;
+      if (!f || !f.action || f.action.indexOf('/cart/add') === -1) return;
+      var idEl = f.querySelector('[name="id"]:checked') || f.querySelector('input[type="hidden"][name="id"], select[name="id"]');
+      if (!idEl) return;
+      var qtyEl = f.querySelector('[name="quantity"]');
+      var adding = packsOf(idEl.value, qtyEl ? qtyEl.value : 1);
+      if (total + adding > MAX) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        var box = f.querySelector('.vz-limit--add');
+        if (!box) {
+          box = document.createElement('p');
+          box.className = 'vz-limit vz-limit--add';
+          box.setAttribute('role', 'alert');
+          f.appendChild(box);
+        }
+        box.innerHTML = MSG_ADD;
+        f.querySelectorAll('[aria-busy]').forEach(function (b) { b.removeAttribute('aria-busy'); });
+      }
+    }, true);
+
+    var t = null;
+    function soon() { clearTimeout(t); t = setTimeout(refresh, 150); }
+    document.addEventListener('cart:update', soon);
+    document.addEventListener('shopify:cart:lines-update', soon);
+    document.addEventListener('DOMContentLoaded', function () {
+      refresh();
+      new MutationObserver(function (list) {
+        for (var i = 0; i < list.length; i++) {
+          var nodes = list[i].addedNodes;
+          for (var j = 0; j < nodes.length; j++) {
+            var n = nodes[j];
+            if (n.nodeType === 1 && !n.classList.contains('vz-limit') && (n.matches('.cart__ctas, .cart-items, cart-items-component') || n.querySelector('.cart__ctas, .cart-items'))) { soon(); return; }
+          }
+        }
+      }).observe(document.body, { childList: true, subtree: true });
+    });
+    window.addEventListener('pageshow', function (e) { if (e.persisted) refresh(); });
+  })();
+</script>
