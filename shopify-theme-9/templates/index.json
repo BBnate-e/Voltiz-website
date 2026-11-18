@@ -27,7 +27,7 @@
         "slogan": "Partout. À tout moment.",
         "badge": "Précommandes ouvertes",
         "button_label": "Précommander",
-        "note": "Paiement sécurisé par Shopify · Livraison en Suisse",
+        "note": "Paiement sécurisé par Shopify · Livraison en Suisse, offerte dès 10 paquets",
         "turn_front": "Voir le dos",
         "turn_back": "Voir la face"
       }
@@ -149,7 +149,7 @@
           "settings": {
             "label": "Prix",
             "v1": "CHF 0.375 par gomme",
-            "v2": "≈ CHF 4–5 par café",
+            "v2": "≈ CHF 1.50–2.50 par café",
             "v3": "≈ CHF 2–3 par canette"
           }
         }

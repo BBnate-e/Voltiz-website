@@ -67,6 +67,12 @@
                 </label>
               {%- endfor -%}
             </fieldset>
+            {%- if section.settings.ship_note != blank or section.settings.packs_note != blank -%}
+              <div class="perks">
+                {%- if section.settings.ship_note != blank -%}<p class="perk perk--ship"><svg aria-hidden="true"><use href="#i-truck"/></svg><span>{% render 'voltiz-t', t: section.settings.ship_note %}</span></p>{%- endif -%}
+                {%- if section.settings.packs_note != blank -%}<p class="perk perk--pre"><svg aria-hidden="true"><use href="#i-timer"/></svg><span>{% render 'voltiz-t', t: section.settings.packs_note %}</span></p>{%- endif -%}
+              </div>
+            {%- endif -%}
           {%- elsif product != blank and product.has_only_default_variant == false -%}
             <fieldset class="variants">
               <legend class="label">{{ product.options.first }}</legend>
@@ -188,6 +194,8 @@
     { "type": "checkbox", "id": "packs", "label": "Formats fixes (tableau de paquets, sans quantité libre)", "default": false },
     { "type": "text", "id": "best_label", "label": "Étiquette du dernier format", "default": "Meilleure offre" },
     { "type": "text", "id": "best_note", "label": "Précision du dernier format", "default": "4 achetés + 1 offert" },
+    { "type": "text", "id": "ship_note", "label": "Encadré livraison sous les formats", "default": "Livraison offerte dès 10 paquets précommandés" },
+    { "type": "textarea", "id": "packs_note", "label": "Précision sous les formats", "default": "Ces prix dégressifs sont réservés à la précommande. Ensuite, les paquets passeront à la vente simple, sans ces offres." },
     { "type": "text", "id": "anchor", "label": "Ancre", "default": "precommande" },
     { "type": "product", "id": "product", "label": "Produit" },
     { "type": "image_picker", "id": "front", "label": "Sachet, face avant" },
