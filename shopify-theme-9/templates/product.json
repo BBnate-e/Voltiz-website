@@ -24,7 +24,7 @@
         "unit_label": "",
         "fallback_price": "CHF 7.50",
         "closed_label": "Bientôt disponible",
-        "infos": "Livraison en Suisse, prévue entre fin janvier et mi-février 2027\nFrais de port : CHF 3.90 (1 ou 2 paquets), CHF 9.70 (3 à 9 paquets)\nLivraison offerte dès 10 paquets\nMaximum 10 paquets par commande (pour plus, écris-nous à orders@voltiz.ch)\nPaiement sécurisé",
+        "infos": "Livraison en Suisse, prévue entre fin janvier et mi-février 2027\nFrais de port : CHF 3.90 (1 ou 2 paquets), CHF 9.70 (3 à 9 paquets)\nLivraison offerte dès 10 paquets\nPaiement sécurisé",
         "preorder_title": "Comment marche la précommande",
         "preorder_text": "Tu réserves ton sachet maintenant, avant la sortie officielle.\nLe paiement se fait à la commande, par la caisse sécurisée Shopify.\nLes commandes passées pendant la précommande sont livrées entre fin janvier et mi-février 2027, car notre premier stock est parti très vite.\nTu reçois une confirmation de commande par e-mail (pense à regarder dans tes courriers indésirables).",
         "terms_label": "Conditions de précommande, d’annulation et de retour",
@@ -61,7 +61,7 @@
           "type": "panel",
           "settings": {
             "title": "Livraison",
-            "text": "Nous livrons partout en Suisse. Livraison prévue entre fin janvier et mi-février 2027. Frais de port : CHF 3.90 pour 1 ou 2 paquets, CHF 9.70 de 3 à 9 paquets, livraison offerte dès 10 paquets. Maximum 10 paquets par commande : pour en commander plus, écris-nous à orders@voltiz.ch.\nLes frais de port s’affichent aussi avant le paiement."
+            "text": "Nous livrons partout en Suisse. Livraison prévue entre fin janvier et mi-février 2027. Frais de port : CHF 3.90 pour 1 ou 2 paquets, CHF 9.70 de 3 à 9 paquets, livraison offerte dès 10 paquets.\nLes frais de port s’affichent aussi avant le paiement."
           }
         }
       },
@@ -139,7 +139,7 @@
           "type": "question",
           "settings": {
             "question": "Comment se passe la livraison ?",
-            "answer": "Nous livrons partout en Suisse. Livraison prévue entre fin janvier et mi-février 2027. Frais de port : CHF 3.90 pour 1 ou 2 paquets, CHF 9.70 de 3 à 9 paquets, livraison offerte dès 10 paquets. Maximum 10 paquets par commande : pour en commander plus, écris-nous à orders@voltiz.ch."
+            "answer": "Nous livrons partout en Suisse. Livraison prévue entre fin janvier et mi-février 2027. Frais de port : CHF 3.90 pour 1 ou 2 paquets, CHF 9.70 de 3 à 9 paquets, livraison offerte dès 10 paquets."
           }
         },
         "b_10": {

@@ -21,7 +21,7 @@
       "settings": {
         "product": "voltiz-energy-gum",
         "heading": "Ajoute une autre offre",
-        "text": "Les offres se combinent : chaque clic ajoute l’offre à ton panier. Livraison offerte dès 10 paquets, le maximum par commande.",
+        "text": "Les offres se combinent : chaque clic ajoute l’offre à ton panier. Livraison offerte dès 10 paquets.",
         "button_label": "Ajouter",
         "in_cart_label": "dans le panier",
         "best_note": "4 achetés + 1 offert"
