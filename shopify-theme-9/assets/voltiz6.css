@@ -268,20 +268,11 @@
 .v6 .hero6__ui { pointer-events: none; }
 .v6 .hero6__ui > * { pointer-events: auto; }
 
-/* Sachet 3D (2026-11-18) : vrai volume. Les faces sont plus écartées et les côtés sont faits de tranches
-   qui suivent le contour et les couleurs du sachet (snippets/vz-pouch-edges.liquid). */
-.v3 .pouch { --t: 6.5cqw; }
-.v3 .pouch__edges { position: absolute; inset: 0; transform-style: preserve-3d; pointer-events: none; }
-.v3 .pouch__edge { position: absolute; left: 50%; width: calc(var(--t) * 2); margin-left: calc(var(--t) * -1); backface-visibility: hidden; -webkit-backface-visibility: hidden;
-  background: linear-gradient(90deg, rgba(0,0,0,.34), rgba(255,255,255,.10) 45%, rgba(255,255,255,.10) 55%, rgba(0,0,0,.34)), var(--c); }
-.v3 .pouch__edge--r { transform: rotateY(90deg) translateZ(var(--d)); }
-.v3 .pouch__edge--l { transform: rotateY(-90deg) translateZ(var(--d)); }
-
 /* 11. Sous les formats : livraison offerte dès 10 paquets, offres réservées à la précommande (18.11) */
 .v3 .perks { display: grid; gap: 8px; margin: 12px 0 4px; }
 .v3 .perk { display: flex; align-items: flex-start; gap: 10px; margin: 0; font-size: .875rem; line-height: 1.4; color: var(--navy); }
 .v3 .perk svg { flex: none; width: 18px; height: 18px; margin-top: 1px; }
 .v3 .perk--ship { padding: 10px 14px; border-radius: 10px; background: var(--navy); color: var(--white); font-weight: 700; }
 .v3 .perk--ship svg { color: var(--yellow); }
-.v3 .perk--pre { padding: 0 2px; color: #5A6B80; }
+.v3 .perk--pre { padding: 10px 14px; border-radius: 10px; background: var(--yellow); color: var(--navy); font-weight: 700; }
 .v3 .perk--pre svg { color: var(--navy); }

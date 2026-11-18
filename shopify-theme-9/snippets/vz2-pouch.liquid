@@ -1,6 +1,5 @@
 {%- comment -%}
-  Sachet Voltiz en 3D léger (CSS) : deux faces (avant, dos) et des tranches qui suivent le contour du sachet
-  (snippet vz-pouch-edges, pour les images 3D v2 ; sinon une tranche simple).
+  Sachet Voltiz en 3D léger (CSS) : deux faces (avant, dos) et une tranche.
   Paramètres : front, back (images), id (identifiant unique), eager (true pour la première image visible),
   sizes (attribut sizes des images), mode ('drag' : on peut le faire tourner ; 'scroll' : il tourne au défilement).
   Sans image : un sachet gris neutre s'affiche (aucun faux détail de packaging).
@@ -22,13 +21,8 @@
           <span class="pouch__blank"><svg aria-hidden="true"><use href="#i-bolt"/></svg></span>
         {%- endif -%}
       </div>
-      {%- assign front_src = front | image_url: width: 10 -%}
-      {%- if front_src contains 'voltiz-sachet-3d-v2' -%}
-        {%- render 'vz-pouch-edges' -%}
-      {%- else -%}
-        <div class="pouch__side pouch__side--l"></div>
-        <div class="pouch__side pouch__side--r"></div>
-      {%- endif -%}
+      <div class="pouch__side pouch__side--l"></div>
+      <div class="pouch__side pouch__side--r"></div>
       <div class="pouch__face pouch__face--back">
         {%- if back != blank -%}
           {{ back | image_url: width: 900 | image_tag: widths: '360, 540, 720, 900', sizes: sz, class: 'pouch__img', alt: '', loading: 'lazy', draggable: 'false' }}
