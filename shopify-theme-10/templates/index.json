@@ -18,8 +18,8 @@
         "background": "shopify://shop_images/photo-1697555678219-150263ca9037.jpg",
         "background_position": "object-position: 50% 50%",
         "lead": "Une gomme à mâcher et à avaler, au maté et au goût citron : 40 mg de caféine par gomme. Sans sucres, vegan, fabriquée en Suisse.",
-        "facts": "40 mg de caféine par gomme | Effet en 5 à 10 min | Sans sucres, vegan | Fabriqué en Suisse",
-        "link_label": "C’est quoi, Voltiz ?",
+        "facts": "",
+        "link_label": "",
         "link_target": "#produit",
         "button_link": "/products/voltiz-energy-gum",
         "title_small": "Ton",
@@ -36,7 +36,7 @@
       "type": "vz3-produit",
       "settings": {
         "kicker": "C’est quoi, Voltiz ?",
-        "heading": "Un complément alimentaire en gomme.",
+        "heading": "Ton énergie dans une gomme.",
         "front": "shopify://shop_images/voltiz-sachet-3d-v2-face.webp",
         "back": "shopify://shop_images/voltiz-sachet-3d-v2-dos.webp"
       },
@@ -90,7 +90,7 @@
       "settings": {
         "anchor": "comparatif",
         "kicker": "Comparatif",
-        "heading": "Une gomme plutôt qu’un café ?",
+        "heading": "Voltiz plutôt qu’un café ?",
         "col1": "Voltiz",
         "col2": "Café",
         "col3": "Boisson énergisante",
