@@ -2,17 +2,18 @@
   Panier : « Ajoute une autre offre ». Les 4 offres du produit, chacune avec un bouton qui l'ajoute au panier
   (formulaire Shopify classique, retour sur la page panier). Les offres se combinent, aucune n'en remplace une autre.
   Affiché seulement quand le panier contient déjà quelque chose.
+  Drop Mûre (26.11) : une section par goût, avec une couleur (Citron ou Mûre) et une petite mention facultative.
 {%- endcomment -%}
 {%- assign p = section.settings.product -%}
 {%- assign show = false -%}
 {%- if cart.item_count > 0 or request.design_mode -%}{%- assign show = true -%}{%- endif -%}
 {%- if p == blank -%}{%- assign show = false -%}{%- endif -%}
 {%- if show -%}
-<div class="v3 v5">
+<div class="v3 v5{% if section.settings.tone == 'mure' %} is-mure{% endif %}">
   <div class="wrap">
     <section class="off9" aria-labelledby="off9-t-{{ section.id }}">
       <div class="off9__head">
-        <h2 id="off9-t-{{ section.id }}" class="off9__title">{{ section.settings.heading }}</h2>
+        <h2 id="off9-t-{{ section.id }}" class="off9__title">{%- if section.settings.tag != blank -%}<span class="off9__tag">{{ section.settings.tag }}</span>{%- endif -%}{{ section.settings.heading }}</h2>
         {%- if section.settings.text != blank -%}<p class="off9__text">{{ section.settings.text }}</p>{%- endif -%}
       </div>
       <ul class="off9__list" role="list">
@@ -74,6 +75,8 @@
   "settings": [
     { "type": "product", "id": "product", "label": "Produit" },
     { "type": "text", "id": "heading", "label": "Titre", "default": "Ajoute une autre offre" },
+    { "type": "text", "id": "tag", "label": "Petite mention avant le titre" },
+    { "type": "select", "id": "tone", "label": "Couleur", "default": "citron", "options": [ { "value": "citron", "label": "Citron" }, { "value": "mure", "label": "Mûre (violet)" } ] },
     { "type": "text", "id": "text", "label": "Texte", "default": "Les offres se combinent : chaque clic ajoute l’offre à ton panier." },
     { "type": "text", "id": "button_label", "label": "Bouton", "default": "Ajouter" },
     { "type": "text", "id": "in_cart_label", "label": "Déjà au panier", "default": "dans le panier" },

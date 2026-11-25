@@ -17,7 +17,7 @@
         "back": "shopify://shop_images/voltiz-sachet-3d-v2-dos.webp",
         "background": "shopify://shop_images/photo-1697555678219-150263ca9037.jpg",
         "background_position": "object-position: 50% 50%",
-        "lead": "Une gomme à mâcher et à avaler, au maté et au goût citron : 40 mg de caféine par gomme. Sans sucres, vegan, fabriquée en Suisse.",
+        "lead": "Une gomme à mâcher et à avaler, au maté : 40 mg de caféine par gomme. Goût citron, ou mûre en édition limitée. Sans sucres, vegan, fabriquée en Suisse.",
         "facts": "",
         "link_label": "",
         "link_target": "#produit",
@@ -26,10 +26,18 @@
         "title_big": "énergie.",
         "slogan": "Partout. À tout moment.",
         "badge": "Précommandes ouvertes",
-        "button_label": "Précommander",
+        "button_label": "Précommander Citron",
         "note": "Paiement sécurisé par Shopify · Livraison en Suisse, offerte dès 10 paquets",
         "turn_front": "Voir le dos",
-        "turn_back": "Voir la face"
+        "turn_back": "Voir la face",
+        "front_2": "shopify://shop_images/voltiz-sachet-3d-mure-face.webp",
+        "product_2": "voltiz-mate-mure",
+        "new_badge": "Nouveau · Édition limitée Mûre",
+        "label_1": "Maté Citron",
+        "label_2": "Maté Mûre",
+        "tag_2": "Édition limitée",
+        "button_2_label": "Précommander Mûre",
+        "button_2_link": "/products/voltiz-mate-mure"
       }
     },
     "produit": {
@@ -45,8 +53,8 @@
           "type": "step",
           "settings": {
             "title": "Une gomme à mâcher et à avaler.",
-            "text": "Un complément alimentaire à base de maté et de caféine, avec édulcorants, goût citron. Tu la mâches, puis tu l’avales : rien à préparer, rien à boire. Ce n’est pas un chewing-gum.",
-            "detail": "Goût citron",
+            "text": "Un complément alimentaire à base de maté et de caféine, avec édulcorants. Goût citron, ou mûre en édition limitée. Tu la mâches, puis tu l’avales : rien à préparer, rien à boire. Ce n’est pas un chewing-gum.",
+            "detail": "Citron ou Mûre",
             "side": "front"
           }
         },
@@ -168,11 +176,11 @@
       "settings": {
         "product": "voltiz-energy-gum",
         "image": "shopify://shop_images/voltiz-sachet-3d-v2-face.webp",
-        "link_label": "Voir le produit et la précommande",
-        "link_target": "/products/voltiz-energy-gum",
+        "link_label": "Découvrir l’édition limitée Mûre",
+        "link_target": "/products/voltiz-mate-mure",
         "heading": "Prêt quand tu l’es.",
-        "text": "Réserve ton premier sachet Voltiz. Paiement sécurisé à la commande, livraison en Suisse.",
-        "button_label": "Précommander",
+        "text": "Réserve ton premier sachet Voltiz, Citron ou Mûre en édition limitée. Paiement sécurisé à la commande, livraison en Suisse.",
+        "button_label": "Précommander Citron",
         "closed_label": "Bientôt disponible"
       }
     }

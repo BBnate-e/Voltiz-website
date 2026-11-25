@@ -11,7 +11,7 @@
 {%- assign on_sale = false -%}
 {%- if product != blank and product.available -%}{%- assign on_sale = true -%}{%- endif -%}
 {%- assign current = product.selected_or_first_available_variant -%}
-<div class="v3 v5">
+<div class="v3 v5{% if section.settings.tone == 'mure' %} is-mure{% endif %}">
   <section class="buy buy5" id="{{ section.settings.anchor }}" aria-labelledby="buy-titre-{{ section.id }}">
     <div class="wrap buy__in">
       <div class="buy__gallery" data-vz-gallery data-reveal>
@@ -38,6 +38,21 @@
         {%- if section.settings.kicker != blank -%}<p class="badge5 badge5--light"><span class="badge5__dot" aria-hidden="true"></span>{{ section.settings.kicker }}</p>{%- endif -%}
         {%- if template.name == 'product' -%}<h1 id="buy-titre-{{ section.id }}" class="buy__title">{{ section.settings.heading }}</h1>{%- else -%}<h2 id="buy-titre-{{ section.id }}" class="buy__title">{{ section.settings.heading }}</h2>{%- endif -%}
         {%- if section.settings.sub != blank -%}<p class="buy__sub">{% render 'voltiz-t', t: section.settings.sub %}</p>{%- endif -%}
+
+        {%- if section.settings.flavour_label != blank and section.settings.flavour_2_label != blank -%}
+          {%- comment -%} Drop Mûre (26.11) : choix du goût = lien vers la fiche de l'autre goût (chaque goût garde ses offres). {%- endcomment -%}
+          <div class="flav" role="group" aria-labelledby="flav-{{ section.id }}">
+            <p class="label" id="flav-{{ section.id }}">{{ section.settings.flavour_label }}</p>
+            <div class="flav__list">
+              <a class="flav__opt{% if section.settings.flavour_current == '1' %} is-on{% endif %}" href="{{ section.settings.flavour_1_url }}"{% if section.settings.flavour_current == '1' %} aria-current="page"{% endif %}>
+                <span class="flav__dot" aria-hidden="true"></span><span class="flav__name">{{ section.settings.flavour_1_label }}</span>
+              </a>
+              <a class="flav__opt flav__opt--mure{% if section.settings.flavour_current == '2' %} is-on{% endif %}" href="{{ section.settings.flavour_2_url }}"{% if section.settings.flavour_current == '2' %} aria-current="page"{% endif %}>
+                <span class="flav__dot" aria-hidden="true"></span><span class="flav__name">{{ section.settings.flavour_2_label }}{%- if section.settings.flavour_2_tag != blank -%}<small>{{ section.settings.flavour_2_tag }}</small>{%- endif -%}</span>
+              </a>
+            </div>
+          </div>
+        {%- endif -%}
 
         <p class="buy__price">
           {%- if product != blank -%}<span data-vz-total aria-live="polite">{{ current.price | money }}</span>{%- else -%}<span>{{ section.settings.fallback_price }}</span>{%- endif -%}
@@ -202,6 +217,14 @@
     { "type": "image_picker", "id": "back", "label": "Sachet, dos" },
     { "type": "text", "id": "kicker", "label": "Badge au-dessus du nom", "default": "Précommande" },
     { "type": "text", "id": "heading", "label": "Nom affiché", "default": "Voltiz Energy" },
+    { "type": "select", "id": "tone", "label": "Couleur de la fiche", "default": "citron", "options": [ { "value": "citron", "label": "Citron (jaune)" }, { "value": "mure", "label": "Mûre (violet)" } ] },
+    { "type": "text", "id": "flavour_label", "label": "Choix du goût : titre", "info": "Vide : pas de choix du goût." },
+    { "type": "select", "id": "flavour_current", "label": "Goût de cette fiche", "default": "1", "options": [ { "value": "1", "label": "1er goût" }, { "value": "2", "label": "2e goût" } ] },
+    { "type": "text", "id": "flavour_1_label", "label": "1er goût" },
+    { "type": "text", "id": "flavour_1_url", "label": "Lien du 1er goût" },
+    { "type": "text", "id": "flavour_2_label", "label": "2e goût" },
+    { "type": "text", "id": "flavour_2_tag", "label": "Mention du 2e goût" },
+    { "type": "text", "id": "flavour_2_url", "label": "Lien du 2e goût" },
     { "type": "textarea", "id": "sub", "label": "Description courte", "default": "Complément alimentaire à base de maté et de caféine, avec édulcorants. 40 mg de caféine par gomme, sans sucre, vegan." },
     { "type": "text", "id": "unit_label", "label": "Unité du prix", "default": "le sachet" },
     { "type": "text", "id": "fallback_price", "label": "Prix affiché si le produit n’est pas choisi", "default": "CHF 5.00" },

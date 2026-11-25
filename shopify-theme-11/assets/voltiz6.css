@@ -306,3 +306,82 @@
 @media (max-width: 989px) and (min-width: 600px) {
   .v6 .hero6__buy { order: 0; }
 }
+
+/* 14. Drop Mûre (26.11) : édition limitée, violet du sachet Mûre.
+   --mure sur fond clair (8:1 sur blanc), --mure-soft sur le marine (6,7:1). */
+.v3 { --mure: #8F2363; --mure-2: #A3286F; --mure-soft: #F08CC8; }
+.v3 .btn.btn--mure:not(:disabled) { background: var(--mure); color: #FFFFFF; }
+.v3 .btn.btn--mure:not(:disabled):hover { background: var(--mure-2); box-shadow: 0 14px 30px -14px rgba(143,35,99,.85); }
+
+/* Premier écran : les deux sachets côte à côte */
+.v6 .hero6--duo { --pw: clamp(190px, 16.5vw, 262px); --cy: 57%; }
+.v6 .hero6__title { gap: 14px; }
+.v6 .hero6__h { margin: 0; display: grid; justify-items: center; gap: .3em; }
+.v6 .hero6--duo .hero6__title { transform: translate(-50%, calc(-100% - var(--pw) * .9 - 30px)) translate3d(calc(var(--mx) * -8px), calc(var(--my) * -6px + var(--hs) * 60px), 0); }
+.v6 .hero6__new { display: inline-flex; align-items: center; gap: 10px; margin: 0; padding: 8px 15px 8px 12px; border: 1px solid rgba(240,140,200,.5); border-radius: 999px; background: rgba(143,35,99,.24);
+  color: var(--mure-soft); font: 700 .6875rem/1 var(--f); letter-spacing: .16em; text-transform: uppercase; }
+.v6 .hero6__new-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mure-soft); box-shadow: 0 0 0 4px rgba(240,140,200,.16); }
+.v6 .hero6__halo2 { position: absolute; z-index: 2; left: calc(50% + var(--pw) * .55); top: var(--cy); width: min(760px, 80vw); aspect-ratio: 1.15; transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, rgba(240,140,200,.20) 0%, rgba(143,35,99,.14) 42%, rgba(143,35,99,0) 72%); mix-blend-mode: screen; }
+.v6 .hero6__stage--duo { width: calc(var(--pw) * 1.84); }
+.v6 .hero6__stage--duo .hero6__product { width: var(--pw); }
+.v6 .hero6__product--a { z-index: 1; rotate: -5deg; transform-origin: 50% 85%; }
+.v6 .hero6__product--b { position: absolute; z-index: 2; right: 0; top: 0; rotate: 5deg; translate: 0 -4%; transform-origin: 50% 85%;
+  filter: drop-shadow(0 46px 44px rgba(3,12,26,.55)) drop-shadow(0 0 80px rgba(143,35,99,.32)); }
+.js .v6 .hero6__product--b { animation-delay: .25s; }
+.v6 .hero6--duo .hero6 .pouch__float, .v6 .hero6--duo .pouch__float { animation-duration: 9s; }
+.v6 .hero6__product--b .pouch__float { animation-delay: -4.5s; }
+.v6 .hero6__tag { position: absolute; left: 50%; top: calc(100% + 22px); translate: -50% 0; display: grid; justify-items: center; gap: 5px; white-space: nowrap;
+  color: var(--white); font: 400 .8125rem/1 var(--h); letter-spacing: .14em; text-transform: uppercase; text-decoration: none; }
+.v6 .hero6__product--a .hero6__tag { rotate: 5deg; }
+.v6 .hero6__product--b .hero6__tag { rotate: -5deg; }
+.v6 .hero6__tag small { color: var(--mure-soft); font: 700 .625rem/1 var(--f); letter-spacing: .18em; }
+.v6 .hero6__tag:hover { color: var(--white); text-decoration: underline; text-underline-offset: 4px; }
+.v6 .hero6__buy .btn { min-width: 300px; justify-content: space-between; }
+@media (prefers-reduced-motion: reduce) {
+  .v6 .hero6--duo .hero6__title { transform: translate(-50%, calc(-100% - var(--pw) * .9 - 30px)); }
+}
+@media (max-width: 989px) {
+  .v6 .hero6--duo { --pw: min(39vw, 200px); --cy: calc(var(--pw) * .9 + 186px); }
+  .v6 .hero6--duo .hero6__title { transform: translate(-50%, calc(-100% - var(--pw) * .9 - 20px)); }
+  .v6 .hero6--duo .hero6__ui { padding-top: calc(var(--cy) + var(--pw) * .9 + 96px); }
+  .v6 .hero6__new { font-size: .625rem; padding: 7px 12px 7px 10px; }
+  .v6 .hero6__tag { top: calc(100% + 16px); font-size: .75rem; }
+  .v6 .hero6__buy .btn { min-width: 0; }
+}
+
+/* Fiche produit : choix du goût, et couleur Mûre sur la fiche de l'édition limitée */
+.v3 .flav { display: grid; gap: 8px; margin: 18px 0 6px; }
+.v3 .flav__list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.v3 .flav__opt { display: flex; align-items: center; gap: 10px; min-height: 54px; padding: 10px 14px; border: 1px solid var(--g3); border-radius: 12px; background: var(--white);
+  color: var(--navy); text-decoration: none; font: 400 .9375rem/1.15 var(--h); text-transform: uppercase; transition: border-color .2s, background-color .2s; }
+.v3 .flav__opt:hover { border-color: var(--navy); }
+.v3 .flav__opt.is-on { border: 2px solid var(--navy); padding: 9px 13px; }
+.v3 .flav__opt--mure.is-on { border-color: var(--mure); background: rgba(143,35,99,.05); }
+.v3 .flav__opt:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+.v3 .flav__dot { flex: none; width: 14px; height: 14px; border-radius: 50%; background: var(--lemon); box-shadow: inset 0 0 0 1px rgba(15,38,67,.18); }
+.v3 .flav__opt--mure .flav__dot { background: var(--mure); }
+.v3 .flav__name small { display: block; margin-top: 4px; font: 700 .625rem/1.1 var(--f); letter-spacing: .12em; color: var(--mure); }
+.v3.is-mure .btn:not(:disabled) { background: var(--mure); color: #FFFFFF; }
+.v3.is-mure .btn:not(:disabled):hover { background: var(--mure-2); box-shadow: 0 14px 30px -14px rgba(143,35,99,.85); }
+.v3.is-mure .btn.is-loading::after { border-color: #FFFFFF; border-right-color: transparent; }
+.v3.is-mure .badge5 { color: var(--mure); border-color: rgba(143,35,99,.4); }
+.v3.is-mure .badge5__dot { background: var(--mure); }
+.v3.is-mure .badge5__dot::after { border-color: var(--mure); }
+.v3.is-mure .pack--best .pack__card { border-color: var(--mure); background: linear-gradient(90deg, rgba(143,35,99,.10), rgba(143,35,99,.03)); }
+.v3.is-mure .pack--best .pack__card::after { background: var(--mure); }
+.v3.is-mure .pack__tag { background: var(--mure); color: #FFFFFF; }
+.v3.is-mure .perk--pre { background: #F7E1EE; color: var(--navy); }
+.v3.is-mure .perk--pre svg { color: var(--mure); }
+.v3.is-mure .pre5 { border-left-color: var(--mure); }
+.v3.is-mure .buy__infos svg { background: var(--mure); color: #FFFFFF; }
+
+/* Menu : lien Mûre en violet clair */
+.v3 .nav__links a[href*="voltiz-mate-mure"] { color: var(--mure-soft); }
+.v3 .nav__links a[href*="voltiz-mate-mure"]::after { background: var(--mure-soft); }
+
+/* Panier : offres de la Mûre */
+.v5 .off9__tag { display: inline-block; margin-right: 10px; padding: 5px 9px; border-radius: 999px; background: var(--mure); color: #FFFFFF; font: 700 .625rem/1 var(--f); letter-spacing: .12em; vertical-align: .2em; }
+.v5.is-mure .off9 { border-color: rgba(143,35,99,.35); }
+.v5.is-mure .off9__item--best .off9__form { border-color: var(--mure); background: linear-gradient(180deg, rgba(143,35,99,.10), rgba(143,35,99,.03)); }
+.v5.is-mure .off9__btn:hover { background: var(--mure); color: #FFFFFF; }

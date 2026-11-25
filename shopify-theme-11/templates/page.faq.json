@@ -20,14 +20,14 @@
           "type": "question",
           "settings": {
             "question": "C’est quoi, Voltiz ?",
-            "answer": "Un complément alimentaire à base de maté et de caféine, avec édulcorants, goût citron, sous forme de gomme à mâcher et à avaler (ce n’est pas un chewing-gum). Chaque gomme contient 40 mg de caféine et de la vitamine B12, sans sucres. Vegan, fabriqué en Suisse."
+            "answer": "Un complément alimentaire à base de maté et de caféine, avec édulcorants, goût citron ou mûre (édition limitée), sous forme de gomme à mâcher et à avaler (ce n’est pas un chewing-gum). Chaque gomme contient 40 mg de caféine et de la vitamine B12, sans sucres. Vegan, fabriqué en Suisse."
           }
         },
         "b_2": {
           "type": "question",
           "settings": {
             "question": "Qu’est-ce qu’il y a dans un sachet ?",
-            "answer": "20 gommes, soit 50 g. 1 sachet : CHF 7.50, 2 sachets : CHF 15.–, 3 sachets : CHF 20.–, 5 sachets : CHF 30.– (4 achetés + 1 offert)."
+            "answer": "20 gommes, soit 50 g. 1 sachet : CHF 7.50, 2 sachets : CHF 15.–, 3 sachets : CHF 20.–, 5 sachets : CHF 30.– (4 achetés + 1 offert). Les mêmes offres existent pour le Citron et pour la Mûre, et tu peux mettre les deux goûts dans le même panier."
           }
         },
         "b_3": {
@@ -41,7 +41,7 @@
           "type": "question",
           "settings": {
             "question": "Ça a quel goût ?",
-            "answer": "Citron. Les arômes naturels masquent l’amertume de la caféine."
+            "answer": "Deux goûts : Citron, et Mûre en édition limitée. Les arômes naturels masquent l’amertume de la caféine."
           }
         },
         "b_5": {

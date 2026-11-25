@@ -20,7 +20,7 @@
       "type": "vz9-offres",
       "settings": {
         "product": "voltiz-energy-gum",
-        "heading": "Ajoute une autre offre",
+        "heading": "Ajoute une offre Citron",
         "text": "Les offres se combinent : chaque clic ajoute l’offre à ton panier. Livraison offerte dès 10 paquets.",
         "button_label": "Ajouter",
         "in_cart_label": "dans le panier",
@@ -266,11 +266,25 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "offres_mure": {
+      "type": "vz9-offres",
+      "settings": {
+        "product": "voltiz-mate-mure",
+        "tag": "Édition limitée",
+        "tone": "mure",
+        "heading": "Ajoute une offre Mûre",
+        "text": "Mêmes offres, goût mûre. Elles se combinent avec le Citron : livraison offerte dès 10 paquets au total.",
+        "button_label": "Ajouter",
+        "in_cart_label": "dans le panier",
+        "best_note": "4 achetés + 1 offert"
+      }
     }
   },
   "order": [
     "avis",
     "offres",
+    "offres_mure",
     "cart-section",
     "product_list_NNFgcy"
   ]
