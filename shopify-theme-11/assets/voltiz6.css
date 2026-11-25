@@ -323,10 +323,10 @@
 .v6 .hero6__new-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mure-soft); box-shadow: 0 0 0 4px rgba(240,140,200,.16); }
 .v6 .hero6__halo2 { position: absolute; z-index: 2; left: calc(50% + var(--pw) * .55); top: var(--cy); width: min(760px, 80vw); aspect-ratio: 1.15; transform: translate(-50%, -50%);
   background: radial-gradient(closest-side, rgba(240,140,200,.20) 0%, rgba(143,35,99,.14) 42%, rgba(143,35,99,0) 72%); mix-blend-mode: screen; }
-.v6 .hero6__stage--duo { width: calc(var(--pw) * 1.84); }
-.v6 .hero6__stage--duo .hero6__product { width: var(--pw); }
+.v6 .hero6__stage--duo { width: calc(var(--pw) * 1.92); display: flex; align-items: flex-start; }
+.v6 .hero6__stage--duo .hero6__product { flex: none; width: var(--pw); }
 .v6 .hero6__product--a { z-index: 1; rotate: -5deg; transform-origin: 50% 85%; }
-.v6 .hero6__product--b { position: absolute; z-index: 2; right: 0; top: 0; rotate: 5deg; translate: 0 -4%; transform-origin: 50% 85%;
+.v6 .hero6__product--b { position: relative; z-index: 2; margin-left: calc(var(--pw) * -.08); rotate: 5deg; translate: 0 -3%; transform-origin: 50% 85%;
   filter: drop-shadow(0 46px 44px rgba(3,12,26,.55)) drop-shadow(0 0 80px rgba(143,35,99,.32)); }
 .js .v6 .hero6__product--b { animation-delay: .25s; }
 .v6 .hero6--duo .hero6 .pouch__float, .v6 .hero6--duo .pouch__float { animation-duration: 9s; }
@@ -348,6 +348,8 @@
   .v6 .hero6__new { font-size: .625rem; padding: 7px 12px 7px 10px; }
   .v6 .hero6__tag { top: calc(100% + 16px); font-size: .75rem; }
   .v6 .hero6__buy .btn { min-width: 0; }
+  .v6 .hero6--duo { --pw: min(37vw, 190px); }
+  .v6 .hero6--duo .hero6__buy .btn { gap: 12px; padding-inline: 22px; font-size: .875rem; white-space: nowrap; }
 }
 
 /* Fiche produit : choix du goût, et couleur Mûre sur la fiche de l'édition limitée */
