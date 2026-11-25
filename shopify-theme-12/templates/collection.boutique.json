@@ -1,0 +1,45 @@
+{
+  "sections": {
+    "boutique": {
+      "type": "vz12-boutique",
+      "blocks": {
+        "citron": {
+          "type": "product",
+          "settings": {
+            "product": "voltiz-energy-gum",
+            "image": "shopify://shop_images/voltiz-sachet-3d-v2-face.webp",
+            "name": "Voltiz Maté Citron",
+            "line": "Goût citron. 20 gommes par sachet, 40 mg de caféine par gomme.",
+            "tone": "citron"
+          }
+        },
+        "mure": {
+          "type": "product",
+          "settings": {
+            "product": "voltiz-mate-mure",
+            "image": "shopify://shop_images/voltiz-sachet-3d-mure-face.webp",
+            "name": "Voltiz Maté Mûre",
+            "line": "Goût mûre, en édition limitée. La même gomme, 40 mg de caféine par gomme.",
+            "tag": "Édition limitée",
+            "tone": "mure"
+          }
+        }
+      },
+      "block_order": [
+        "citron",
+        "mure"
+      ],
+      "settings": {
+        "kicker": "Précommande",
+        "heading": "Boutique",
+        "text": "Deux goûts, les mêmes offres : 1, 2, 3 ou 5 paquets. Tu peux mélanger Citron et Mûre dans ton panier.",
+        "from_label": "Dès",
+        "button_label": "Choisir",
+        "note": "Livraison en Suisse, prévue entre fin janvier et mi-février 2027. Livraison offerte dès 10 paquets au total."
+      }
+    }
+  },
+  "order": [
+    "boutique"
+  ]
+}
