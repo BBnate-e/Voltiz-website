@@ -284,7 +284,7 @@
 .v3 .btn.btn--mure:not(:disabled):hover { background: var(--mure-2); box-shadow: 0 14px 30px -14px rgba(143,35,99,.85); }
 
 /* Premier écran : les deux sachets côte à côte, devant le grand mot */
-.v6 .hero6--duo { --pw: clamp(200px, 17vw, 270px); }
+.v6 .hero6--duo { --pw: clamp(180px, 14.5vw, 232px); }
 .v6 .hero6__new { position: absolute; z-index: 5; left: 50%; top: clamp(22px, 3.2vw, 40px); translate: -50% 0; display: inline-flex; align-items: center; gap: 10px; margin: 0; white-space: nowrap;
   padding: 8px 15px 8px 12px; border: 1px solid rgba(240,140,200,.5); border-radius: 999px; background: rgba(143,35,99,.28); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
   color: var(--mure-soft); font: 700 .6875rem/1 var(--f); letter-spacing: .16em; text-transform: uppercase; }
