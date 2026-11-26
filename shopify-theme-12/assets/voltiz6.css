@@ -352,3 +352,9 @@
 .v5.is-mure .off9 { border-color: rgba(143,35,99,.35); }
 .v5.is-mure .off9__item--best .off9__form { border-color: var(--mure); background: linear-gradient(180deg, rgba(143,35,99,.10), rgba(143,35,99,.03)); }
 .v5.is-mure .off9__btn:hover { background: var(--mure); color: #FFFFFF; }
+
+/* Sachet : un clic le retourne (26.11) */
+.v3 .pouch[data-vz-pouch="drag"] { cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.v3 .pouch[data-vz-pouch="drag"] .pouch__card { transition: transform .8s cubic-bezier(.22,.8,.24,1); }
+.v3 .pouch[data-vz-pouch="drag"].is-live .pouch__card { transition: transform .45s cubic-bezier(.2,.7,.2,1); }
+@media (prefers-reduced-motion: reduce) { .v3 .pouch[data-vz-pouch="drag"] .pouch__card { transition: none; } }

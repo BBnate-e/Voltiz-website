@@ -13,6 +13,7 @@
       "type": "vz5-acheter",
       "settings": {
         "front": "shopify://shop_images/voltiz-sachet-3d-mure-face.webp",
+        "back": "shopify://shop_images/voltiz-sachet-3d-mure-dos.webp",
         "heading": "Voltiz Maté Mûre",
         "sub": "Complément alimentaire à base de maté et de caféine, avec édulcorants. Une gomme à mâcher et à avaler, goût mûre, en édition limitée. 40 mg de caféine par gomme, sans sucres, vegan. 20 gommes par sachet (50 g).",
         "anchor": "precommande",
