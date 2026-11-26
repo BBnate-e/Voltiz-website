@@ -45,7 +45,7 @@
       </div>
       {%- if two -%}
         <div class="hero6__product hero6__product--b">
-          {% render 'vz2-pouch', front: section.settings.front_2, eager: true, mode: 'drag', sizes: '(min-width: 990px) 20vw, 46vw' %}
+          {% render 'vz2-pouch', front: section.settings.front_2, back: section.settings.back_2, eager: true, mode: 'drag', sizes: '(min-width: 990px) 20vw, 46vw' %}
           {%- if section.settings.label_2 != blank -%}<a class="hero6__tag hero6__tag--mure" href="{{ section.settings.button_2_link }}">{{ section.settings.label_2 }}{%- if section.settings.tag_2 != blank -%}<small>{{ section.settings.tag_2 }}</small>{%- endif -%}</a>{%- endif -%}
         </div>
       {%- elsif section.settings.back != blank -%}
@@ -108,6 +108,7 @@
     { "type": "text", "id": "facts", "label": "Repères en bas", "info": "Séparés par |", "default": "50 mg de caféine | Vitamine B12 | 0 g de sucre | Swiss made" },
     { "type": "header", "content": "Deuxième goût (édition limitée)" },
     { "type": "image_picker", "id": "front_2", "label": "Sachet du 2e goût", "info": "Vide : un seul sachet, comme avant." },
+    { "type": "image_picker", "id": "back_2", "label": "Dos du 2e sachet" },
     { "type": "product", "id": "product_2", "label": "Produit du 2e goût (pour le prix)" },
     { "type": "text", "id": "new_badge", "label": "Badge en haut" },
     { "type": "text", "id": "label_1", "label": "Nom sous le 1er sachet" },
